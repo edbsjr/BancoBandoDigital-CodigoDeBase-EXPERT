@@ -3,18 +3,15 @@ package br.com.cdb.BandoDigitalFinal2.service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
+import br.com.cdb.BandoDigitalFinal2.dao.CartaoDao;
+import br.com.cdb.BandoDigitalFinal2.entity.*;
+import br.com.cdb.BandoDigitalFinal2.enums.TipoCartao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cartao;
-import br.com.cdb.BandoDigitalFinal2.entity.CartaoCredito;
-import br.com.cdb.BandoDigitalFinal2.entity.CartaoDebito;
-import br.com.cdb.BandoDigitalFinal2.entity.Conta;
 import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
 import br.com.cdb.BandoDigitalFinal2.repository.CartaoRepository;
-import br.com.cdb.BandoDigitalFinal2.repository.ClienteRepository;
 import br.com.cdb.BandoDigitalFinal2.repository.ContaRepository;
 import jakarta.transaction.Transactional;
 
@@ -25,30 +22,34 @@ public class CartaoService {
 	private CartaoRepository cartaoRepository;
 
 	@Autowired
+	private CartaoDao cartaoDao;
+
+	@Autowired
 	private ContaRepository contaRepository;
 	
 	//CRIACAO DE CARTOES
-	public Cartao addCartaoDebito(Long idConta, String senha) {
-		CartaoDebito cartaoDebito = new CartaoDebito();
+	public boolean addCartaoDebito(Long idConta, String senha) {
+		CartaoEntity cartao = new CartaoEntity();
 		Conta contaAchada = contaRepository.findById(idConta).orElseThrow(() -> new NoSuchElementException("Conta não encontrada"));
 				
-		cartaoDebito.setConta(contaAchada);
-		cartaoDebito.setSenha(senha);
-		switch (cartaoDebito.getConta().getCliente().getCategoria()) 
+		cartao.setIdConta(idConta);
+		cartao.setSenha(senha);
+		cartao.setTipo(TipoCartao.DEBITO);
+		switch (contaAchada.getCliente().getCategoria())
 		{
 		case COMUM:
-			cartaoDebito.setLimiteDiario(BigDecimal.valueOf(200.00));
+			cartao.setLimite(BigDecimal.valueOf(200.00));
 			break;
 		case SUPER:
-			cartaoDebito.setLimiteDiario(BigDecimal.valueOf(500.00));
+			cartao.setLimite(BigDecimal.valueOf(500.00));
 			break;
 		case PREMIUM:
-			cartaoDebito.setLimiteDiario(BigDecimal.valueOf(1000.00));
+			cartao.setLimite(BigDecimal.valueOf(1000.00));
 		}
-		cartaoDebito.setLimiteEmUso(BigDecimal.ZERO);
-		cartaoDebito.setSituacao(Situacao.ATIVADO); //SUGERIDO DEIXAR BLOQUEADO, DEIXEI APENAS PARA FACILITAR A EXECUCAO PARA TESTES
+		cartao.setLimiteUsado(BigDecimal.ZERO);
+		cartao.setSituacao(Situacao.ATIVADO); //SUGERIDO DEIXAR BLOQUEADO, DEIXEI APENAS PARA FACILITAR A EXECUCAO PARA TESTES
 		
-		return cartaoRepository.save(cartaoDebito);
+		return cartaoDao.save(cartao);
 	}
 	public Cartao addCartaoCredito(Long idConta, String senha) {
 		CartaoCredito cartaoCredito = new CartaoCredito();
@@ -77,8 +78,9 @@ public class CartaoService {
 	public List<Cartao> listarTodos() {
 		return cartaoRepository.findAll();
 	}
-	public Cartao detalhes(Long idCartao) {
-		return cartaoRepository.findById(idCartao).orElseThrow(() -> new NoSuchElementException("Cartão não encontrado"));
+
+	public CartaoEntity detalhes(Long idCartao) {
+		return cartaoDao.findById(idCartao); //.orElseThrow(() -> new NoSuchElementException("Cartão não encontrado"));
 	}
 	
 	@Transactional

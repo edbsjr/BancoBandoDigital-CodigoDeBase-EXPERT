@@ -4,10 +4,12 @@ import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoCartao;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class CartaoEntityRowMapper implements RowMapper<CartaoEntity> {
     @Override
     public CartaoEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -21,7 +23,7 @@ public class CartaoEntityRowMapper implements RowMapper<CartaoEntity> {
         cartaoEntity.setValorFatura(rs.getBigDecimal("valor_fatura"));
         cartaoEntity.setLimite(rs.getBigDecimal("limite"));
         cartaoEntity.setLimiteUsado(rs.getBigDecimal("limite_usado"));
-        return new CartaoEntity();
+        return cartaoEntity;
     }
 
 

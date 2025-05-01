@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,10 +60,10 @@ public class CartaoController {
 	}
 
 	@GetMapping("/detalhes/{idCartao}")
-	private ResponseEntity<Cartao> detalhes(@PathVariable Long idCartao) {
+	private ResponseEntity<CartaoEntity> detalhes(@PathVariable Long idCartao) {
 		try {
-			Cartao cartaoAchado = cartaoService.detalhes(idCartao);
-			return new ResponseEntity<Cartao>(cartaoAchado, HttpStatus.FOUND);
+			CartaoEntity cartaoAchado = cartaoService.detalhes(idCartao);
+			return new ResponseEntity<CartaoEntity>(cartaoAchado, HttpStatus.FOUND);
 		} catch (NoSuchElementException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
