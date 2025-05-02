@@ -60,6 +60,7 @@ public class CartaoDao {
         return jdbcTemplate.query(sql,  cartaoRowMapper );
     }
 
+
     //UPDATE
     //NAO POSSUI EDICAO DO ID_CONTA, TIPO, FATURA POR NAO FAZER SENTIDO NA REGRA DE NEGOCIO
     public boolean update(CartaoEntity cartaoEntity)
