@@ -54,9 +54,9 @@ public class CartaoController {
 	}
 
 	@GetMapping("/listarTodos")
-	private ResponseEntity<List<Cartao>> listarTodos() {
-		List<Cartao> listaCartao = cartaoService.listarTodos();
-		return new ResponseEntity<List<Cartao>>(listaCartao, HttpStatus.OK);
+	private ResponseEntity<List<CartaoEntity>> listarTodos() {
+		List<CartaoEntity> listaCartao = cartaoService.listarTodos();
+		return new ResponseEntity<List<CartaoEntity>>(listaCartao, HttpStatus.OK);
 	}
 
 	@GetMapping("/detalhes/{idCartao}")

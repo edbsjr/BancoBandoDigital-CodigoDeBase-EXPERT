@@ -16,18 +16,6 @@ public class CartaoEntity {
     private BigDecimal limite;
     private BigDecimal limiteUsado;
 
-
-    public CartaoEntity(String senha, TipoCartao tipo, Situacao situacao, Long idConta, BigDecimal valorFatura, BigDecimal limite, BigDecimal limiteUsado) {
-
-        this.senha = senha;
-        this.tipo = tipo;
-        this.situacao = situacao;
-        this.idConta = idConta;
-        this.valorFatura = valorFatura;
-        this.limite = limite;
-        this.limiteUsado = limiteUsado;
-    }
-
     public CartaoEntity()
     {}
 

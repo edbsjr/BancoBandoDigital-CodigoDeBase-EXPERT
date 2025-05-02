@@ -3,6 +3,7 @@ package br.com.cdb.BandoDigitalFinal2.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,19 +57,19 @@ public class ContaController {
 	}
 	
 	@GetMapping("/listarTodos")
-	public ResponseEntity<List<Conta>> listarTodos() //RETORNA TODOS AS CONTAS
+	public ResponseEntity<List<ContaEntity>> listarTodos() //RETORNA TODOS AS CONTAS
 	{
-		List<Conta> listaDeContas = contaService.listarTodos();
+		List<ContaEntity> listaDeContas = contaService.listarTodos();
 		
-		return new ResponseEntity<List<Conta>>(listaDeContas, HttpStatus.OK);
+		return new ResponseEntity<List<ContaEntity>>(listaDeContas, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{idConta}")
-	public ResponseEntity<Conta> obterConta(@PathVariable Long idConta) //RETORNA JSON(CONTA) UNICA PARA CONFERIR
+	public ResponseEntity<ContaEntity> obterConta(@PathVariable Long idConta) //RETORNA JSON(CONTA) UNICA PARA CONFERIR
 	{
 		try {
-		Conta contaAchada = contaService.obterDetalhes(idConta);
-			return new ResponseEntity<Conta>(contaAchada, HttpStatus.FOUND);
+		ContaEntity contaAchada = contaService.obterDetalhes(idConta);
+			return new ResponseEntity<ContaEntity>(contaAchada, HttpStatus.FOUND);
 		} catch(NoSuchElementException e)
 		{
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);}

@@ -3,15 +3,13 @@ package br.com.cdb.BandoDigitalFinal2.service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
+import br.com.cdb.BandoDigitalFinal2.dao.ContaDao;
+import br.com.cdb.BandoDigitalFinal2.entity.*;
+import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
-import br.com.cdb.BandoDigitalFinal2.entity.Conta;
-import br.com.cdb.BandoDigitalFinal2.entity.ContaCorrente;
-import br.com.cdb.BandoDigitalFinal2.entity.ContaPoupanca;
 import br.com.cdb.BandoDigitalFinal2.repository.ClienteRepository;
 import br.com.cdb.BandoDigitalFinal2.repository.ContaRepository;
 import jakarta.transaction.Transactional;
@@ -27,98 +25,99 @@ public class ContaService {
 	private ContaRepository contaRepository;
 	@Autowired
 	private ClienteRepository clienteRepository;
+
+	@Autowired
+	private ContaDao contaDao;
 	
 	//ABERTURA DE CONTAS
-	public Conta addContaCorrente(Long clienteId) //RETORNO DE EXCEPTION DIFERENTE DA CONTA POUPANCA
+	public boolean addContaCorrente(Long clienteId) //RETORNO DE EXCEPTION DIFERENTE DA CONTA POUPANCA
 	{
-		ContaCorrente contaCorrente = new ContaCorrente();
+		ContaEntity conta = new ContaEntity();
 		Cliente clienteEncontrado= clienteRepository.findById(clienteId).orElseThrow(() -> new NoSuchElementException("Cliente não encontrado"));
 		
-		contaCorrente.setCliente(clienteEncontrado);
-		
+		conta.setIdCliente(clienteEncontrado.getId());
+		conta.setTipoConta(TipoConta.CORRENTE);
 		BigDecimal taxa = null;
-		switch( contaCorrente.getCliente().getCategoria()) {
+		switch( clienteEncontrado.getCategoria()) {
 		
 		case COMUM:
 			taxa = BigDecimal.valueOf(12.00);
-			contaCorrente.setTaxa(taxa);
+			conta.setManutencao(taxa);
 			break;
 		case SUPER:
 			taxa = BigDecimal.valueOf(8.00);
-			contaCorrente.setTaxa(taxa);
+			conta.setManutencao(taxa);
 			break;
 		case PREMIUM:
 			taxa = BigDecimal.valueOf(0.00);
-			contaCorrente.setTaxa(taxa);
+			conta.setManutencao(taxa);
 			break;
 		}
 		
-		return contaRepository.save(contaCorrente);
+		return contaDao.save(conta);
 		
 	}	
-	public Conta addContaPoupanca(Long clienteId) 
+	public boolean addContaPoupanca(Long clienteId) 
 	{
-		ContaPoupanca contaPoupanca = new ContaPoupanca();
-		Optional<Cliente> clienteEncontrado = clienteRepository.findById(clienteId);
+		ContaEntity conta = new ContaEntity();
+		Cliente clienteEncontrado = clienteRepository.findById(clienteId).orElseThrow(() -> new NoSuchElementException("Cliente não encontrado"));;
 		
-		if(clienteEncontrado != null) {
-		contaPoupanca.setCliente(clienteEncontrado.get());
+		conta.setIdCliente(clienteEncontrado.getId());
+		conta.setTipoConta(TipoConta.POUPANCA);
 		BigDecimal rendimento = null;
-		switch( contaPoupanca.getCliente().getCategoria()) {
+		switch( clienteEncontrado.getCategoria()) {
 		
 		case COMUM:
 			rendimento = BigDecimal.valueOf(0.500);
-			contaPoupanca.setRendimento(rendimento);
+			conta.setRendimento(rendimento);
 			break;
 		case SUPER:
 			rendimento = BigDecimal.valueOf(0.700);
-			contaPoupanca.setRendimento(rendimento);
+			conta.setRendimento(rendimento);
 			break;
 		case PREMIUM:
 			rendimento = BigDecimal.valueOf(0.900);
-			contaPoupanca.setRendimento(rendimento);
+			conta.setRendimento(rendimento);
 			break;
 		}
-		return contaRepository.save(contaPoupanca);
-		}
-		else
-			throw new NoSuchElementException("Cliente do não encontrado! Informe outro para abertura da conta poupança");
+		return contaDao.save(conta);
 	}
 	
 	//DETALHES DE CONTAS
-	public List<Conta> listarTodos(){
+	public List<ContaEntity> listarTodos(){
 		
-		return contaRepository.findAll(); 
+		return contaDao.findAll(); 
 		}
-	public Conta obterDetalhes(Long idConta) 
+	public ContaEntity obterDetalhes(Long idConta) 
 	{
-		Conta conta = obterConta(idConta);
+		ContaEntity conta = contaDao.findById(idConta);
 		
 		return conta;
 	}
 	public BigDecimal consultarSaldo(Long idConta) 
 	{
-		Conta conta = obterConta(idConta);
+		ContaEntity conta = contaDao.findById(idConta);
 		return conta.getSaldo();
 		
 	}
 	
 	//TRANSFERENCIA ENTRE CONTAS
-	@Transactional
-	public void transferirValor(Long idOrigem, BigDecimal valor, Long idDestino) 
+		public void transferirValor(Long idOrigem, BigDecimal valor, Long idDestino)
 	{
-		Conta contaOrigem = obterConta(idOrigem);
+		ContaEntity contaOrigem = contaDao.findById(idOrigem);
 		
 		if(valor.compareTo(BigDecimal.ZERO)<0)
 			throw new RuntimeException("Não é permitido VALOR < 0");
 		if (contaOrigem.getSaldo().compareTo(valor)>=0) {
 		
-		Conta contaDestino = obterConta(idDestino);
+		ContaEntity contaDestino = contaDao.findById(idDestino);
 		
 			if(contaDestino != null) 
 			{
 				contaOrigem.debitar(valor);
 				contaDestino.creditar(valor);
+				contaDao.update(contaOrigem);
+				contaDao.update(contaOrigem);
 			}
 		}
 		else
@@ -126,7 +125,7 @@ public class ContaService {
 		
 	}
 	
-
+	//TODO PAREI AQUI
 	//MOVIMENTACAO DE CONTA
 	@Transactional
 	public void pagarPix(Long idConta, BigDecimal valor) 
