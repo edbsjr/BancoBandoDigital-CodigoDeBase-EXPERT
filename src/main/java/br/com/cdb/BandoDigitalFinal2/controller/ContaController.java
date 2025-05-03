@@ -1,26 +1,16 @@
 package br.com.cdb.BandoDigitalFinal2.controller;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-
+import br.com.cdb.BandoDigitalFinal2.dto.NumeroValorDto;
+import br.com.cdb.BandoDigitalFinal2.dto.TransferenciaBancariaDto;
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.cdb.BandoDigitalFinal2.dto.AdicionarContaCorrenteDto;
-import br.com.cdb.BandoDigitalFinal2.dto.AdicionarContaPoupancaDto;
-import br.com.cdb.BandoDigitalFinal2.dto.NumeroValorDto;
-import br.com.cdb.BandoDigitalFinal2.dto.TransferenciaBancariaDto;
-import br.com.cdb.BandoDigitalFinal2.entity.Conta;
-import br.com.cdb.BandoDigitalFinal2.service.ContaService;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/conta")
@@ -94,12 +84,12 @@ public class ContaController {
 	}
 
 	@GetMapping("/{idConta}/saldo") 
-	public ResponseEntity<?> obterSaldoConta(@PathVariable Long idConta) //METODO ALTERNATIVO
+	public ResponseEntity<String> obterSaldoConta(@PathVariable Long idConta) //METODO ALTERNATIVO
 	{
 		ResponseEntity<?> detalhesResponse = obterConta(idConta); // Wildcard (?) CORINGA
 		
 		if (detalhesResponse.getStatusCode() == HttpStatus.FOUND) {
-			Conta conta = (Conta) detalhesResponse.getBody();
+			ContaEntity conta = obterConta(idConta).getBody();
 			return new ResponseEntity<>("Saldo da conta: " + conta.getSaldo(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("Falha ao buscar conta e saldo",HttpStatus.NOT_FOUND);

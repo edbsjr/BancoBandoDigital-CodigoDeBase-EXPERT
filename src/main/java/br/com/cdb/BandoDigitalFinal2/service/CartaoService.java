@@ -1,41 +1,39 @@
 package br.com.cdb.BandoDigitalFinal2.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.NoSuchElementException;
-
 import br.com.cdb.BandoDigitalFinal2.dao.CartaoDao;
-import br.com.cdb.BandoDigitalFinal2.entity.*;
+import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
+import br.com.cdb.BandoDigitalFinal2.dao.ContaDao;
+import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
+import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoCartao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
-import br.com.cdb.BandoDigitalFinal2.repository.CartaoRepository;
-import br.com.cdb.BandoDigitalFinal2.repository.ContaRepository;
-import jakarta.transaction.Transactional;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class CartaoService {
 
 	@Autowired
-	private CartaoRepository cartaoRepository;
-
-	@Autowired
 	private CartaoDao cartaoDao;
-
 	@Autowired
-	private ContaRepository contaRepository;
+	private ClienteDao clienteDao;
+	@Autowired
+	private ContaDao contaDao;
 	
 	//CRIACAO DE CARTOES
 	public boolean addCartaoDebito(Long idConta, String senha) {
 		CartaoEntity cartao = new CartaoEntity();
-		Conta contaAchada = contaRepository.findById(idConta).orElseThrow(() -> new NoSuchElementException("Conta não encontrada"));
+		ContaEntity conta = contaDao.findById(idConta);
+		Cliente cliente = clienteDao.findById(conta.getIdCliente());
 				
 		cartao.setIdConta(idConta);
 		cartao.setSenha(senha);
 		cartao.setTipo(TipoCartao.DEBITO);
-		switch (contaAchada.getCliente().getCategoria())
+		switch (cliente.getCategoria())
 		{
 		case COMUM:
 			cartao.setLimite(BigDecimal.valueOf(200.00));
@@ -53,12 +51,14 @@ public class CartaoService {
 	}
 	public boolean addCartaoCredito(Long idConta, String senha) {
 		CartaoEntity cartao = new CartaoEntity();
-		Conta contaAchada = contaRepository.findById(idConta).orElseThrow(() -> new NoSuchElementException("Conta não encontrada"));
-		
+		ContaEntity conta = contaDao.findById(idConta);
+		Cliente cliente = clienteDao.findById(conta.getIdCliente());
+
 		cartao.setIdConta(idConta);
 		cartao.setSenha(senha);
 		cartao.setTipo(TipoCartao.CREDITO);
-		switch (contaAchada.getCliente().getCategoria())
+		cartao.setValorFatura(BigDecimal.ZERO);
+		switch (cliente.getCategoria())
 		{
 		case COMUM:
 			cartao.setLimite(BigDecimal.valueOf(1000.00));
@@ -89,8 +89,8 @@ public class CartaoService {
 	public void pagamentoCartaoDebito(Long idCartao, String senha, BigDecimal valor) {
 
 		CartaoEntity cartao = detalhes(idCartao);
-		Conta conta = contaRepository.findById(cartao.getIdConta()).orElseThrow(() -> new NoSuchElementException("Conta não encontrado"));
-		if(cartao.getTipo().equals(TipoCartao.DEBITO)) //VERIFICA SE É CARTAO DE DEBITO MESMO
+		ContaEntity conta = contaDao.findById(cartao.getIdConta());
+		if(!cartao.getTipo().equals(TipoCartao.DEBITO)) //VERIFICA SE É CARTAO DE DEBITO MESMO
 			throw new RuntimeException ("Operação Permitida apenas para Cartão de Debito");
 
 		if (cartao.getSenha().equals(senha)) {
@@ -102,6 +102,7 @@ public class CartaoService {
 				conta.setSaldo(conta.getSaldo().subtract(valor));//DEBITA DIRETO DA CONTA O VALOR
 				cartao.setLimiteUsado(cartao.getLimiteUsado().add(valor));//ACRESCENTA O VALOR NO LIMITE EM USO
 				cartaoDao.update(cartao);
+				contaDao.update(conta);
 			}
 			else
 				throw new RuntimeException("Saldo em conta insuficiente");
@@ -113,7 +114,7 @@ public class CartaoService {
 	public void pagamentoCartaoCredito(Long idCartao, String senha, BigDecimal valor) {
 		
 		CartaoEntity cartao = detalhes(idCartao);
-		if(cartao.getTipo().equals(TipoCartao.CREDITO)) //VERIFICA SE É CARTAO DE CREDITO MESMO
+		if(!cartao.getTipo().equals(TipoCartao.CREDITO)) //VERIFICA SE É CARTAO DE CREDITO MESMO
 			throw new RuntimeException ("Operação Permitida apenas para Cartão de Credito");
 
 		if (cartao.getSenha().equals(senha)) {
@@ -179,11 +180,11 @@ public class CartaoService {
 			throw new RuntimeException("Senha incorrenta");
 	}
 	
-	@Transactional
+
 	public void debitarFatura(Long idCartao, String senha) 
 	{
 		CartaoEntity cartao = detalhes(idCartao);
-		Conta conta = contaRepository.findById(cartao.getIdConta()).orElseThrow(()-> new RuntimeException("Conta nao encontrada"));
+		ContaEntity conta = contaDao.findById(cartao.getIdConta());
 		if(!cartao.getTipo().equals(TipoCartao.CREDITO))
 			throw new RuntimeException("Transação permitida apenas para Cartao de Credito");
 
@@ -197,25 +198,28 @@ public class CartaoService {
 				cartao.setValorFatura(BigDecimal.ZERO);
 				cartao.setLimiteUsado(BigDecimal.ZERO);
 				cartaoDao.update(cartao);
+				contaDao.update(conta);
 			}	else 
 				throw new RuntimeException ("Valor da fatura supera o valor em conta");
 			
 		}	else
 			throw new RuntimeException("Senha incorrenta");
 	}
-	
-	@Transactional
+
 	public void alterarLimiteDiario(Long idCartao, BigDecimal novoLimite) //TODO DELETAR DEPOIS
 	{
-		CartaoDebito cartaoDebito = (CartaoDebito)cartaoRepository.findById(idCartao).orElseThrow(() -> new NoSuchElementException("Cartão não encontrado"));;
-			//if(cartao.getLimiteEmUso().compareTo(novoLimite)>=0) //INICIALMENTE PENSEI CONDICIONAR A MUDANÇA, MAS NAO VI PORQUE UMA VEZ QUE O DINHEIRO JA SAIU DA CONTA
-			cartaoDebito.setLimiteDiario(novoLimite);
+		CartaoEntity cartao = cartaoDao.findById(idCartao);
+			if(cartao.getLimiteUsado().compareTo(novoLimite)<=0) //INICIALMENTE PENSEI CONDICIONAR A MUDANÇA, MAS NAO VI PORQUE UMA VEZ QUE O DINHEIRO JA SAIU DA CONTA
+			{
+				cartao.setLimite(novoLimite);
+				cartaoDao.update(cartao);
+			}
 	}
 
 	public void alterarLimite(Long idCartao, BigDecimal novoLimite)  //TANTO PARA CREDITO QUANTO DEBITO.
 	{
 		CartaoEntity cartao = detalhes(idCartao);
-			if(cartao.getLimiteUsado().compareTo(novoLimite)>=0) {
+			if(cartao.getLimiteUsado().compareTo(novoLimite)<=0) {
 				cartao.setLimite(novoLimite);
 				cartaoDao.update(cartao);
 			}

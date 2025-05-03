@@ -1,18 +1,15 @@
 package br.com.cdb.BandoDigitalFinal2.service;
 
+import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
+import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
-import br.com.cdb.BandoDigitalFinal2.entity.Endereco;
-import br.com.cdb.BandoDigitalFinal2.enums.Estado;
-import br.com.cdb.BandoDigitalFinal2.repository.ClienteRepository;
-import jakarta.transaction.Transactional;
 
 //TODO TRATAMENTO DE ERROS
 //TODO AO DELETAR O CLIENTE FAZER EFEITO CASCATA PARA DELETAR CONTA E CARTOES
@@ -21,23 +18,14 @@ import jakarta.transaction.Transactional;
 public class ClienteService {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ClienteDao clienteDao;
 	
 	
-	public Cliente salvarCliente(Cliente cliente) {
+	public boolean salvarCliente(Cliente cliente) {
 		
 	validarCliente(cliente);
-	
-	/*//CASO O ENUM PASSADO SEJA A DESCRICAO AO INVES DA SIGLA //TODO Tratar erros com enum digitado errado.
-	if(verificarEstado(cliente.getEndereco().getEstado())) 
-	{
-		String estadoString = cliente.getEndereco().getEstado().toString();
-		Estado novoEstado = Estado.getDescricao(estadoString);
-		Endereco novoEndereco = cliente.getEndereco();
-		novoEndereco.setEstado(novoEstado);
-		cliente.setEndereco(novoEndereco);
-		}*/
-	return clienteRepository.save(cliente);
+
+	return clienteDao.save(cliente);
 	
 	}
 	
@@ -56,33 +44,32 @@ public class ClienteService {
 	{
 		validarCliente(cliente);
 		
-		Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
-		Cliente clienteAntigo = clienteOptional.get();
+		Cliente clienteAntigo = clienteDao.findById(idCliente);
 		
 		clienteAntigo.setNome(cliente.getNome());
 		clienteAntigo.setCpf(cliente.getCpf());
-		clienteAntigo.setEndereco(cliente.getEndereco());
 		clienteAntigo.setDataNasc(cliente.getDataNasc());
 		clienteAntigo.setCategoria(cliente.getCategoria());
+		clienteDao.update(clienteAntigo);
 	}
 
 	public void deletarCliente(Long idCliente) 
 	{
-		if(clienteRepository.findById(idCliente) != null)
-			clienteRepository.deleteById(idCliente); // AO INVES DE DELETAR O CLIENTE DA BASE DE DADOS E PERDER INFORMACOES UM SISTEMA DE STATUS SERIA MAIS VIAVEL
+		if(clienteDao.findById(idCliente) != null)
+			clienteDao.deleteById(idCliente); // AO INVES DE DELETAR O CLIENTE DA BASE DE DADOS E PERDER INFORMACOES UM SISTEMA DE STATUS SERIA MAIS VIAVEL
 		else 
 			throw new NoSuchElementException("Cliente não encontrado");
 	}
 	
 	public List<Cliente> listarTodos(){
 	
-	return clienteRepository.findAll();
+	return clienteDao.findAll();
 	}
 	
 	public Cliente obterCliente(Long idCliente) {
 		
-		Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() -> new NoSuchElementException("Cliente não encontrado"));
-		return cliente; //TODO BUSCAR DETALHES TALVEZ COM O ID VERIFICAR USO DO OPTIONAL
+		Cliente cliente = clienteDao.findById(idCliente);
+		return cliente;
 	}
 		
 	//METODOS DE VALIDAÇÕES
@@ -92,7 +79,7 @@ public class ClienteService {
 		if(cliente.getCpf().length() == 11)
 			cliente.setCpf(padronizarCpf(cliente.getCpf()));
 		
-		validarCep(cliente.getEndereco().getCep());
+		//validarCep(cliente.getEndereco().getCep());
 		validarDataNasc(cliente.getDataNasc());
 	}
 			

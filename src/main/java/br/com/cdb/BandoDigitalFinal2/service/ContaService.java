@@ -1,18 +1,15 @@
 package br.com.cdb.BandoDigitalFinal2.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.NoSuchElementException;
-
+import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
 import br.com.cdb.BandoDigitalFinal2.dao.ContaDao;
-import br.com.cdb.BandoDigitalFinal2.entity.*;
+import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cdb.BandoDigitalFinal2.repository.ClienteRepository;
-import br.com.cdb.BandoDigitalFinal2.repository.ContaRepository;
-import jakarta.transaction.Transactional;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 //TODO CRIAR COMANDO RESETAR LIMITE DIARIO PARA LIBERAR LIMITE NO FINAL DO MES
@@ -21,10 +18,9 @@ import jakarta.transaction.Transactional;
 public class ContaService {
 
 	
+
 	@Autowired
-	private ContaRepository contaRepository;
-	@Autowired
-	private ClienteRepository clienteRepository;
+	private ClienteDao clienteDao;
 
 	@Autowired
 	private ContaDao contaDao;
@@ -33,9 +29,9 @@ public class ContaService {
 	public boolean addContaCorrente(Long clienteId) //RETORNO DE EXCEPTION DIFERENTE DA CONTA POUPANCA
 	{
 		ContaEntity conta = new ContaEntity();
-		Cliente clienteEncontrado= clienteRepository.findById(clienteId).orElseThrow(() -> new NoSuchElementException("Cliente não encontrado"));
-		
-		conta.setIdCliente(clienteEncontrado.getId());
+		Cliente clienteEncontrado= clienteDao.findById(clienteId);
+		conta.setSaldo(BigDecimal.ZERO);
+		conta.setIdCliente(clienteEncontrado.getIdCliente());
 		conta.setTipoConta(TipoConta.CORRENTE);
 		BigDecimal taxa = null;
 		switch( clienteEncontrado.getCategoria()) {
@@ -60,9 +56,9 @@ public class ContaService {
 	public boolean addContaPoupanca(Long clienteId) 
 	{
 		ContaEntity conta = new ContaEntity();
-		Cliente clienteEncontrado = clienteRepository.findById(clienteId).orElseThrow(() -> new NoSuchElementException("Cliente não encontrado"));;
-		
-		conta.setIdCliente(clienteEncontrado.getId());
+		Cliente clienteEncontrado = clienteDao.findById(clienteId);;
+		conta.setSaldo(BigDecimal.ZERO);
+		conta.setIdCliente(clienteEncontrado.getIdCliente());
 		conta.setTipoConta(TipoConta.POUPANCA);
 		BigDecimal rendimento = null;
 		switch( clienteEncontrado.getCategoria()) {
@@ -116,7 +112,7 @@ public class ContaService {
 			{
 				contaOrigem.debitar(valor);
 				contaDestino.creditar(valor);
-				contaDao.update(contaOrigem);
+				contaDao.update(contaDestino);
 				contaDao.update(contaOrigem);
 			}
 		}
@@ -125,26 +121,26 @@ public class ContaService {
 		
 	}
 	
-	//TODO PAREI AQUI
+
 	//MOVIMENTACAO DE CONTA
-	@Transactional
 	public void pagarPix(Long idConta, BigDecimal valor) 
 	{
 		if(valor.compareTo(BigDecimal.ZERO)<0)
 			throw new RuntimeException("Não é permitido VALOR < 0");
 		debitarValor(idConta, valor);		
 	}
-	@Transactional
+
 	public void depositar(Long idConta, BigDecimal valor) 
 	{
-		Conta conta = contaRepository.findById(idConta).orElseThrow(() -> new NoSuchElementException("Conta não encontrada"));
-		if(conta != null && valor.compareTo(BigDecimal.ZERO) > 0)
+		ContaEntity conta = contaDao.findById(idConta);
+		if(conta != null && valor.compareTo(BigDecimal.ZERO) > 0) {
 			conta.setSaldo(conta.getSaldo().add(valor));
-			
+			contaDao.update(conta);
+		}
 		else
 			throw new RuntimeException("Conta ou valor invalidos");
 	}
-	@Transactional
+
 	public void sacar(Long idConta, BigDecimal valor) 
 	{
 		if(valor.compareTo(BigDecimal.ZERO)<0)
@@ -153,32 +149,33 @@ public class ContaService {
 	}
 	
 	//MOVIMENTACAO INTERNA DE CONTA
-	@Transactional
-	public void manutencao(Long idConta) 
+	public void manutencao(Long idConta)
 	{
-		ContaCorrente conta = (ContaCorrente) obterConta(idConta);
-		debitarValor(idConta, conta.getTaxa());
+		ContaEntity conta = obterConta(idConta);
+		debitarValor(idConta, conta.getManutencao());
 	}
-	@Transactional
+
 	public void rendimento(Long idConta) 
 	{
-		ContaPoupanca conta = (ContaPoupanca)obterConta(idConta);
+		ContaEntity conta = obterConta(idConta);
 		conta.setSaldo(conta.getSaldo().add(conta.getSaldo().multiply(conta.getRendimento().divide(BigDecimal.valueOf(100.00)))));
+		contaDao.update(conta);
 	}
 	
 
 	//METODOS GENERICOS
-	private Conta obterConta(Long idConta) 
+	private ContaEntity obterConta(Long idConta)
 	{
-		return contaRepository.findById(idConta).orElseThrow(() -> new NoSuchElementException("Conta não encontrada"));
+		return contaDao.findById(idConta);
 	}
 	private void debitarValor(Long idConta, BigDecimal valor) 
 	{
-		Conta conta = obterConta(idConta);
-		if(conta.getSaldo().compareTo(valor)>=0)
+		ContaEntity conta = obterConta(idConta);
+		if(conta.getSaldo().compareTo(valor)>=0) {
 			conta.setSaldo(conta.getSaldo().subtract(valor));
-		else
-			throw new RuntimeException("Saldo insuficiente");
+			contaDao.update(conta);
+		} else{
+			throw new RuntimeException("Saldo insuficiente");}
 	}
 	
 	/*private void creditarValor(Long idConta, Double valor) 

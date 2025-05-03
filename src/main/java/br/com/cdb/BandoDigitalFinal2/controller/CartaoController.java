@@ -22,8 +22,6 @@ import br.com.cdb.BandoDigitalFinal2.dto.AlterarSenhaCartaoDto;
 import br.com.cdb.BandoDigitalFinal2.dto.AlterarSituacaoCartaoDto;
 import br.com.cdb.BandoDigitalFinal2.dto.CartaoSenhaDto;
 import br.com.cdb.BandoDigitalFinal2.dto.CartaoSenhaValorDto;
-import br.com.cdb.BandoDigitalFinal2.entity.Cartao;
-import br.com.cdb.BandoDigitalFinal2.entity.Conta;
 import br.com.cdb.BandoDigitalFinal2.service.CartaoService;
 
 @Controller

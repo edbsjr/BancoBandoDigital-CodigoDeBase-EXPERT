@@ -32,8 +32,9 @@ public class ContaDao {
     public boolean save(ContaEntity contaEntity)
     {
         String sql = "INSERT INTO contas (tipo, fk_id_cliente, saldo, rendimento, manutencao) " +
-                "VALUES (?, ?, ?, ?, ?";
+                "VALUES (?, ?, ?, ?, ?)";
         return jdbcTemplate.update(
+                sql,
                 contaEntity.getTipoConta().name(),
                 contaEntity.getIdCliente(),
                 contaEntity.getSaldo(),

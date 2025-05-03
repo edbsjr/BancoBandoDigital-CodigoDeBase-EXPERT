@@ -1,50 +1,31 @@
 package br.com.cdb.BandoDigitalFinal2.entity;
 
 
+import br.com.cdb.BandoDigitalFinal2.enums.Categoria;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import br.com.cdb.BandoDigitalFinal2.enums.Categoria;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
-@Entity
 public class Cliente {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(nullable = false)
-	private String nome;
-	@Column(nullable = false, unique = true)
-	private String cpf;
-	
-	@Column(nullable = false)
-	@Embedded
-	private Endereco endereco;
-	
-	@Column(nullable = false)
-	private LocalDate dataNasc;
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Categoria categoria;
-	
-	/*@OneToMany(mappedBy = "cliente")
-    private List<Conta> contas;*/
-	
 
-	public Long getId() {
-		return id;
+	private Long idCliente;
+
+	private String nome;
+	private String cpf;
+	//private Endereco endereco;
+	private LocalDate dataNasc;
+	private Categoria categoria;
+
+
+	public Cliente() {
+	}
+
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
 	}
 	public String getNome() {
 		return nome;
@@ -58,12 +39,12 @@ public class Cliente {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public Endereco getEndereco() {
+	/*public Endereco getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
+	}*/
 	public LocalDate getDataNasc() {
 		return dataNasc;
 	}

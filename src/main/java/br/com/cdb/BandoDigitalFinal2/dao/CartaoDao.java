@@ -55,23 +55,25 @@ public class CartaoDao {
     //READ ALL
     public List<CartaoEntity> findAll()
     {
-        String sql = "SELECT id_cartao, senha, situacao, limite, " +
+        String sql = "SELECT id_cartao, senha, situacao, tipo, fk_id_conta, valor_fatura, limite, limite_usado " +
                 "FROM cartoes";
         return jdbcTemplate.query(sql,  cartaoRowMapper );
     }
 
 
     //UPDATE
-    //NAO POSSUI EDICAO DO ID_CONTA, TIPO, FATURA POR NAO FAZER SENTIDO NA REGRA DE NEGOCIO
+    //NAO POSSUI EDICAO DO ID_CONTA, TIPO POR NAO FAZER SENTIDO NA REGRA DE NEGOCIO
     public boolean update(CartaoEntity cartaoEntity)
     {
-        String sql = "UPDATE cartoes SET senha = ?, situacao = ?, limite= ? WHERE id_cartao = ?";
+        String sql = "UPDATE cartoes SET senha = ?, situacao = ?, valor_fatura = ?, limite= ?, limite_usado = ? WHERE id_cartao = ?";
 
         return jdbcTemplate.update(
                 sql,
                 cartaoEntity.getSenha(),
                 cartaoEntity.getSituacao().name(),
+                cartaoEntity.getValorFatura(),
                 cartaoEntity.getLimite(),
+                cartaoEntity.getLimiteUsado(),
                 cartaoEntity.getIdCartao()
         ) > 0;
     }
