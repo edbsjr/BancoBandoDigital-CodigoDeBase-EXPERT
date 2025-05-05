@@ -2,6 +2,7 @@ package br.com.cdb.BandoDigitalFinal2.dao;
 
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
 import br.com.cdb.BandoDigitalFinal2.entity.mapper.ClienteRowMapper;
+import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -36,12 +37,14 @@ public class ClienteDao {
     }
 
     //READ
-    public Cliente findById(Long idCliente)
-    {
-        String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria FROM clientes WHERE id_cliente = ?";
-
-        return jdbcTemplate.queryForObject(sql, new Object[]{idCliente}, clienteRowMapper);
-    }
+        public Cliente findById(Long idCliente)
+        {
+            String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria FROM clientes WHERE id_cliente = ?";
+            List<Cliente> clientes = jdbcTemplate.query(sql, new Object[]{idCliente}, new ClienteRowMapper());
+            if(clientes.isEmpty())
+                throw new ClienteNaoEncontradoException("Cliente ID "+idCliente+" não encontrado. ");
+            return clientes.get(0);
+        }
 
     public List<Cliente> findAll()
     {

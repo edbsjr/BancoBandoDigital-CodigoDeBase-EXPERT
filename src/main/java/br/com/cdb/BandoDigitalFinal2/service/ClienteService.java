@@ -2,6 +2,10 @@ package br.com.cdb.BandoDigitalFinal2.service;
 
 import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.CpfInvalidoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.IdadeInvalidaException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.NomeInvalidoException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,29 +26,15 @@ public class ClienteService {
 	
 	
 	public boolean salvarCliente(Cliente cliente) {
-		
 	validarCliente(cliente);
-
 	return clienteDao.save(cliente);
-	
 	}
-	
-	/*private boolean verificarEstado(Estado estado) { //PERTENCE AO TRATAMENTO DE ERROS DO ENUM DIGITADO ERRADO, AINDA INCOMPLETO
-		
-		if(estado.toString().length()>2 && estado != null) 
-		{
-			return false;
-		}
-		else
-			return true;
-	}*/
 
-	@Transactional
-	public void atualizarCliente(Long idCliente, Cliente cliente) 
+	public void atualizarCliente(Long idCliente, Cliente cliente)
 	{
 		validarCliente(cliente);
 		
-		Cliente clienteAntigo = clienteDao.findById(idCliente);
+		Cliente clienteAntigo = buscarCliente(idCliente);
 		
 		clienteAntigo.setNome(cliente.getNome());
 		clienteAntigo.setCpf(cliente.getCpf());
@@ -55,21 +45,16 @@ public class ClienteService {
 
 	public void deletarCliente(Long idCliente) 
 	{
-		if(clienteDao.findById(idCliente) != null)
+		if(buscarCliente(idCliente) != null)
 			clienteDao.deleteById(idCliente); // AO INVES DE DELETAR O CLIENTE DA BASE DE DADOS E PERDER INFORMACOES UM SISTEMA DE STATUS SERIA MAIS VIAVEL
-		else 
-			throw new NoSuchElementException("Cliente não encontrado");
 	}
 	
 	public List<Cliente> listarTodos(){
-	
-	return clienteDao.findAll();
+		return clienteDao.findAll();
 	}
 	
 	public Cliente obterCliente(Long idCliente) {
-		
-		Cliente cliente = clienteDao.findById(idCliente);
-		return cliente;
+		return buscarCliente(idCliente);
 	}
 		
 	//METODOS DE VALIDAÇÕES
@@ -86,10 +71,10 @@ public class ClienteService {
 	private void validarNome(String nome) //VALIDA SE O NOME NÃO É VAZIO OU SE TEM NUMEROS, VALIDA TAMBEM O TAMANHO
 	{
 		if(nome == null ||nome.trim().isEmpty() || nome.length()<2 || nome.length()>100)
-			 throw new IllegalArgumentException("O nome do cliente não pode ser vazio.");
+			 throw new NomeInvalidoException("O nome do cliente não pode ser vazio.");
 
 		if(!nome.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$"))
-			throw new IllegalArgumentException("O nome deve conter apenas letras e espaços.");
+			throw new NomeInvalidoException("O nome deve conter apenas letras e espaços.");
 	}
 	
 	//VALIDACAO E PADRONIZACAO DE CPF
@@ -97,7 +82,7 @@ public class ClienteService {
 	{
 
 		if (cpf.trim().isEmpty())
-			throw new IllegalArgumentException("O cpf do cliente não pode ser vazio.");
+			throw new CpfInvalidoException("CPF do cliente não pode ser vazio.");
 
 		if (cpf.contains(".") || cpf.contains("-")) {
 			cpf = cpf.replace(".", "");
@@ -105,12 +90,12 @@ public class ClienteService {
 		}
 
 		if (cpf.length() != 11)
-			throw new IllegalArgumentException("O cpf deve conter 11 números.");
+			throw new CpfInvalidoException("CPF deve conter 11 números.");
 
 		
 		if (cpf.chars().distinct().count() == 1) // CPFs com todos os dígitos iguais são inválidos
 		{ 
-			throw new IllegalArgumentException("CPF inválido. CPFs com todos os dígitos iguais são inválidos"); 
+			throw new CpfInvalidoException("CPF com todos os dígitos iguais são inválidos");
 		}
 		 
 
@@ -125,10 +110,10 @@ public class ClienteService {
 		}
 		int digitoPrimeiro = 11 - (acumulador % 11);
 		if (digitoPrimeiro >= 10 && cpfArray[9] != 0)
-			throw new IllegalArgumentException("CPF inválido.");
+			throw new CpfInvalidoException("CPF inválido.");
 
 		else if (digitoPrimeiro < 10 && cpfArray[9] != digitoPrimeiro)
-			throw new IllegalArgumentException("CPF inválido.");
+			throw new CpfInvalidoException("CPF inválido.");
 
 		acumulador = 0;
 		j = 11;
@@ -169,7 +154,7 @@ public class ClienteService {
 	        throw new IllegalArgumentException("CEP do endereco deve ser preenchido");
 	    }
 	    if(!cep.matches("^\\d{5}-?\\d{3}$"))
-	    	throw new IllegalArgumentException("CEP inválido. Formato esperado: 00000-000.");
+	    	throw new IllegalArgumentException("CEP inválido. Formato esperado: XXXXX-XXX.");
 		
 	}
 	private void validarDataNasc(LocalDate dataNasc) {
@@ -177,6 +162,18 @@ public class ClienteService {
 		LocalDate hoje = LocalDate.now();
 		int idade = Period.between(dataNasc, hoje).getYears();
 		if (idade<18)
-			throw new IllegalArgumentException("O cliente deve ter pelo menos 18 anos.");
+			throw new IdadeInvalidaException("O cliente deve ter pelo menos 18 anos.");
+	}
+
+	//METODO QUE BUSCA CLIENTE
+	public Cliente buscarCliente(Long idCliente) {
+		try
+		{
+			return clienteDao.findById(idCliente);
+		}
+		catch (ClienteNaoEncontradoException e) {
+			String mensagemEnriquecida = e.getMessage()+"Favor informar outro ID e tentar novamente.";
+			throw new ClienteNaoEncontradoException(mensagemEnriquecida);
+		}
 	}
 }
