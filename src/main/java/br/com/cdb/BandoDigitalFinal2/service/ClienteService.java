@@ -6,17 +6,12 @@ import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.CpfInvalidoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.IdadeInvalidaException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.NomeInvalidoException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
-import java.util.NoSuchElementException;
-
-//TODO TRATAMENTO DE ERROS
-//TODO AO DELETAR O CLIENTE FAZER EFEITO CASCATA PARA DELETAR CONTA E CARTOES
 
 @Service
 public class ClienteService {
@@ -25,9 +20,9 @@ public class ClienteService {
 	private ClienteDao clienteDao;
 	
 	
-	public boolean salvarCliente(Cliente cliente) {
+	public void salvarCliente(Cliente cliente) {
 	validarCliente(cliente);
-	return clienteDao.save(cliente);
+		clienteDao.save(cliente);
 	}
 
 	public void atualizarCliente(Long idCliente, Cliente cliente)
@@ -78,7 +73,7 @@ public class ClienteService {
 	}
 	
 	//VALIDACAO E PADRONIZACAO DE CPF
-	private void validarCPF(String cpf) //VALIDACAO DO CPF
+	private void validarCPF(String cpf) throws CpfInvalidoException //VALIDACAO DO CPF
 	{
 
 		if (cpf.trim().isEmpty())
@@ -109,12 +104,12 @@ public class ClienteService {
 			j--;
 		}
 		int digitoPrimeiro = 11 - (acumulador % 11);
-		if (digitoPrimeiro >= 10 && cpfArray[9] != 0)
+		if (digitoPrimeiro >= 10 && cpfArray[9] != 0 || digitoPrimeiro < 10 && cpfArray[9] != digitoPrimeiro)
 			throw new CpfInvalidoException("CPF inválido.");
-
+/* // MOVIDO IF PARA O ACIMA, ASSIM FAZENDO UM COGIDO MAIS LIMPO, CONFERIR A APLICACAO
 		else if (digitoPrimeiro < 10 && cpfArray[9] != digitoPrimeiro)
 			throw new CpfInvalidoException("CPF inválido.");
-
+*/
 		acumulador = 0;
 		j = 11;
 
@@ -123,10 +118,10 @@ public class ClienteService {
 			j--;
 		}
 		int digitoSegundo = 11 - (acumulador % 11);
-		if (digitoSegundo >= 10 && cpfArray[10] != 0)
-			throw new IllegalArgumentException("CPF inválido.");
-		else if (digitoSegundo < 10 && cpfArray[10] != digitoSegundo)
-			throw new IllegalArgumentException("CPF inválido.");
+		if (digitoSegundo >= 10 && cpfArray[10] != 0 || digitoSegundo < 10 && cpfArray[10] != digitoSegundo)
+			throw new CpfInvalidoException("CPF inválido.");
+	/*	else if (digitoSegundo < 10 && cpfArray[10] != digitoSegundo) // MOVIDO PARA O IF ACIMA
+			throw new CpfInvalidoException("CPF inválido.");*/
 	}
 	private int[] cpfToArray(String cpf) {
 		

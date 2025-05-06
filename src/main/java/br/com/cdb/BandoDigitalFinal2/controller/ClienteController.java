@@ -39,28 +39,28 @@ public class ClienteController {
 	public ResponseEntity<List<Cliente>> listarTodos() //RETORNA TODOS OS CLIENTES
 	{
 		List<Cliente> listaDeClientes = clienteService.listarTodos();
-		return new ResponseEntity<List<Cliente>>(listaDeClientes, HttpStatus.OK);
+		return new ResponseEntity<>(listaDeClientes, HttpStatus.FOUND);
 	}
 	
 	@GetMapping("/{idCliente}")
 	public ResponseEntity<Cliente> buscarCliente(@PathVariable Long idCliente ) // RETURNA JSON(CLIENTE) UNICO POR ID
 	{
 	   Cliente cliente = clienteService.obterCliente(idCliente);
-	            return new ResponseEntity<>(cliente, HttpStatus.OK);
+	            return new ResponseEntity<>(cliente, HttpStatus.FOUND);
 	}
 	
 	@PutMapping("/{idCliente}/atualizar")
 	public ResponseEntity<String> atualizarCliente(@PathVariable Long idCliente, @RequestBody Cliente cliente) // RECEBE JSON(CLIENTE) PARA ATUALIZAR TODOS OS CAMPOS
 	{
 		clienteService.atualizarCliente(idCliente, cliente);
-		return new ResponseEntity<String>("Cliente atualizado com sucesso.", HttpStatus.OK);
+		return new ResponseEntity<>("Cliente atualizado com sucesso.", HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idCliente}/delete")
 	public ResponseEntity<String> deletarCliente(@PathVariable Long idCliente) 
 	{
 		clienteService.deletarCliente(idCliente);
-		return new ResponseEntity<String>("Cliente deletado.", HttpStatus.OK);
+		return new ResponseEntity<>("Cliente deletado.", HttpStatus.OK);
 
 	}
 }

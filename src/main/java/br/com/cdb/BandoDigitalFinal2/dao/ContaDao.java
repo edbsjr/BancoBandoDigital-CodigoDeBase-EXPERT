@@ -2,6 +2,7 @@ package br.com.cdb.BandoDigitalFinal2.dao;
 
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.entity.mapper.ContaEntityRowMapper;
+import br.com.cdb.BandoDigitalFinal2.exceptions.ContaNaoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -49,7 +50,10 @@ public class ContaDao {
     {
         String sql = "SELECT id_conta, tipo, fk_id_cliente, saldo, rendimento, manutencao FROM contas " +
                 "WHERE id_conta = ? ";
-        return jdbcTemplate.queryForObject(sql, new Object[]{idConta}, contaRowMapper);
+        List<ContaEntity> contas = jdbcTemplate.query(sql, new Object[]{idConta}, new ContaEntityRowMapper());
+        if(contas.isEmpty())
+            throw new ContaNaoEncontradaException ("Conta ID "+idConta+" não encontrada. ");
+        return contas.get(0);
 
     }
 

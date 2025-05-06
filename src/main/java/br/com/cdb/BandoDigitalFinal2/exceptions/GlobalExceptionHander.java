@@ -37,4 +37,24 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ContaNaoEncontradaException.class)
+    public ResponseEntity<Object> handleContaNaoEncontradaException(ContaNaoEncontradaException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ValorNegativoNaoPermitidoException.class)
+    public ResponseEntity<Object> handleValorNegativoNaoPermitidoException(ValorNegativoNaoPermitidoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SaldoInsuficienteException.class)
+    public ResponseEntity<Object> handleSaldoInsuficienteException(SaldoInsuficienteException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
 }
