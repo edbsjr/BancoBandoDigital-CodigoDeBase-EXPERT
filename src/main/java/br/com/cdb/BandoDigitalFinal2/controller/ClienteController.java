@@ -31,56 +31,36 @@ public class ClienteController {
 	@PostMapping("/add")
 	public ResponseEntity<String> addCliente(@RequestBody Cliente cliente) //RECEBE JSON(CLIENTE) PARA VALIDACAO
 	{
-		try {
 		clienteService.salvarCliente(cliente);
 		return new ResponseEntity<>("Cliente salvo com sucesso.", HttpStatus.CREATED);
-		}
-		catch(IllegalArgumentException e){
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
 	}
 				
 	@GetMapping("/listarTodos")
 	public ResponseEntity<List<Cliente>> listarTodos() //RETORNA TODOS OS CLIENTES
 	{
 		List<Cliente> listaDeClientes = clienteService.listarTodos();
-		
-		return new ResponseEntity<List<Cliente>>(listaDeClientes, HttpStatus.OK);
+		return new ResponseEntity<>(listaDeClientes, HttpStatus.FOUND);
 	}
 	
 	@GetMapping("/{idCliente}")
 	public ResponseEntity<Cliente> buscarCliente(@PathVariable Long idCliente ) // RETURNA JSON(CLIENTE) UNICO POR ID
 	{
-	   Cliente clienteBuscado = clienteService.obterCliente(idCliente);
-	   if(clienteBuscado!= null)
-	            return new ResponseEntity<Cliente>(clienteBuscado, HttpStatus.OK);
-	   else
-		   return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		
+	   Cliente cliente = clienteService.obterCliente(idCliente);
+	            return new ResponseEntity<>(cliente, HttpStatus.FOUND);
 	}
 	
 	@PutMapping("/{idCliente}/atualizar")
 	public ResponseEntity<String> atualizarCliente(@PathVariable Long idCliente, @RequestBody Cliente cliente) // RECEBE JSON(CLIENTE) PARA ATUALIZAR TODOS OS CAMPOS
 	{
-		try {
-			clienteService.atualizarCliente(idCliente, cliente);
-			return new ResponseEntity<String>("Cliente atualizado com sucesso.", HttpStatus.OK);
-		} catch (IllegalArgumentException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		clienteService.atualizarCliente(idCliente, cliente);
+		return new ResponseEntity<>("Cliente atualizado com sucesso.", HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{idCliente}/delete")
 	public ResponseEntity<String> deletarCliente(@PathVariable Long idCliente) 
 	{
-		try {
 		clienteService.deletarCliente(idCliente);
-		return new ResponseEntity<String>("Cliente deletado.", HttpStatus.OK);
-		} catch (NoSuchElementException e) 
-		{
-			return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}
-	}
-	
+		return new ResponseEntity<>("Cliente deletado.", HttpStatus.OK);
 
+	}
 }
