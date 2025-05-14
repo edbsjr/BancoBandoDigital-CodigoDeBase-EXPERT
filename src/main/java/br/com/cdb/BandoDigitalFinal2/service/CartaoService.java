@@ -8,6 +8,7 @@ import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoCartao;
+import br.com.cdb.BandoDigitalFinal2.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,20 +83,19 @@ public class CartaoService {
 	}
 
 	public CartaoEntity detalhes(Long idCartao) {
-		return cartaoDao.findById(idCartao); //.orElseThrow(() -> new NoSuchElementException("Cartão não encontrado"));
+		return buscarCartao(idCartao);
 	}
-	
 
 	public void pagamentoCartaoDebito(Long idCartao, String senha, BigDecimal valor) {
 
-		CartaoEntity cartao = detalhes(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 		ContaEntity conta = contaDao.findById(cartao.getIdConta());
 		if(!cartao.getTipo().equals(TipoCartao.DEBITO)) //VERIFICA SE É CARTAO DE DEBITO MESMO
-			throw new RuntimeException ("Operação Permitida apenas para Cartão de Debito");
+			throw new TipoCartaoInvalidoException("Operação Permitida apenas para Cartão de Debito");
 
 		if (cartao.getSenha().equals(senha)) {
 			if (cartao.getLimite().subtract(cartao.getLimiteUsado()).compareTo(valor)<0) //VERIFICA SE TEM LIMITE DISPONIVEL
-					throw new RuntimeException("Transação Ultrapassa o limite diario disponivel");
+					throw new LimiteInvalidoException("Transação Ultrapassa o limite disponivel");
 			if(cartao.getSituacao() != Situacao.ATIVADO)
 				throw new RuntimeException("Cartão "+cartao.getSituacao());
 			if (conta.getSaldo().compareTo(valor) >= 0) {
@@ -107,15 +107,15 @@ public class CartaoService {
 			else
 				throw new RuntimeException("Saldo em conta insuficiente");
 		} else
-			throw new RuntimeException("Senha incorrenta" + cartao.getSenha());
+			throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
 	}
 
 
 	public void pagamentoCartaoCredito(Long idCartao, String senha, BigDecimal valor) {
 		
-		CartaoEntity cartao = detalhes(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 		if(!cartao.getTipo().equals(TipoCartao.CREDITO)) //VERIFICA SE É CARTAO DE CREDITO MESMO
-			throw new RuntimeException ("Operação Permitida apenas para Cartão de Credito");
+			throw new TipoCartaoInvalidoException ("Operação Permitida apenas para Cartão de Credito");
 
 		if (cartao.getSenha().equals(senha)) {
 			if(cartao.getLimite().subtract(cartao.getLimiteUsado()).compareTo(valor) >= 0)
@@ -125,33 +125,33 @@ public class CartaoService {
 				cartaoDao.update(cartao);
 				}
 			else
-				throw new RuntimeException("Limite de credito insuficiente");
+				throw new LimiteInvalidoException("Limite de credito insuficiente");
 		} else
-			throw new RuntimeException("Senha incorrenta");
+			throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
 	}
 	
 	//MANUTENCAO
 	public void situacaoCartao(Long idCartao, String senha, Situacao situacao) 
 	{
-		CartaoEntity cartao = detalhes(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 				
 		if(cartao.getSenha().equals(senha))
 		{
 			if (cartao.getSituacao().equals(Situacao.CANCELADO) || cartao.getSituacao().equals(Situacao.BLOQUEADO))
 			{
-				throw new RuntimeException("Cartão CANCELADO/BLOQUEADO");
+				throw new RuntimeException("Cartão "+ cartao.getSituacao().name());
 			} else {
 				cartao.setSituacao(situacao);
 				cartaoDao.update(cartao);}
 			
 		}	else
-			throw new RuntimeException("Senha incorrenta");
+			throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
 	}
 	
 
 	public void alterarSenha(Long idCartao, String senha, String senhaNova, String senhaConfirmada) 
 	{
-		CartaoEntity cartao = detalhes(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 		
 		if(cartao.getSenha().equals(senha))
 		{
@@ -159,16 +159,17 @@ public class CartaoService {
 				cartao.setSenha(senhaConfirmada);
 				cartaoDao.update(cartao);
 			} else {
-				throw new RuntimeException("Confirme a nova senha corretamente");
+				throw new SenhaInvalidaException("Erro. Verifique a nova senha e tente novamente");
 			}
-		} else {throw new RuntimeException("Senha incorrenta");}
+		} else {throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
+		}
 	}
 	//TODO ATUALIZAR INFORMACOES E TAXAS AUTOMATIZADAS
 	
 	//FATURAS E LIMITES
 	public BigDecimal consultarFatura (Long idCartao, String senha) 
 	{
-		CartaoEntity cartao = detalhes(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 		
 		if(cartao.getSenha().equals(senha))
 		{
@@ -177,16 +178,16 @@ public class CartaoService {
 			return cartao.getValorFatura();
 			
 		}	else
-			throw new RuntimeException("Senha incorrenta");
+			throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
 	}
 	
 
 	public void debitarFatura(Long idCartao, String senha) 
 	{
-		CartaoEntity cartao = detalhes(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 		ContaEntity conta = contaDao.findById(cartao.getIdConta());
 		if(!cartao.getTipo().equals(TipoCartao.CREDITO))
-			throw new RuntimeException("Transação permitida apenas para Cartao de Credito");
+			throw new TipoCartaoInvalidoException("Transação permitida apenas para Cartao de Credito");
 
 		if(cartao.getSenha().equals(senha))
 		{
@@ -200,28 +201,40 @@ public class CartaoService {
 				cartaoDao.update(cartao);
 				contaDao.update(conta);
 			}	else 
-				throw new RuntimeException ("Valor da fatura supera o valor em conta");
+				throw new SaldoInsuficienteException("Valor da fatura supera o saldo em conta");
 			
 		}	else
-			throw new RuntimeException("Senha incorrenta");
+			throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
 	}
 
 	public void alterarLimiteDiario(Long idCartao, BigDecimal novoLimite) //TODO DELETAR DEPOIS
 	{
-		CartaoEntity cartao = cartaoDao.findById(idCartao);
+		CartaoEntity cartao = buscarCartao(idCartao);
 			if(cartao.getLimiteUsado().compareTo(novoLimite)<=0) //INICIALMENTE PENSEI CONDICIONAR A MUDANÇA, MAS NAO VI PORQUE UMA VEZ QUE O DINHEIRO JA SAIU DA CONTA
 			{
+				cartao.setLimite(novoLimite);
+				cartaoDao.update(cartao);
+			} else
+				throw new LimiteInvalidoException("O limite usado atualmente, não pode ser maior que o novo limite");
+	}
+
+	public void alterarLimite(Long idCartao, BigDecimal novoLimite)  //TANTO PARA CREDITO QUANTO DEBITO.
+	{
+		CartaoEntity cartao = buscarCartao(idCartao);
+			if(cartao.getLimiteUsado().compareTo(novoLimite)<=0) {
 				cartao.setLimite(novoLimite);
 				cartaoDao.update(cartao);
 			}
 	}
 
-	public void alterarLimite(Long idCartao, BigDecimal novoLimite)  //TANTO PARA CREDITO QUANTO DEBITO.
-	{
-		CartaoEntity cartao = detalhes(idCartao);
-			if(cartao.getLimiteUsado().compareTo(novoLimite)<=0) {
-				cartao.setLimite(novoLimite);
-				cartaoDao.update(cartao);
-			}
+	private CartaoEntity buscarCartao(Long idCartao) {
+		try
+		{
+			return cartaoDao.findById(idCartao);
+		} catch (CartaoNaoEncontradoException e)
+		{
+			String mensagemEnriquecida = e.getMessage() + "Favor informar outro ID";
+			throw new CartaoNaoEncontradoException(mensagemEnriquecida);
+		}
 	}
 }

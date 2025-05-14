@@ -2,6 +2,7 @@ package br.com.cdb.BandoDigitalFinal2.dao;
 
 import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
 import br.com.cdb.BandoDigitalFinal2.entity.mapper.CartaoEntityRowMapper;
+import br.com.cdb.BandoDigitalFinal2.exceptions.CartaoNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -48,7 +49,10 @@ public class CartaoDao {
     {
         String sql = "SELECT id_cartao, senha, situacao, tipo, fk_id_conta, valor_fatura, limite, limite_usado" +
                 " FROM cartoes WHERE id_cartao = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{idCartao}, cartaoRowMapper);
+        List<CartaoEntity> cartoes = jdbcTemplate.query(sql, new Object[]{idCartao}, new CartaoEntityRowMapper());
+        if (cartoes.isEmpty())
+            throw new CartaoNaoEncontradoException("Cartao ID "+idCartao+" não encontrado.");
+        return cartoes.get(0);
 
     }
 

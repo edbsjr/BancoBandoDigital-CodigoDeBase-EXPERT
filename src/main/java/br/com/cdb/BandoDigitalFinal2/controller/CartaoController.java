@@ -33,22 +33,14 @@ public class CartaoController {
 
 	@PostMapping("/addCartaoDebito")
 	private ResponseEntity<String> addCartaoDebito(@RequestBody AdicionarCartaoDto adicionarCartaoDto) {
-		try {
-			cartaoService.addCartaoDebito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha());
-			return new ResponseEntity<>("Cartao Debito adicionado com sucesso", HttpStatus.CREATED);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		cartaoService.addCartaoDebito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha());
+		return new ResponseEntity<>("Cartao Debito adicionado com sucesso", HttpStatus.CREATED);
 	}
 
 	@PostMapping("/addCartaoCredito")
 	private ResponseEntity<String> addCartaoCredito(@RequestBody AdicionarCartaoDto adicionarCartaoDto) {
-		try {
-			cartaoService.addCartaoCredito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha());
-			return new ResponseEntity<>("Cartao Credito adicionado com sucesso", HttpStatus.CREATED);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		cartaoService.addCartaoCredito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha());
+		return new ResponseEntity<>("Cartao Credito adicionado com sucesso", HttpStatus.CREATED);
 	}
 
 	@GetMapping("/listarTodos")
@@ -59,107 +51,60 @@ public class CartaoController {
 
 	@GetMapping("/detalhes/{idCartao}")
 	private ResponseEntity<CartaoEntity> detalhes(@PathVariable Long idCartao) {
-		try {
-			CartaoEntity cartaoAchado = cartaoService.detalhes(idCartao);
-			return new ResponseEntity<CartaoEntity>(cartaoAchado, HttpStatus.FOUND);
-		} catch (NoSuchElementException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-
+		CartaoEntity cartaoAchado = cartaoService.detalhes(idCartao);
+		return new ResponseEntity<CartaoEntity>(cartaoAchado, HttpStatus.FOUND);
 	}
 
 	@PostMapping("/{idCartao}/pagamento/debito")
 	private ResponseEntity<String> pagamentoDebito(@PathVariable Long idCartao,
 			@RequestBody CartaoSenhaValorDto cartaoSenhaValorDto) {
-		try {
-			cartaoService.pagamentoCartaoDebito(idCartao, cartaoSenhaValorDto.getSenha(),
-					cartaoSenhaValorDto.getValor());
-			return new ResponseEntity<>("Pagamento no debito realizado com sucesso.", HttpStatus.OK);
-		} catch (IllegalArgumentException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST); // TODO ENTENDER MELHOR E MUDAR ISSO
-			// TALVEZ
-		} catch (RuntimeException e) {
-			return new ResponseEntity<>("Erro ao realizar transferência: " + e.getMessage(),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		cartaoService.pagamentoCartaoDebito(idCartao, cartaoSenhaValorDto.getSenha(), cartaoSenhaValorDto.getValor());
+		return new ResponseEntity<>("Pagamento no debito realizado com sucesso.", HttpStatus.OK);
 	}
 
 	@PostMapping("/{idCartao}/pagamento/credito")
 	private ResponseEntity<String> pagamentoCredito(@PathVariable Long idCartao,
-			@RequestBody CartaoSenhaValorDto cartaoSenhaValorDto) {
-		try {
-			cartaoService.pagamentoCartaoCredito(idCartao, cartaoSenhaValorDto.getSenha(),
-					cartaoSenhaValorDto.getValor());
-			return new ResponseEntity<>("Pagamento no credito realizado com sucesso.", HttpStatus.OK);
-		} catch (IllegalArgumentException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST); // TODO ENTENDER MELHOR E MUDAR ISSO
-			// TALVEZ
-		} catch (RuntimeException e) {
-			return new ResponseEntity<>("Erro ao realizar transferência: " + e.getMessage(),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+													@RequestBody CartaoSenhaValorDto cartaoSenhaValorDto) {
+		cartaoService.pagamentoCartaoCredito(idCartao, cartaoSenhaValorDto.getSenha(), cartaoSenhaValorDto.getValor());
+		return new ResponseEntity<>("Pagamento no credito realizado com sucesso.", HttpStatus.OK);
 	}
 
 	@PutMapping("/alterar/situacao")
 	private ResponseEntity<String> alterarSituacao(@RequestBody AlterarSituacaoCartaoDto alterarSituacaoCartaoDto) {
-		try {
-			cartaoService.situacaoCartao(alterarSituacaoCartaoDto.getIdCartao(), alterarSituacaoCartaoDto.getSenha(),
+		cartaoService.situacaoCartao(alterarSituacaoCartaoDto.getIdCartao(), alterarSituacaoCartaoDto.getSenha(),
 					alterarSituacaoCartaoDto.getSituacao());
-			return new ResponseEntity<>("Alteração Realizada com sucesso.", HttpStatus.ACCEPTED);
-		} catch (RuntimeException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<>("Alteração Realizada com sucesso.", HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping("/alterar/senha")
 	private ResponseEntity<String> alterarSenha(@RequestBody AlterarSenhaCartaoDto alterarSenhaCartaoDto) {
-		try {
-			cartaoService.alterarSenha(alterarSenhaCartaoDto.getIdCartao(), alterarSenhaCartaoDto.getSenhaAntiga(),
+		cartaoService.alterarSenha(alterarSenhaCartaoDto.getIdCartao(), alterarSenhaCartaoDto.getSenhaAntiga(),
 					alterarSenhaCartaoDto.getSenhaNova(), alterarSenhaCartaoDto.getSenhaConfirmada());
-			return new ResponseEntity<>("Senha alterada com sucesso", HttpStatus.ACCEPTED);
-		} catch (RuntimeException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity<>("Senha alterada com sucesso", HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/fatura")
 	private ResponseEntity<Object> consultarFatura(@RequestBody CartaoSenhaDto cartaoSenhaDto) {
-		try {
-			BigDecimal valorFatura = cartaoService.consultarFatura(cartaoSenhaDto.getIdCartao(),
-					cartaoSenhaDto.getSenha());
-			return new ResponseEntity<>(valorFatura, HttpStatus.OK);
-		} catch (RuntimeException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		BigDecimal valorFatura = cartaoService.consultarFatura(cartaoSenhaDto.getIdCartao(),
+				cartaoSenhaDto.getSenha());
+		return new ResponseEntity<>(valorFatura, HttpStatus.OK);
 	}
 
 	@PostMapping("/fatura/pagamento")
 	private ResponseEntity<String> pagarFatura(@RequestBody CartaoSenhaDto cartaoSenhaDto) {
-		try {
-			cartaoService.debitarFatura(cartaoSenhaDto.getIdCartao(), cartaoSenhaDto.getSenha());
-			return new ResponseEntity<>("Fatura Debitada com sucesso", HttpStatus.OK);
-		} catch (RuntimeException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		cartaoService.debitarFatura(cartaoSenhaDto.getIdCartao(), cartaoSenhaDto.getSenha());
+		return new ResponseEntity<>("Fatura Debitada com sucesso", HttpStatus.OK);
 	}
 
 	@PutMapping("/alterar/limite")
 	private ResponseEntity<String> alterarLimite(@RequestBody AlterarLimiteDto alterarLimiteDto) {
-		try {
-			cartaoService.alterarLimite(alterarLimiteDto.getIdCartao(), alterarLimiteDto.getLimite());
-			return new ResponseEntity<>("Limite alterado com sucesso", HttpStatus.OK);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		cartaoService.alterarLimite(alterarLimiteDto.getIdCartao(), alterarLimiteDto.getLimite());
+		return new ResponseEntity<>("Limite alterado com sucesso", HttpStatus.OK);
 	}
 
 	@PutMapping("/alterar/limite-diario")
 	private ResponseEntity<String> alterarLimiteDiario(@RequestBody AlterarLimiteDto alterarLimiteDto) {
-		try {
-			cartaoService.alterarLimiteDiario(alterarLimiteDto.getIdCartao(), alterarLimiteDto.getLimite());
-			return new ResponseEntity<>("Limite alterado com sucesso", HttpStatus.OK);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
+		cartaoService.alterarLimiteDiario(alterarLimiteDto.getIdCartao(), alterarLimiteDto.getLimite());
+		return new ResponseEntity<>("Limite alterado com sucesso", HttpStatus.OK);
 	}
 }

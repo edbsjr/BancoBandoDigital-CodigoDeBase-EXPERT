@@ -57,4 +57,33 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(CartaoNaoEncontradoException.class)
+    public ResponseEntity<Object> handleCartaoNaoEncontradoException(CartaoNaoEncontradoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(SenhaInvalidaException.class)
+    public ResponseEntity<Object> handleSenhaInvalidaException(SenhaInvalidaException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(TipoCartaoInvalidoException.class)
+    public ResponseEntity<Object> handleTipoCartaoInvalidoException(TipoCartaoInvalidoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(LimiteInvalidoException.class)
+    public ResponseEntity<Object> handleLimiteInvalidoException(LimiteInvalidoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+
+    }
 }
