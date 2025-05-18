@@ -97,7 +97,7 @@ public class CartaoService {
 			if (cartao.getLimite().subtract(cartao.getLimiteUsado()).compareTo(valor)<0) //VERIFICA SE TEM LIMITE DISPONIVEL
 					throw new LimiteInvalidoException("Transação Ultrapassa o limite disponivel");
 			if(cartao.getSituacao() != Situacao.ATIVADO)
-				throw new RuntimeException("Cartão "+cartao.getSituacao());
+				throw new CartaoSituacaoInvalidaException("Cartão "+cartao.getSituacao().name());
 			if (conta.getSaldo().compareTo(valor) >= 0) {
 				conta.setSaldo(conta.getSaldo().subtract(valor));//DEBITA DIRETO DA CONTA O VALOR
 				cartao.setLimiteUsado(cartao.getLimiteUsado().add(valor));//ACRESCENTA O VALOR NO LIMITE EM USO
@@ -105,7 +105,7 @@ public class CartaoService {
 				contaDao.update(conta);
 			}
 			else
-				throw new RuntimeException("Saldo em conta insuficiente");
+				throw new SaldoInsuficienteException("Saldo em conta insuficiente");
 		} else
 			throw new SenhaInvalidaException("Senha incorrenta. Verifique e tente novamente");
 	}
@@ -116,7 +116,8 @@ public class CartaoService {
 		CartaoEntity cartao = buscarCartao(idCartao);
 		if(!cartao.getTipo().equals(TipoCartao.CREDITO)) //VERIFICA SE É CARTAO DE CREDITO MESMO
 			throw new TipoCartaoInvalidoException ("Operação Permitida apenas para Cartão de Credito");
-
+		if(cartao.getSituacao() != Situacao.ATIVADO)
+			throw new CartaoSituacaoInvalidaException("Cartão "+cartao.getSituacao().name());
 		if (cartao.getSenha().equals(senha)) {
 			if(cartao.getLimite().subtract(cartao.getLimiteUsado()).compareTo(valor) >= 0)
 				{
@@ -139,7 +140,7 @@ public class CartaoService {
 		{
 			if (cartao.getSituacao().equals(Situacao.CANCELADO) || cartao.getSituacao().equals(Situacao.BLOQUEADO))
 			{
-				throw new RuntimeException("Cartão "+ cartao.getSituacao().name());
+				throw new CartaoSituacaoInvalidaException("Cartão "+ cartao.getSituacao().name());
 			} else {
 				cartao.setSituacao(situacao);
 				cartaoDao.update(cartao);}
@@ -167,14 +168,14 @@ public class CartaoService {
 	//TODO ATUALIZAR INFORMACOES E TAXAS AUTOMATIZADAS
 	
 	//FATURAS E LIMITES
-	public BigDecimal consultarFatura (Long idCartao, String senha) 
+	public BigDecimal consultarFatura (Long idCartao, String senha)
 	{
 		CartaoEntity cartao = buscarCartao(idCartao);
 		
 		if(cartao.getSenha().equals(senha))
 		{
 			if(cartao.getSituacao()!= Situacao.ATIVADO)
-				throw new RuntimeException("Cartão deve estar ativado para realizar transações");
+				throw new CartaoSituacaoInvalidaException("Cartão deve estar ativado para realizar transações");
 			return cartao.getValorFatura();
 			
 		}	else
@@ -192,7 +193,7 @@ public class CartaoService {
 		if(cartao.getSenha().equals(senha))
 		{
 			if(cartao.getSituacao()!= Situacao.ATIVADO)
-				throw new RuntimeException("Cartão deve estar ativado para realizar transações");
+				throw new CartaoSituacaoInvalidaException("Cartão deve estar ativado para realizar transações");
 			if(conta.getSaldo().compareTo(cartao.getValorFatura())>=0)
 			{
 				conta.debitar(cartao.getValorFatura());

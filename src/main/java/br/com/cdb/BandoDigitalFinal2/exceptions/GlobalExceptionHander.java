@@ -84,6 +84,12 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
     {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
 
+    @ExceptionHandler(CartaoSituacaoInvalidaException.class)
+    public ResponseEntity<Object> handeCartaoSituacaoInvalidaException(CartaoSituacaoInvalidaException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
     }
 }

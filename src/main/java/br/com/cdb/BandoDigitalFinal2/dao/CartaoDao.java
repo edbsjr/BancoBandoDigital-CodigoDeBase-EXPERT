@@ -69,7 +69,8 @@ public class CartaoDao {
     //NAO POSSUI EDICAO DO ID_CONTA, TIPO POR NAO FAZER SENTIDO NA REGRA DE NEGOCIO
     public boolean update(CartaoEntity cartaoEntity)
     {
-        String sql = "UPDATE cartoes SET senha = ?, situacao = ?, valor_fatura = ?, limite= ?, limite_usado = ? WHERE id_cartao = ?";
+        String sql = "UPDATE cartoes SET senha = ?, situacao = ?, valor_fatura = ?," +
+                " limite= ?, limite_usado = ? WHERE id_cartao = ?";
 
         return jdbcTemplate.update(
                 sql,
