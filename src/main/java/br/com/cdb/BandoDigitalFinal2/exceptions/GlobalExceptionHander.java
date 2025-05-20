@@ -87,7 +87,28 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(CartaoSituacaoInvalidaException.class)
-    public ResponseEntity<Object> handeCartaoSituacaoInvalidaException(CartaoSituacaoInvalidaException ex)
+    public ResponseEntity<Object> handleCartaoSituacaoInvalidaException(CartaoSituacaoInvalidaException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ClienteNaoSalvoException.class)
+    public ResponseEntity<Object> handleClienteNaoSalvoException(ClienteNaoSalvoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(ClienteNaoAtualizadoException.class)
+    public ResponseEntity<Object> handleClienteNaoAtualizadoException(ClienteNaoAtualizadoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ClienteNaoDeletadoException.class)
+    public ResponseEntity<Object> handleClienteNaoDeletadoException(ClienteNaoDeletadoException ex)
     {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);

@@ -2,14 +2,12 @@ package br.com.cdb.BandoDigitalFinal2.service;
 
 import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
-import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException;
-import br.com.cdb.BandoDigitalFinal2.exceptions.CpfInvalidoException;
-import br.com.cdb.BandoDigitalFinal2.exceptions.IdadeInvalidaException;
-import br.com.cdb.BandoDigitalFinal2.exceptions.NomeInvalidoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,7 +29,12 @@ public class ClienteService {
 		log.info("Iniciando a validacao para salvar o cliente {} com o cpf {}", cliente.getNome(), cliente.getCpf());
 		validarCliente(cliente);
 		log.info("Iniciando o save do cliente {} com o cpf {}", cliente.getNome(), cliente.getCpf());
-		clienteDao.save(cliente);
+		try {
+			if (clienteDao.save(cliente))
+				log.info("Cliente {} com o cpf {} salvo com sucesso", cliente.getNome(), cliente.getCpf());
+		} catch (ClienteNaoSalvoException ex) {
+			throw new ClienteNaoSalvoException("Erro ao inserir o cliente na base de dados");
+		}
 	}
 
 	public void atualizarCliente(Long idCliente, Cliente cliente)
@@ -59,13 +62,10 @@ public class ClienteService {
 	}
 	
 	public List<Cliente> listarTodos(){
+		log.info("Buscando a lista de Todos os clientes");
 		return clienteDao.findAll();
 	}
-	
-	public Cliente obterCliente(Long idCliente) {
-		return buscarCliente(idCliente);
-	}
-		
+
 	//METODOS DE VALIDAÇÕES
 	private void validarCliente(Cliente cliente) {
 		validarNome(cliente.getNome());
@@ -81,13 +81,13 @@ public class ClienteService {
 		log.info("Iniciando a busca do cliente com ID: {}", idCliente); // Log INFO no início
 		try
 		{
-			log.debug("Cliente encontrado com ID: {}", idCliente); // Adicionando um log DEBUG em caso de sucesso
+			log.debug("Buscando cliente com ID: {}", idCliente); // Adicionando um log DEBUG em caso de sucesso
 			return clienteDao.findById(idCliente);
 		}
-		catch (ClienteNaoEncontradoException e) {
-			log.error("Cliente não encontrado para o ID: {}. Erro original: {}", idCliente, e.getMessage());
+		catch (ClienteNaoEncontradoException ex) {
+			log.error(ex.getMessage());
 			// Log ERROR no catch
-			String mensagemEnriquecida = e.getMessage()+"Favor informar outro ID e tentar novamente.";
+			String mensagemEnriquecida = ex.getMessage()+"Tente novamente.";
 			throw new ClienteNaoEncontradoException(mensagemEnriquecida);
 		}
 	}
