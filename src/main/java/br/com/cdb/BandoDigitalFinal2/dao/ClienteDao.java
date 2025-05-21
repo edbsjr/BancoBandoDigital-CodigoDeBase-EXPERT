@@ -2,10 +2,10 @@ package br.com.cdb.BandoDigitalFinal2.dao;
 
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
 import br.com.cdb.BandoDigitalFinal2.entity.mapper.ClienteRowMapper;
-import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoAtualizadoException;
-import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoDeletadoException;
-import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException;
-import br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoSalvoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoAtualizadoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoDeletadoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoSalvoException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class ClienteDao {
             ));
         } catch (DataAccessException ex){
             log.error("Erro ao inserir cliente na base de dados.", ex);
-            throw new ClienteNaoSalvoException("Cliente nao salvo. ");
+            throw new RegistroNaoSalvoException("Cliente nao salvo. ");
         }
     }
 
@@ -68,11 +68,11 @@ public class ClienteDao {
                         idCliente);
             } catch (EmptyResultDataAccessException ex){
                 log.error("Cliente ID "+idCliente+" nao encontrado");
-                throw new ClienteNaoEncontradoException("Cliente ID "+idCliente+" nao encontrado ");
+                return null;
             }catch (DataAccessException ex) {
                 log.error("Erro ao tentar acessar a base de dados");
-                throw new ClienteNaoEncontradoException("Erro ao tentar acessar a base de dados ");
-                }
+                throw new RegistroNaoEncontradoException("Erro ao tentar acessar a base de dados ");
+            }
         }
 
     public List<Cliente> findAll()
@@ -82,7 +82,7 @@ public class ClienteDao {
             return jdbcTemplate.query(sql, clienteRowMapper);
         } catch (DataAccessException ex){
             log.error("Erro ao buscar lista na base de dados");
-            throw new ClienteNaoEncontradoException("Erro ao buscar lista na base de dados");
+            throw new RegistroNaoEncontradoException("Erro ao buscar lista na base de dados");
         }
     }
 
@@ -102,7 +102,7 @@ public class ClienteDao {
             ));
         } catch (DataAccessException ex){
             log.error("Erro ao tentar atualizar a base de dados");
-            throw new ClienteNaoAtualizadoException("Cliente nao atualizado");
+            throw new RegistroNaoAtualizadoException("Cliente nao atualizado");
         }
     }
 
@@ -115,7 +115,26 @@ public class ClienteDao {
             return Boolean.TRUE.equals(jdbcTemplate.queryForObject(sql, Boolean.class, idCliente));
         } catch (DataAccessException ex){
             log.error("Erro ao tentar deletar na base de dados o cliente ID {}", idCliente);
-            throw new ClienteNaoDeletadoException("Erro ao tentar deletar o cliente "+idCliente);
+            throw new RegistroNaoDeletadoException("Erro ao tentar deletar o cliente "+idCliente);
         }
         }
+
+    public Cliente findByCpf(String cpf)
+    {
+        String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria " +
+                "FROM public.busca_cliente_por_cpf_v1(?)";
+        try{
+            log.info("Iniciando busca na base de dados");
+            return jdbcTemplate.queryForObject(
+                    sql,
+                    new ClienteRowMapper(),
+                   cpf);
+        } catch (EmptyResultDataAccessException e) {
+            log.info("CPF {} não encontrado na base de dados.", cpf);
+            return null; //comportamento adequado para verificar duplicidade
+        } catch (DataAccessException ex) {
+            log.error("Erro ao tentar acessar a base de dados");
+            throw new RegistroNaoEncontradoException("Erro ao tentar acessar a base de dados ");
+        }
+    }
 }

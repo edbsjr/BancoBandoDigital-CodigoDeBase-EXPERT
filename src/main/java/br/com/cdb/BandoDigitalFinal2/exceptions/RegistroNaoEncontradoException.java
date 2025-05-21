@@ -4,14 +4,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ClienteNaoEncontradoException extends RuntimeException{
+public class RegistroNaoEncontradoException extends RuntimeException{
 
-    public ClienteNaoEncontradoException (String message)
+    public RegistroNaoEncontradoException(String message)
     {
         super(message);
     }
 
-    public ClienteNaoEncontradoException (String message, Throwable cause)
+    public RegistroNaoEncontradoException(String message, Throwable cause)
     {
         super(message, cause);
     }

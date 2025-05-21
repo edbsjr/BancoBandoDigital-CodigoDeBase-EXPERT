@@ -5,7 +5,7 @@ import br.com.cdb.BandoDigitalFinal2.dao.ContaDao;
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
-import br.com.cdb.BandoDigitalFinal2.exceptions.ContaNaoEncontradaException;
+import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.SaldoInsuficienteException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.ValorNegativoNaoPermitidoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -176,9 +176,9 @@ public class ContaService {
 	private ContaEntity buscarConta(Long idConta) {
 		try {
 			return contaDao.findById(idConta);
-		} catch (ContaNaoEncontradaException ex) {
+		} catch (RegistroNaoEncontradoException ex) {
 			String mensagemEnriquecida = ex.getMessage() + "Favor informar outro ID e tentar novamente.";
-			throw new ContaNaoEncontradaException(mensagemEnriquecida);
+			throw new RegistroNaoEncontradoException(mensagemEnriquecida);
 		}
 	}
 

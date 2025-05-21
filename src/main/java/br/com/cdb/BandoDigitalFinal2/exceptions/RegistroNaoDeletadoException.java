@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class ClienteNaoDeletadoException extends RuntimeException {
-    public ClienteNaoDeletadoException(String message) {
+public class RegistroNaoDeletadoException extends RuntimeException {
+    public RegistroNaoDeletadoException(String message) {
         super(message);
     }
-    public ClienteNaoDeletadoException(String message, Throwable cause) {
+    public RegistroNaoDeletadoException(String message, Throwable cause) {
         super(message, cause);
     }
 }

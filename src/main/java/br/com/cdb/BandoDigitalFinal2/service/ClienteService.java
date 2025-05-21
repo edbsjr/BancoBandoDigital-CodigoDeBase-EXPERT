@@ -7,11 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 
 import static br.com.cdb.BandoDigitalFinal2.utils.ValidadorDeCampos.*;
@@ -28,12 +25,21 @@ public class ClienteService {
 	public void salvarCliente(Cliente cliente) {
 		log.info("Iniciando a validacao para salvar o cliente {} com o cpf {}", cliente.getNome(), cliente.getCpf());
 		validarCliente(cliente);
+		log.info("Verifica se o cpf {} ja esta na base de dados", cliente.getCpf());
+
+		Cliente clienteExistente = clienteDao.findByCpf(cliente.getCpf());//VERIFICA DUPLICIDADE DE CPF
+		if(clienteExistente != null) {
+			log.error("O cpf {} ja esta em nossa base de dados no ID {}", cliente.getCpf(),
+					clienteExistente.getIdCliente());
+			throw new RegistroEmDuplicidadeException("O cpf " + cliente.getCpf() + " ja esta em nossa base " +
+					"de dados no ID " + clienteExistente.getIdCliente());
+		}
 		log.info("Iniciando o save do cliente {} com o cpf {}", cliente.getNome(), cliente.getCpf());
 		try {
 			if (clienteDao.save(cliente))
 				log.info("Cliente {} com o cpf {} salvo com sucesso", cliente.getNome(), cliente.getCpf());
-		} catch (ClienteNaoSalvoException ex) {
-			throw new ClienteNaoSalvoException("Erro ao inserir o cliente na base de dados");
+		} catch (RegistroNaoSalvoException ex) {
+			throw new RegistroNaoSalvoException("Erro ao inserir o cliente na base de dados");
 		}
 	}
 
@@ -42,7 +48,14 @@ public class ClienteService {
 		log.info("Iniciando a validacao do cliente ID {} com o cpf {}", cliente.getIdCliente(), cliente.getCpf());
 		validarCliente(cliente);
 		Cliente clienteAntigo = buscarCliente(idCliente);
-
+		log.info("Verificando se o CPF {} ja existe em nossa base em outro ID", cliente.getCpf());
+		Cliente clienteExistente = clienteDao.findByCpf(cliente.getCpf());
+		if(clienteExistente != null && clienteAntigo.getCpf() != clienteExistente.getCpf()) {
+			log.error("O cpf {} ja esta em nossa base de dados no ID {}", cliente.getCpf(),
+					clienteExistente.getIdCliente());
+			throw new RegistroEmDuplicidadeException("O cpf " + cliente.getCpf() + " ja esta em nossa base " +
+					"de dados no ID " + clienteExistente.getIdCliente());
+		}
 		log.info("Atualizando as informações do cliente ID {}", clienteAntigo.getIdCliente());
 		clienteAntigo.setNome(cliente.getNome());
 		clienteAntigo.setCpf(cliente.getCpf());
@@ -77,18 +90,16 @@ public class ClienteService {
 	}
 
 	//METODO QUE BUSCA CLIENTE
-	public Cliente buscarCliente(Long idCliente) {
+	public Cliente buscarCliente(Long idCliente)
+	{
 		log.info("Iniciando a busca do cliente com ID: {}", idCliente); // Log INFO no início
-		try
-		{
-			log.debug("Buscando cliente com ID: {}", idCliente); // Adicionando um log DEBUG em caso de sucesso
-			return clienteDao.findById(idCliente);
-		}
-		catch (ClienteNaoEncontradoException ex) {
-			log.error(ex.getMessage());
-			// Log ERROR no catch
-			String mensagemEnriquecida = ex.getMessage()+"Tente novamente.";
-			throw new ClienteNaoEncontradoException(mensagemEnriquecida);
+		log.debug("Buscando cliente com ID: {}", idCliente); // Adicionando um log DEBUG em caso de sucesso
+		Cliente cliente = clienteDao.findById(idCliente);
+		if(cliente == null)
+			throw new RegistroNaoEncontradoException("Cliente ID "+idCliente+" não encontrado");
+		else {
+			log.info("Retornando cliente ID {}, nome {}", cliente.getIdCliente(), cliente.getNome());
+			return cliente;
 		}
 	}
 }

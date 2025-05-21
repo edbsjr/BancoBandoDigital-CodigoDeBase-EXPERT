@@ -230,7 +230,7 @@ Caused by: org.postgresql.util.PSQLException: ERRO: função public.inserir_clie
 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
 	... 65 common frames omitted
 2025-05-18 16:18:55.254 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Failure in @ExceptionHandler br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander#handleClienteNaoSalvoException(ClienteNaoEncontradoException)
-java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<java.lang.Object> br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander.handleClienteNaoSalvoException(br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException): No suitable resolver
+java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<java.lang.Object> br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander.handleClienteNaoSalvoException(br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException): No suitable resolver
 	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
 	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
@@ -394,7 +394,7 @@ Caused by: org.postgresql.util.PSQLException: ERRO: função public.inserir_clie
 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
 	... 65 common frames omitted
 2025-05-19 02:00:26.773 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Failure in @ExceptionHandler br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander#handleClienteNaoSalvoException(ClienteNaoEncontradoException)
-java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<java.lang.Object> br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander.handleClienteNaoSalvoException(br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException): No suitable resolver
+java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<java.lang.Object> br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander.handleClienteNaoSalvoException(br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException): No suitable resolver
 	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
 	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
@@ -558,7 +558,7 @@ Caused by: org.postgresql.util.PSQLException: ERRO: função public.inserir_clie
 	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
 	... 65 common frames omitted
 2025-05-19 02:10:30.273 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Failure in @ExceptionHandler br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander#handleClienteNaoSalvoException(ClienteNaoEncontradoException)
-java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<java.lang.Object> br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander.handleClienteNaoSalvoException(br.com.cdb.BandoDigitalFinal2.exceptions.ClienteNaoEncontradoException): No suitable resolver
+java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<java.lang.Object> br.com.cdb.BandoDigitalFinal2.exceptions.GlobalExceptionHander.handleClienteNaoSalvoException(br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException): No suitable resolver
 	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
 	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)
 	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
@@ -3649,3 +3649,86 @@ org.postgresql.util.PSQLException: A result was returned when none was expected.
 2025-05-20 03:57:09.656 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
 2025-05-20 03:57:09.660 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-05-20 03:57:09.671 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-21 01:19:26.740 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 18628 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-21 01:19:26.746 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-21 01:19:28.141 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-21 01:19:28.190 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 0 JDBC repository interfaces.
+2025-05-21 01:19:29.014 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-21 01:19:29.038 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-21 01:19:29.042 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-21 01:19:29.043 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-21 01:19:29.131 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-21 01:19:29.132 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2303 ms
+2025-05-21 01:19:30.323 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-21 01:19:30.777 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@f723cdb
+2025-05-21 01:19:30.780 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-21 01:19:31.062 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-21 01:19:31.101 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-21 01:19:31.119 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 5.305 seconds (process running for 5.971)
+2025-05-21 01:19:50.539 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21 01:19:50.539 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-21 01:19:50.541 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-21 01:19:50.724 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Iniciando a validacao para salvar o cliente Travado Tavares com o cpf 42364018005
+2025-05-21 01:19:50.727 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Iniciando o save do cliente Travado Tavares com o cpf 423.640.180-05
+2025-05-21 01:19:50.730 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ClienteDao - Passando os parametros para a insercao
+2025-05-21 01:19:50.786 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Cliente Travado Tavares com o cpf 423.640.180-05 salvo com sucesso
+2025-05-21 01:19:55.796 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ClienteService - Buscando a lista de Todos os clientes
+2025-05-21 01:47:08.547 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21 01:47:08.600 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-21 01:47:08.604 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-21 01:47:08.613 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-21 02:39:59.191 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 19060 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-21 02:39:59.196 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-21 02:40:00.266 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-21 02:40:00.303 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 0 JDBC repository interfaces.
+2025-05-21 02:40:00.984 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-21 02:40:01.006 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-21 02:40:01.009 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-21 02:40:01.009 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-21 02:40:01.084 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-21 02:40:01.086 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1808 ms
+2025-05-21 02:40:01.922 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-21 02:40:02.331 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2cfe272f
+2025-05-21 02:40:02.333 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-21 02:40:02.575 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-21 02:40:02.609 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-21 02:40:02.619 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.235 seconds (process running for 4.78)
+2025-05-21 02:46:09.912 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21 02:46:09.962 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-21 02:46:09.967 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-21 02:46:09.976 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-21 02:46:15.221 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 7156 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-21 02:46:15.226 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-21 02:46:16.265 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-21 02:46:16.305 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 0 JDBC repository interfaces.
+2025-05-21 02:46:16.993 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-21 02:46:17.011 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-21 02:46:17.014 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-21 02:46:17.014 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-21 02:46:17.092 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-21 02:46:17.095 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1784 ms
+2025-05-21 02:46:17.907 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-21 02:46:18.240 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@31efacad
+2025-05-21 02:46:18.242 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-21 02:46:18.497 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-21 02:46:18.531 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-21 02:46:18.542 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.152 seconds (process running for 4.696)
+2025-05-21 02:55:22.982 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21 02:55:22.982 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-21 02:55:22.985 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-21 02:55:23.039 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ClienteService - Buscando a lista de Todos os clientes
+2025-05-21 02:56:11.279 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Iniciando a validacao do cliente ID null com o cpf 42364018005
+2025-05-21 02:56:11.284 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 1
+2025-05-21 02:56:11.284 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-05-21 02:56:11.297 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Retornando cliente ID 1, nome Ciclista Ciclicando
+2025-05-21 02:56:11.297 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Verificando se o CPF 423.640.180-05 ja existe em nossa base em outro ID
+2025-05-21 02:56:11.297 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-05-21 02:56:11.300 [http-nio-8080-exec-3] ERROR b.c.c.B.service.ClienteService - O cpf 423.640.180-05 ja esta em nossa base de dados no ID 5
+2025-05-21 02:56:27.479 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ClienteService - Iniciando a validacao para salvar o cliente Travado Tavares com o cpf 42364018005
+2025-05-21 02:56:27.480 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ClienteService - Verifica se o cpf 423.640.180-05 ja esta na base de dados
+2025-05-21 02:56:27.480 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-05-21 02:56:27.482 [http-nio-8080-exec-4] ERROR b.c.c.B.service.ClienteService - O cpf 423.640.180-05 ja esta em nossa base de dados no ID 5
+2025-05-21 02:57:19.767 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21 02:57:19.821 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-21 02:57:19.828 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-21 02:57:19.837 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

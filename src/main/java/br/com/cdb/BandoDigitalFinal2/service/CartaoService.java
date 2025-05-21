@@ -232,10 +232,10 @@ public class CartaoService {
 		try
 		{
 			return cartaoDao.findById(idCartao);
-		} catch (CartaoNaoEncontradoException e)
+		} catch (RegistroNaoEncontradoException e)
 		{
 			String mensagemEnriquecida = e.getMessage() + "Favor informar outro ID";
-			throw new CartaoNaoEncontradoException(mensagemEnriquecida);
+			throw new RegistroNaoEncontradoException(mensagemEnriquecida);
 		}
 	}
 }
