@@ -3732,3 +3732,27 @@ org.postgresql.util.PSQLException: A result was returned when none was expected.
 2025-05-21 02:57:19.821 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
 2025-05-21 02:57:19.828 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-05-21 02:57:19.837 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-21 23:25:16.826 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 19312 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-21 23:25:16.830 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-21 23:25:18.030 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-21 23:25:18.082 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-05-21 23:25:18.905 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-21 23:25:18.933 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-21 23:25:18.939 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-21 23:25:18.939 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-21 23:25:19.029 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-21 23:25:19.031 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2103 ms
+2025-05-21 23:25:20.186 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-21 23:25:20.612 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@380ce5a3
+2025-05-21 23:25:20.616 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-21 23:25:20.930 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-21 23:25:20.968 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-21 23:25:20.985 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 5.257 seconds (process running for 5.932)
+2025-05-21 23:25:30.504 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21 23:25:30.504 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-21 23:25:30.506 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-21 23:25:45.289 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-05-21 23:37:57.412 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-21 23:37:57.468 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-21 23:37:57.473 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-21 23:37:57.483 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

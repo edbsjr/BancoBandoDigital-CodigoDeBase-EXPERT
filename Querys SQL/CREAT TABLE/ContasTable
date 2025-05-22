@@ -1,0 +1,24 @@
+-- Table: public.contas
+
+-- DROP TABLE IF EXISTS public.contas;
+
+CREATE TABLE IF NOT EXISTS public.contas
+(
+    id_conta integer NOT NULL DEFAULT nextval('contas_id_conta_seq'::regclass),
+    tipo character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    fk_id_cliente integer,
+    saldo numeric(10,2),
+    rendimento numeric(6,3),
+    manutencao numeric(6,2),
+    CONSTRAINT contas_pkey PRIMARY KEY (id_conta),
+    CONSTRAINT contas_fk_id_cliente_fkey FOREIGN KEY (fk_id_cliente)
+        REFERENCES public.clientes (id_cliente) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT contas_tipo_check CHECK (tipo::text = ANY (ARRAY['CORRENTE'::character varying, 'POUPANCA'::character varying]::text[]))
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.contas
+    OWNER to postgres;

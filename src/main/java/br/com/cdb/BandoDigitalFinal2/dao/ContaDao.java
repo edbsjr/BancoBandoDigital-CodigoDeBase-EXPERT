@@ -3,15 +3,21 @@ package br.com.cdb.BandoDigitalFinal2.dao;
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.entity.mapper.ContaEntityRowMapper;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
+import br.com.cdb.BandoDigitalFinal2.service.ClienteService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Slf4j
 @Repository
 public class ContaDao {
 
+    private static final Logger log = LoggerFactory.getLogger(ContaDao.class);
     private final ContaEntityRowMapper contaRowMapper;
     //Usado para converter o ResultSet e criar um objeto ContaEntity para ser retornado
 

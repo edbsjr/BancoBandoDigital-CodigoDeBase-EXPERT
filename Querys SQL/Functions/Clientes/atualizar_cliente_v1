@@ -1,0 +1,34 @@
+-- FUNCTION: public.atualizar_cliente_v1(bigint, character varying, date, character varying, character varying)
+
+-- DROP FUNCTION IF EXISTS public.atualizar_cliente_v1(bigint, character varying, date, character varying, character varying);
+
+CREATE OR REPLACE FUNCTION public.atualizar_cliente_v1(
+	p_id_cliente bigint,
+	p_nome character varying,
+	p_data_nasc date,
+	p_cpf character varying,
+	p_categoria character varying)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    UPDATE clientes SET
+        nome = p_nome,
+        data_nasc = p_data_nasc,
+        cpf = p_cpf,
+        categoria = p_categoria
+    WHERE id_cliente = p_id_cliente;
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;
+
+ALTER FUNCTION public.atualizar_cliente_v1(bigint, character varying, date, character varying, character varying)
+    OWNER TO postgres;

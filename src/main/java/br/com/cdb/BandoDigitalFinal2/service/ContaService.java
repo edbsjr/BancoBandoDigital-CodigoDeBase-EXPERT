@@ -8,73 +8,72 @@ import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.SaldoInsuficienteException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.ValorNegativoNaoPermitidoException;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Slf4j
 @Service
 public class ContaService {
 
+	private static final Logger log = LoggerFactory.getLogger(ContaService.class);
 	@Autowired
 	private ClienteDao clienteDao;
 
 	@Autowired
 	private ContaDao contaDao;
-	
+
 	//ABERTURA DE CONTAS
-	public boolean addContaCorrente(Long clienteId) //RETORNO DE EXCEPTION DIFERENTE DA CONTA POUPANCA
+	public void addConta(Long clienteId, TipoConta tipoConta)
 	{
 		ContaEntity conta = new ContaEntity();
 		Cliente clienteEncontrado= clienteDao.findById(clienteId);
 		conta.setSaldo(BigDecimal.ZERO);
 		conta.setIdCliente(clienteEncontrado.getIdCliente());
-		conta.setTipoConta(TipoConta.CORRENTE);
-		BigDecimal taxa = null;
-		switch( clienteEncontrado.getCategoria()) {
-		
-		case COMUM:
-			taxa = BigDecimal.valueOf(12.00);
-			conta.setManutencao(taxa);
-			break;
-		case SUPER:
-			taxa = BigDecimal.valueOf(8.00);
-			conta.setManutencao(taxa);
-			break;
-		case PREMIUM:
-			taxa = BigDecimal.valueOf(0.00);
-			conta.setManutencao(taxa);
-			break;
+		conta.setTipoConta(tipoConta);
+		if(conta.getTipoConta().equals(TipoConta.CORRENTE)) {
+			BigDecimal taxa = null;
+			switch (clienteEncontrado.getCategoria()) {
+
+				case COMUM:
+					taxa = BigDecimal.valueOf(12.00);
+					conta.setManutencao(taxa);
+					break;
+				case SUPER:
+					taxa = BigDecimal.valueOf(8.00);
+					conta.setManutencao(taxa);
+					break;
+				case PREMIUM:
+					taxa = BigDecimal.valueOf(0.00);
+					conta.setManutencao(taxa);
+					break;
+			}
+			contaDao.save(conta);
+		} else if (conta.getTipoConta().equals(TipoConta.POUPANCA))
+		{
+			BigDecimal rendimento = null;
+			switch( clienteEncontrado.getCategoria()) {
+
+				case COMUM:
+					rendimento = BigDecimal.valueOf(0.500);
+					conta.setRendimento(rendimento);
+					break;
+				case SUPER:
+					rendimento = BigDecimal.valueOf(0.700);
+					conta.setRendimento(rendimento);
+					break;
+				case PREMIUM:
+					rendimento = BigDecimal.valueOf(0.900);
+					conta.setRendimento(rendimento);
+					break;
+			}
+			contaDao.save(conta);
 		}
-		
-		return contaDao.save(conta);
-		
-	}	
-	public boolean addContaPoupanca(Long clienteId) 
-	{
-		ContaEntity conta = new ContaEntity();
-		Cliente clienteEncontrado = clienteDao.findById(clienteId);;
-		conta.setSaldo(BigDecimal.ZERO);
-		conta.setIdCliente(clienteEncontrado.getIdCliente());
-		conta.setTipoConta(TipoConta.POUPANCA);
-		BigDecimal rendimento = null;
-		switch( clienteEncontrado.getCategoria()) {
-		
-		case COMUM:
-			rendimento = BigDecimal.valueOf(0.500);
-			conta.setRendimento(rendimento);
-			break;
-		case SUPER:
-			rendimento = BigDecimal.valueOf(0.700);
-			conta.setRendimento(rendimento);
-			break;
-		case PREMIUM:
-			rendimento = BigDecimal.valueOf(0.900);
-			conta.setRendimento(rendimento);
-			break;
-		}
-		return contaDao.save(conta);
 	}
 	
 	//DETALHES DE CONTAS

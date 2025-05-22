@@ -1,0 +1,27 @@
+-- Table: public.cartoes
+
+-- DROP TABLE IF EXISTS public.cartoes;
+
+CREATE TABLE IF NOT EXISTS public.cartoes
+(
+    id_cartao integer NOT NULL DEFAULT nextval('cartoes_id_cartao_seq'::regclass),
+    senha character varying(20) COLLATE pg_catalog."default",
+    situacao character varying(12) COLLATE pg_catalog."default",
+    fk_id_conta integer,
+    valor_fatura numeric(10,2),
+    limite numeric(10,2),
+    limite_usado numeric(10,2),
+    tipo character varying(9) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT cartoes_pkey PRIMARY KEY (id_cartao),
+    CONSTRAINT cartoes_fk_id_conta_fkey FOREIGN KEY (fk_id_conta)
+        REFERENCES public.contas (id_conta) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT cartoes_situacao_check CHECK (situacao::text = ANY (ARRAY['ATIVADO'::character varying, 'BLOQUEADO'::character varying, 'CANCELADO'::character varying]::text[])),
+    CONSTRAINT cartoes_tipo_check CHECK (tipo::text = ANY (ARRAY['CREDITO'::character varying, 'DEBITO'::character varying]::text[]))
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.cartoes
+    OWNER to postgres;

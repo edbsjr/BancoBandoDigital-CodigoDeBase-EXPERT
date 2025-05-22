@@ -1,5 +1,6 @@
 package br.com.cdb.BandoDigitalFinal2.controller;
 
+import br.com.cdb.BandoDigitalFinal2.dto.ContaTipoDto;
 import br.com.cdb.BandoDigitalFinal2.dto.NumeroValorDto;
 import br.com.cdb.BandoDigitalFinal2.dto.TransferenciaBancariaDto;
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/conta")
@@ -20,18 +20,11 @@ public class ContaController {
 	private ContaService contaService;
 
 	
-	@PostMapping("/add/{idCliente}/corrente") 
-	public ResponseEntity<String> addContaCorrente(@PathVariable Long idCliente) // INFORMA CLIENTE PARA ABRIR CONTA CORRENTE 
+	@PostMapping("/add")
+	public ResponseEntity<String> addConta(@RequestBody ContaTipoDto contaTipoDto) // INFORMA CLIENTE PARA ABRIR CONTA CORRENTE
 	{
-		contaService.addContaCorrente(idCliente);
-		return new ResponseEntity<>("Conta Corrente adicionada com sucesso", HttpStatus.CREATED);
-	}
-
-	@PostMapping("/add/{idCliente}/poupanca")
-	public ResponseEntity<String> addContaPoupanca(@PathVariable Long idCliente) //INFORMA CLIENTE PARA ABRIR CONTA POUPANCA 
-	{
-		contaService.addContaPoupanca(idCliente);
-		return new ResponseEntity<>("Conta Poupanca adicionada com sucesso", HttpStatus.CREATED);
+		contaService.addConta(contaTipoDto.getIdCliente(), contaTipoDto.getTipoConta());
+		return new ResponseEntity<>("Conta adicionada com sucesso", HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/listarTodos")

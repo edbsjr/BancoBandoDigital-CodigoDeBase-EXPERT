@@ -1,0 +1,39 @@
+-- FUNCTION: public.inserir_cliente_v1(character varying, date, character varying, character varying)
+
+-- DROP FUNCTION IF EXISTS public.inserir_cliente_v1(character varying, date, character varying, character varying);
+
+CREATE OR REPLACE FUNCTION public.inserir_cliente_v1(
+	p_nome character varying,
+	p_data_nasc date,
+	p_cpf character varying,
+	p_categoria character varying)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    INSERT INTO clientes(
+        nome,
+        data_nasc,
+        cpf,
+        categoria
+    )
+    VALUES (
+        p_nome,
+        p_data_nasc,
+        p_cpf,
+        p_categoria
+    );
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;
+
+ALTER FUNCTION public.inserir_cliente_v1(character varying, date, character varying, character varying)
+    OWNER TO postgres;

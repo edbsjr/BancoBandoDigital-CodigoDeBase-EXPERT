@@ -1,0 +1,26 @@
+-- FUNCTION: public.deletar_cliente_v1(bigint)
+
+-- DROP FUNCTION IF EXISTS public.deletar_cliente_v1(bigint);
+
+CREATE OR REPLACE FUNCTION public.deletar_cliente_v1(
+	p_id_cliente bigint)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    DELETE FROM clientes
+    WHERE id_cliente = p_id_cliente;
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;
+
+ALTER FUNCTION public.deletar_cliente_v1(bigint)
+    OWNER TO postgres;
