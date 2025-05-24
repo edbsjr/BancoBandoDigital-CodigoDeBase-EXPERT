@@ -5,6 +5,7 @@ import br.com.cdb.BandoDigitalFinal2.dao.ContaDao;
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
 import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
+import br.com.cdb.BandoDigitalFinal2.exceptions.CampoInvalidoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.SaldoInsuficienteException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.ValorNegativoNaoPermitidoException;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -32,6 +34,7 @@ public class ContaService {
 	public void addConta(Long clienteId, TipoConta tipoConta)
 	{
 		ContaEntity conta = new ContaEntity();
+		log.info("Verificando se Cliente ID {}, possui existe");
 		Cliente clienteEncontrado= clienteDao.findById(clienteId);
 		conta.setSaldo(BigDecimal.ZERO);
 		conta.setIdCliente(clienteEncontrado.getIdCliente());
@@ -79,11 +82,22 @@ public class ContaService {
 	//DETALHES DE CONTAS
 	public List<ContaEntity> listarTodos()
 	{
-		return contaDao.findAll(); 
+		log.info("Buscando a lista de todas as contas");
+		return contaDao.findAll();
 	}
-	public ContaEntity obterDetalhes(Long idConta) 
-	{
-		return buscarConta(idConta);
+
+	public ContaEntity buscarConta(Long idConta) {
+		log.info("Iniciando busca da Conta ID {}", idConta);
+		ContaEntity contaEntity= contaDao.findById(idConta);
+		if(contaEntity == null){
+			log.error("Conta ID {} nao encontrada", idConta);
+			throw new RegistroNaoEncontradoException("Conta ID "+idConta+" nao encontrada");
+		}
+		else
+		{
+			log.info("Retornando conta {} id {}", contaEntity.getTipoConta().name(), contaEntity.getIdConta());
+			return contaEntity;
+		}
 	}
 
 	public BigDecimal consultarSaldo(Long idConta)
@@ -106,8 +120,8 @@ public class ContaService {
 			{
 				contaOrigem.debitar(valor);
 				contaDestino.creditar(valor);
-				contaDao.update(contaDestino);
 				contaDao.update(contaOrigem);
+				contaDao.update(contaDestino);
 			}
 		}
 		else
@@ -139,15 +153,29 @@ public class ContaService {
 	//MOVIMENTACAO INTERNA DE CONTA
 	public void manutencao(Long idConta)
 	{
-		ContaEntity conta = buscarConta(idConta);;
-		debitarValor(idConta, conta.getManutencao());
+		log.info("Iniciando processo de manutencao de Conta Corrente. Verificando se a conta existe");
+		ContaEntity conta = buscarConta(idConta);
+		if(conta.getTipoConta().equals(TipoConta.CORRENTE)) {
+			log.info("Iniciando o desconto da taxa de manutencao na conta");
+			debitarValor(idConta, conta.getManutencao());
+		}
+		else {
+			log.error("Operacao valida somente para conta Corrente");
+			throw new CampoInvalidoException("Operacao valida somente para Conta Corrente");
+		}
 	}
 
 	public void rendimento(Long idConta) 
 	{
 		ContaEntity conta = buscarConta(idConta);
+		if(conta.getTipoConta().equals(TipoConta.POUPANCA))
+		{
 		conta.setSaldo(conta.getSaldo().add(conta.getSaldo().multiply(conta.getRendimento().divide(BigDecimal.valueOf(100.00)))));
 		contaDao.update(conta);
+		} else {
+			log.error("Operacao valida somente para conta Poupanca");
+			throw new CampoInvalidoException("Operacao valida somente para Conta Poupanca");
+		}
 	}
 	
 
@@ -160,7 +188,9 @@ public class ContaService {
 			conta.setSaldo(conta.getSaldo().subtract(valor));
 			contaDao.update(conta);
 		} else{
-			throw new SaldoInsuficienteException("Saldo insuficiente");}
+			log.error("Saldo em conta insuficiente");
+			throw new SaldoInsuficienteException("Saldo insuficiente");
+		}
 	}
 	
 	/*private void creditarValor(Long idConta, Double valor) 
@@ -171,15 +201,6 @@ public class ContaService {
 		else
 			throw new RuntimeException("Valor invalido");
 	}*/
-
-	private ContaEntity buscarConta(Long idConta) {
-		try {
-			return contaDao.findById(idConta);
-		} catch (RegistroNaoEncontradoException ex) {
-			String mensagemEnriquecida = ex.getMessage() + "Favor informar outro ID e tentar novamente.";
-			throw new RegistroNaoEncontradoException(mensagemEnriquecida);
-		}
-	}
 
 	private void validaValor(BigDecimal valor) {
 		if(valor.compareTo(BigDecimal.ZERO)<0)

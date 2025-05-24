@@ -106,4 +106,18 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(FalhaAoAcessarBaseException.class)
+    public ResponseEntity<Object> handleFalhaAoAcessarBaseException(FalhaAoAcessarBaseException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(CampoInvalidoException.class)
+    public ResponseEntity<Object> handleCampoInvalidoException(CampoInvalidoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
 }

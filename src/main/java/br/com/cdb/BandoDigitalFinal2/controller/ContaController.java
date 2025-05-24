@@ -37,7 +37,7 @@ public class ContaController {
 	@GetMapping("/{idConta}")
 	public ResponseEntity<ContaEntity> obterConta(@PathVariable Long idConta) //RETORNA JSON(CONTA) UNICA PARA CONFERIR
 	{
-		ContaEntity contaAchada = contaService.obterDetalhes(idConta);
+		ContaEntity contaAchada = contaService.buscarConta(idConta);
 			return new ResponseEntity<>(contaAchada, HttpStatus.FOUND);
 	}
 

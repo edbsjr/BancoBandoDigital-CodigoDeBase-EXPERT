@@ -79,6 +79,7 @@ public class ClienteDao {
     {
         String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria FROM public.lista_clientes_completa_v1()";
         try {
+            log.info("Iniciando busca das contas na base de dados");
             return jdbcTemplate.query(sql, clienteRowMapper);
         } catch (DataAccessException ex){
             log.error("Erro ao buscar lista na base de dados");

@@ -1,0 +1,36 @@
+-- FUNCTION: public.atualizar_conta_v1(bigint, character varying, integer, numeric, numeric, numeric)
+
+-- DROP FUNCTION IF EXISTS public.atualizar_conta_v1(bigint, character varying, integer, numeric, numeric, numeric);
+
+CREATE OR REPLACE FUNCTION public.atualizar_conta_v1(
+	p_id_conta bigint,
+	p_tipo character varying,
+	p_fk_id_cliente integer,
+	p_saldo numeric,
+	p_rendimento numeric,
+	p_manutencao numeric)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    UPDATE contas SET
+        tipo = p_tipo,
+        fk_id_cliente = p_fk_id_cliente,
+        saldo = p_saldo,
+        rendimento = p_rendimento,
+		manutencao = p_manutencao
+    WHERE id_conta = p_id_conta;
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;
+
+ALTER FUNCTION public.atualizar_conta_v1(bigint, character varying, integer, numeric, numeric, numeric)
+    OWNER TO postgres;

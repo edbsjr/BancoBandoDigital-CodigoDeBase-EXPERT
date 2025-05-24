@@ -3756,3 +3756,674 @@ org.postgresql.util.PSQLException: A result was returned when none was expected.
 2025-05-21 23:37:57.468 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
 2025-05-21 23:37:57.473 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-05-21 23:37:57.483 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:14:57.465 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 20412 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:14:57.470 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:14:58.521 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:14:58.575 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:14:59.322 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:14:59.341 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:14:59.345 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:14:59.345 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:14:59.430 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:14:59.432 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1885 ms
+2025-05-23 03:15:00.327 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:15:00.756 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@380ce5a3
+2025-05-23 03:15:00.759 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:15:01.050 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:15:01.081 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:15:01.091 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.452 seconds (process running for 5.014)
+2025-05-23 03:16:02.771 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:16:02.772 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:16:02.774 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-23 03:16:02.825 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:16:02.849 [http-nio-8080-exec-1] ERROR b.c.c.B.dao.ContaDao - Erro ao buscar lista na base de dados
+2025-05-23 03:16:31.518 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Buscando a lista de Todos os clientes
+2025-05-23 03:16:31.519 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca das contas na base de dados
+2025-05-23 03:17:51.498 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:17:51.500 [http-nio-8080-exec-6] ERROR b.c.c.B.dao.ContaDao - Erro ao buscar lista na base de dados
+2025-05-23 03:18:45.431 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:18:45.485 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:18:45.491 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:18:45.500 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:18:50.522 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 2408 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:18:50.528 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:18:51.598 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:18:51.654 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:18:52.413 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:18:52.434 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:18:52.438 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:18:52.439 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:18:52.524 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:18:52.525 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1913 ms
+2025-05-23 03:18:53.453 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:18:53.861 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@541afb85
+2025-05-23 03:18:53.863 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:18:54.110 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:18:54.142 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:18:54.157 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.496 seconds (process running for 5.051)
+2025-05-23 03:19:12.607 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:19:12.607 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:19:12.608 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-23 03:19:12.664 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:19:55.826 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-23 03:20:05.614 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:20:05.615 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:20:05.617 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 2
+2025-05-23 03:20:05.633 [http-nio-8080-exec-4] ERROR b.c.c.B.dao.ContaDao - Erro ao tentar atualizar Conta ID 2 na base de dados
+2025-05-23 03:20:18.268 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:20:26.993 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:20:26.995 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:20:26.996 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 2
+2025-05-23 03:20:26.997 [http-nio-8080-exec-7] ERROR b.c.c.B.dao.ContaDao - Erro ao tentar atualizar Conta ID 2 na base de dados
+2025-05-23 03:23:16.564 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:23:16.616 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:23:16.621 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:23:16.630 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:23:21.807 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 19692 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:23:21.811 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:23:22.883 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:23:22.934 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:23:23.800 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:23:23.820 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:23:23.823 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:23:23.824 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:23:23.911 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:23:23.913 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2017 ms
+2025-05-23 03:23:24.976 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:23:25.448 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9fe720a
+2025-05-23 03:23:25.451 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:23:25.700 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:23:25.728 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:23:25.748 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.755 seconds (process running for 5.277)
+2025-05-23 03:24:18.246 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:24:18.246 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:24:18.248 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-23 03:24:18.404 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:24:18.433 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:24:18.435 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 2
+2025-05-23 03:24:18.454 [http-nio-8080-exec-1] ERROR b.c.c.B.dao.ContaDao - Erro ao tentar atualizar Conta ID 2 na base de dados
+2025-05-23 03:24:26.535 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:28:07.991 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:28:08.041 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:28:08.046 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:28:08.056 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:28:13.527 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 13160 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:28:13.532 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:28:14.618 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:28:14.664 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:28:15.393 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:28:15.414 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:28:15.418 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:28:15.418 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:28:15.496 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:28:15.497 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1888 ms
+2025-05-23 03:28:16.357 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:28:16.809 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@62c3f556
+2025-05-23 03:28:16.812 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:28:17.084 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:28:17.116 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:28:17.129 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.459 seconds (process running for 4.987)
+2025-05-23 03:28:23.273 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:28:23.274 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:28:23.275 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-23 03:28:23.430 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:28:23.458 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:28:23.484 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT * FROM public.atualizar_conta_v1(?.?.?.?.?.?)]] with root cause
+org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a "$2"
+  Position: 44
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:732)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:889)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:918)
+	at br.com.cdb.BandoDigitalFinal2.dao.ContaDao.update(ContaDao.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at br.com.cdb.BandoDigitalFinal2.dao.ContaDao$$SpringCGLIB$$0.update(<generated>)
+	at br.com.cdb.BandoDigitalFinal2.service.ContaService.transferirValor(ContaService.java:111)
+	at br.com.cdb.BandoDigitalFinal2.controller.ContaController.transferencia(ContaController.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-05-23 03:32:18.796 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:32:18.848 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:32:18.854 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:32:18.862 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:32:24.034 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 11500 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:32:24.039 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:32:25.106 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:32:25.157 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:32:25.911 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:32:25.938 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:32:25.944 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:32:25.946 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:32:26.018 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:32:26.020 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1902 ms
+2025-05-23 03:32:26.901 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:32:27.260 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@44b940a2
+2025-05-23 03:32:27.262 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:32:27.540 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:32:27.572 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:32:27.584 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.361 seconds (process running for 4.883)
+2025-05-23 03:32:34.772 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:32:34.772 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:32:34.774 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-23 03:32:34.931 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:32:34.957 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:32:34.988 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT * FROM public.atualizar_conta_v1(?,?,?,?,?,?)]] with root cause
+org.postgresql.util.PSQLException: ERRO: função public.atualizar_conta_v1(bigint, character varying, bigint, numeric, unknown, numeric) não existe
+  Hint: Nenhuma função corresponde com o nome e os tipos de argumentos informados. Você precisa adicionar conversões de tipo explícitas.
+  Position: 15
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:194)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:137)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:732)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:889)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:918)
+	at br.com.cdb.BandoDigitalFinal2.dao.ContaDao.update(ContaDao.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at br.com.cdb.BandoDigitalFinal2.dao.ContaDao$$SpringCGLIB$$0.update(<generated>)
+	at br.com.cdb.BandoDigitalFinal2.service.ContaService.transferirValor(ContaService.java:111)
+	at br.com.cdb.BandoDigitalFinal2.controller.ContaController.transferencia(ContaController.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-05-23 03:40:37.567 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:40:37.619 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:40:37.623 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:40:37.634 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:40:40.426 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 14580 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:40:40.431 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:40:41.512 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:40:41.556 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:40:42.262 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:40:42.279 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:40:42.284 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:40:42.285 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:40:42.378 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:40:42.380 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1868 ms
+2025-05-23 03:40:43.258 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:40:43.635 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@38029686
+2025-05-23 03:40:43.638 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:40:43.914 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:40:43.944 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:40:43.955 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.367 seconds (process running for 5.082)
+2025-05-23 03:40:52.751 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:40:52.751 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:40:52.753 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-23 03:40:52.899 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:40:52.924 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:41:01.237 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:41:45.033 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:41:45.084 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:41:45.088 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:41:45.095 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-23 03:41:50.839 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 18604 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-23 03:41:50.843 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-23 03:41:51.894 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-23 03:41:51.949 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 0 JDBC repository interfaces.
+2025-05-23 03:41:52.703 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-23 03:41:52.721 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:41:52.725 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-23 03:41:52.725 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-23 03:41:52.801 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-23 03:41:52.802 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1872 ms
+2025-05-23 03:41:53.693 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-23 03:41:54.159 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@62c3f556
+2025-05-23 03:41:54.166 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-23 03:41:54.431 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-23 03:41:54.461 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-23 03:41:54.491 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.517 seconds (process running for 5.093)
+2025-05-23 03:42:05.962 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-23 03:42:05.963 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-23 03:42:05.964 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-23 03:42:06.132 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:42:06.158 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:42:06.160 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 2
+2025-05-23 03:42:06.173 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 1
+2025-05-23 03:42:12.377 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:42:28.774 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-23 03:42:36.945 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:42:36.947 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 1
+2025-05-23 03:42:48.862 [http-nio-8080-exec-6] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:43:01.482 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:43:01.483 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 1
+2025-05-23 03:43:08.521 [http-nio-8080-exec-8] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-23 03:43:21.278 [http-nio-8080-exec-9] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-23 03:43:21.280 [http-nio-8080-exec-9] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 3
+2025-05-23 03:43:29.031 [http-nio-8080-exec-10] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-23 03:43:44.828 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-23 03:43:44.830 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 3
+2025-05-23 03:43:59.044 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-23 03:43:59.096 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-23 03:43:59.101 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-23 03:43:59.115 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-24 03:42:18.384 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 21008 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-24 03:42:18.390 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-24 03:42:20.073 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 03:42:20.129 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-05-24 03:42:21.074 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-24 03:42:21.101 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:42:21.105 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-24 03:42:21.105 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-24 03:42:21.197 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-24 03:42:21.199 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2719 ms
+2025-05-24 03:42:23.592 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-24 03:42:25.050 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@541afb85
+2025-05-24 03:42:25.054 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-24 03:42:25.574 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:42:25.630 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-24 03:42:25.657 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 8.213 seconds (process running for 8.998)
+2025-05-24 03:42:43.641 [http-nio-8080-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-24 03:42:43.642 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-24 03:42:43.643 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-24 03:42:43.695 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-24 03:42:58.440 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-24 03:43:02.370 [http-nio-8080-exec-8] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 4
+2025-05-24 03:43:02.374 [http-nio-8080-exec-8] ERROR b.c.c.B.dao.ContaDao - Cliente ID 4 nao encontrado
+2025-05-24 03:43:42.594 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-24 03:43:42.647 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-24 03:43:42.651 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-24 03:43:42.661 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-24 03:43:48.340 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 16292 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-24 03:43:48.344 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-24 03:43:49.414 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 03:43:49.467 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-05-24 03:43:50.194 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-24 03:43:50.213 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:43:50.216 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-24 03:43:50.217 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-24 03:43:50.290 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-24 03:43:50.292 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1867 ms
+2025-05-24 03:43:51.164 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-24 03:43:51.727 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@74960e9d
+2025-05-24 03:43:51.729 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-24 03:43:51.984 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:43:52.011 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-24 03:43:52.020 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.5 seconds (process running for 5.095)
+2025-05-24 03:44:00.509 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-24 03:44:00.509 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-24 03:44:00.510 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-24 03:44:00.584 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 4
+2025-05-24 03:44:00.610 [http-nio-8080-exec-1] ERROR b.c.c.B.dao.ContaDao - Cliente ID 4 nao encontrado
+2025-05-24 03:47:03.711 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 4
+2025-05-24 03:47:03.711 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-05-24 03:47:03.716 [http-nio-8080-exec-5] ERROR b.c.c.B.dao.ClienteDao - Cliente ID 4 nao encontrado
+2025-05-24 03:47:14.405 [http-nio-8080-exec-6] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 4
+2025-05-24 03:47:14.407 [http-nio-8080-exec-6] ERROR b.c.c.B.dao.ContaDao - Cliente ID 4 nao encontrado
+2025-05-24 03:50:43.872 [http-nio-8080-exec-9] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-24 03:53:50.619 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-24 03:53:50.667 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-24 03:53:50.671 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-24 03:53:50.685 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-24 03:53:56.250 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 14696 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-24 03:53:56.255 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-24 03:53:57.586 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 03:53:57.670 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 0 JDBC repository interfaces.
+2025-05-24 03:53:58.336 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-24 03:53:58.358 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:53:58.361 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-24 03:53:58.361 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-24 03:53:58.436 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-24 03:53:58.438 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2100 ms
+2025-05-24 03:53:59.253 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-24 03:53:59.850 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@646427f7
+2025-05-24 03:53:59.853 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-24 03:54:00.101 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:54:00.133 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-24 03:54:00.151 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.757 seconds (process running for 5.277)
+2025-05-24 03:54:07.076 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-24 03:54:07.076 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-24 03:54:07.079 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-05-24 03:54:07.144 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 2
+2025-05-24 03:54:07.149 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-24 03:54:07.177 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Retornando conta POUPANCA id 2
+2025-05-24 03:54:12.225 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 4
+2025-05-24 03:54:12.225 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 4
+2025-05-24 03:54:12.228 [http-nio-8080-exec-3] ERROR b.c.c.B.dao.ContaDao - Cliente ID 4 nao encontrado
+2025-05-24 03:54:12.228 [http-nio-8080-exec-3] ERROR b.c.c.B.service.ContaService - Conta ID 4 nao encontrada
+2025-05-24 03:57:07.259 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-24 03:57:07.312 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-24 03:57:07.317 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-24 03:57:07.337 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-24 03:57:12.590 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 23812 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-24 03:57:12.596 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-24 03:57:13.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 03:57:13.748 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 0 JDBC repository interfaces.
+2025-05-24 03:57:14.555 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-24 03:57:14.573 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:57:14.576 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-24 03:57:14.576 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-24 03:57:14.653 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-24 03:57:14.656 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1983 ms
+2025-05-24 03:57:15.586 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-24 03:57:16.040 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4844930a
+2025-05-24 03:57:16.045 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-24 03:57:16.295 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-24 03:57:16.326 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-24 03:57:16.338 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.579 seconds (process running for 5.131)
+2025-05-24 03:57:22.862 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-24 03:57:22.862 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-24 03:57:22.863 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-24 03:57:22.933 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 4
+2025-05-24 03:57:22.937 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 4
+2025-05-24 03:57:22.979 [http-nio-8080-exec-2] ERROR b.c.c.B.dao.ContaDao - Cliente ID 4 nao encontrado
+2025-05-24 03:57:22.979 [http-nio-8080-exec-2] ERROR b.c.c.B.service.ContaService - Conta ID 4 nao encontrada
+2025-05-24 03:57:32.452 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:57:32.452 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:57:32.455 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:57:32.455 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 1
+2025-05-24 03:57:32.455 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-24 03:57:32.456 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 1
+2025-05-24 03:57:32.457 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 3
+2025-05-24 03:57:32.470 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 1
+2025-05-24 03:57:41.685 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Buscando a lista de todas as contas
+2025-05-24 03:57:53.936 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 4
+2025-05-24 03:57:53.937 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 4
+2025-05-24 03:57:53.938 [http-nio-8080-exec-5] ERROR b.c.c.B.dao.ContaDao - Cliente ID 4 nao encontrado
+2025-05-24 03:57:53.938 [http-nio-8080-exec-5] ERROR b.c.c.B.service.ContaService - Conta ID 4 nao encontrada
+2025-05-24 03:58:04.862 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:58:04.862 [http-nio-8080-exec-6] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:58:04.871 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:58:04.872 [http-nio-8080-exec-6] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 3
+2025-05-24 03:58:10.579 [http-nio-8080-exec-7] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:58:10.579 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:58:10.580 [http-nio-8080-exec-7] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:58:21.683 [http-nio-8080-exec-8] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:58:21.684 [http-nio-8080-exec-8] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:58:21.686 [http-nio-8080-exec-8] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:58:21.686 [http-nio-8080-exec-8] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:58:21.686 [http-nio-8080-exec-8] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:58:21.687 [http-nio-8080-exec-8] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:58:21.687 [http-nio-8080-exec-8] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 3
+2025-05-24 03:58:28.183 [http-nio-8080-exec-9] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:58:28.184 [http-nio-8080-exec-9] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:58:28.185 [http-nio-8080-exec-9] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:58:45.195 [http-nio-8080-exec-10] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 03:58:45.196 [http-nio-8080-exec-10] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 03:58:45.197 [http-nio-8080-exec-10] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 03:58:45.200 [http-nio-8080-exec-10] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.math.BigDecimal.divide(java.math.BigDecimal)" because the return value of "br.com.cdb.BandoDigitalFinal2.entity.ContaEntity.getRendimento()" is null] with root cause
+java.lang.NullPointerException: Cannot invoke "java.math.BigDecimal.divide(java.math.BigDecimal)" because the return value of "br.com.cdb.BandoDigitalFinal2.entity.ContaEntity.getRendimento()" is null
+	at br.com.cdb.BandoDigitalFinal2.service.ContaService.rendimento(ContaService.java:162)
+	at br.com.cdb.BandoDigitalFinal2.controller.ContaController.rendimento(ContaController.java:89)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-05-24 03:59:03.323 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 2
+2025-05-24 03:59:03.323 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-24 03:59:03.324 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Retornando conta POUPANCA id 2
+2025-05-24 03:59:03.325 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 2
+2025-05-24 03:59:03.325 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-24 03:59:03.325 [http-nio-8080-exec-2] INFO  b.c.c.B.service.ContaService - Retornando conta POUPANCA id 2
+2025-05-24 03:59:03.326 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.math.BigDecimal.compareTo(java.math.BigDecimal)" because "valor" is null] with root cause
+java.lang.NullPointerException: Cannot invoke "java.math.BigDecimal.compareTo(java.math.BigDecimal)" because "valor" is null
+	at br.com.cdb.BandoDigitalFinal2.service.ContaService.validaValor(ContaService.java:189)
+	at br.com.cdb.BandoDigitalFinal2.service.ContaService.debitarValor(ContaService.java:171)
+	at br.com.cdb.BandoDigitalFinal2.service.ContaService.manutencao(ContaService.java:156)
+	at br.com.cdb.BandoDigitalFinal2.controller.ContaController.manutencao(ContaController.java:82)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-05-24 04:13:07.482 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-24 04:13:07.533 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-24 04:13:07.539 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-24 04:13:07.546 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-24 04:13:13.028 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 4768 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-24 04:13:13.032 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-24 04:13:14.216 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-24 04:13:14.272 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 0 JDBC repository interfaces.
+2025-05-24 04:13:15.040 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-24 04:13:15.060 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-24 04:13:15.064 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-24 04:13:15.064 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-24 04:13:15.139 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-24 04:13:15.142 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2021 ms
+2025-05-24 04:13:16.064 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-24 04:13:16.535 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6e24ce51
+2025-05-24 04:13:16.539 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-24 04:13:16.779 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-24 04:13:16.806 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-24 04:13:16.819 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 4.666 seconds (process running for 5.195)
+2025-05-24 04:13:19.877 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-24 04:13:19.877 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-24 04:13:19.878 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-05-24 04:13:19.944 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ContaService - Iniciando processo de manutencao de Conta Corrente. Verificando se a conta existe
+2025-05-24 04:13:19.944 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 2
+2025-05-24 04:13:19.947 [http-nio-8080-exec-1] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-24 04:13:19.978 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ContaService - Retornando conta POUPANCA id 2
+2025-05-24 04:13:19.978 [http-nio-8080-exec-1] ERROR b.c.c.B.service.ContaService - Operacao valida somente para conta Corrente
+2025-05-24 04:13:28.945 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Iniciando processo de manutencao de Conta Corrente. Verificando se a conta existe
+2025-05-24 04:13:28.946 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 1
+2025-05-24 04:13:28.946 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-24 04:13:28.947 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 1
+2025-05-24 04:13:28.948 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Iniciando o desconto da taxa de manutencao na conta
+2025-05-24 04:13:28.948 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 1
+2025-05-24 04:13:28.948 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 1
+2025-05-24 04:13:28.949 [http-nio-8080-exec-4] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 1
+2025-05-24 04:13:28.950 [http-nio-8080-exec-4] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 1
+2025-05-24 04:13:37.022 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 3
+2025-05-24 04:13:37.022 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 3
+2025-05-24 04:13:37.024 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ContaService - Retornando conta CORRENTE id 3
+2025-05-24 04:13:37.025 [http-nio-8080-exec-5] ERROR b.c.c.B.service.ContaService - Operacao valida somente para conta Poupanca
+2025-05-24 04:13:44.462 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ContaService - Iniciando busca da Conta ID 2
+2025-05-24 04:13:44.462 [http-nio-8080-exec-6] INFO  b.c.c.B.dao.ContaDao - Iniciando busca da conta ID 2
+2025-05-24 04:13:44.464 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ContaService - Retornando conta POUPANCA id 2
+2025-05-24 04:13:44.464 [http-nio-8080-exec-6] INFO  b.c.c.B.dao.ContaDao - Passando parametros para atualizar conta ID 2
+2025-05-24 04:15:11.450 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-24 04:15:11.505 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-24 04:15:11.512 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-24 04:15:11.519 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
