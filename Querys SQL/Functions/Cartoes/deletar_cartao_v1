@@ -1,0 +1,19 @@
+CREATE OR REPLACE FUNCTION public.deletar_cartao_v1(
+	p_id_cartao bigint)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    DELETE FROM cartoes
+    WHERE id_cartao = p_id_cartao;
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;

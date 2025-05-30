@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION public.atualizar_cartao_v1(
+		p_id_cartao bigint,
+		p_senha character varying(20),
+	    p_situacao character varying(12),
+	    p_fk_id_conta bigint,
+	    p_valor_fatura numeric(10,2),
+	    p_limite numeric(10,2),
+	    p_limite_usado numeric(10,2),
+	    p_tipo character varying(9))
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    UPDATE cartoes SET
+        senha = p_senha,
+        situacao = p_situacao,
+        fk_id_conta = p_fk_id_conta,
+        valor_fatura = p_valor_fatura,
+		limite = p_limte,
+		limite_usado = p_limite_usado,
+		tipo = p_tipo
+    WHERE id_cartao = p_id_cartao;
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;

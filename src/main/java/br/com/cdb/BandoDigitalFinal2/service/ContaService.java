@@ -34,8 +34,11 @@ public class ContaService {
 	public void addConta(Long clienteId, TipoConta tipoConta)
 	{
 		ContaEntity conta = new ContaEntity();
-		log.info("Verificando se Cliente ID {}, possui existe");
-		Cliente clienteEncontrado= clienteDao.findById(clienteId);
+		log.info("Verificando se Cliente ID {} existe", clienteId);
+		Cliente clienteEncontrado = clienteDao.findById(clienteId);
+		if(clienteEncontrado == null)
+			throw new RegistroNaoEncontradoException("Registro de Cliente"+clienteId+" não encontrado");
+		log.info("Setando informaçoes da Conta para a criacao");
 		conta.setSaldo(BigDecimal.ZERO);
 		conta.setIdCliente(clienteEncontrado.getIdCliente());
 		conta.setTipoConta(tipoConta);
@@ -110,22 +113,28 @@ public class ContaService {
 	//TRANSFERENCIA ENTRE CONTAS
 		public void transferirValor(Long idOrigem, BigDecimal valor, Long idDestino)
 	{
+		log.info("Preparando para buscar Conta de Origem ID {}", idOrigem);
 		ContaEntity contaOrigem = buscarConta(idOrigem);
 		validaValor(valor);
 		if (contaOrigem.getSaldo().compareTo(valor)>=0) {
-		
-		ContaEntity contaDestino = buscarConta(idDestino);
+			log.info("Preparando para buscar Conta de Destino ID {}", idDestino);
+			ContaEntity contaDestino = buscarConta(idDestino);
 		
 			if(contaDestino != null) 
 			{
+				log.info("Realizando operacoes de Debito e credito");
 				contaOrigem.debitar(valor);
 				contaDestino.creditar(valor);
+				log.info("Preparando para atualizar informacoes no DAO");
 				contaDao.update(contaOrigem);
 				contaDao.update(contaDestino);
 			}
 		}
 		else
+		{
+			log.error("A conta origem ID {} nao possui saldo suficiente", idOrigem);
 			throw new SaldoInsuficienteException("Saldo insuficiente");
+		}
 		
 	}
 	
@@ -182,6 +191,7 @@ public class ContaService {
 	//METODOS GENERICOS
 	private void debitarValor(Long idConta, BigDecimal valor) 
 	{
+		log.info("Preparando para buscar Conta ID {}", idConta);
 		ContaEntity conta = buscarConta(idConta);
 		validaValor(valor);
 		if(conta.getSaldo().compareTo(valor)>=0) {

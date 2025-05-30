@@ -67,7 +67,7 @@ public class ClienteDao {
                         new ClienteRowMapper(),
                         idCliente);
             } catch (EmptyResultDataAccessException ex){
-                log.error("Cliente ID "+idCliente+" nao encontrado");
+                log.error("Cliente ID {} nao encontrado", idCliente);
                 return null;
             }catch (DataAccessException ex) {
                 log.error("Erro ao tentar acessar a base de dados");
