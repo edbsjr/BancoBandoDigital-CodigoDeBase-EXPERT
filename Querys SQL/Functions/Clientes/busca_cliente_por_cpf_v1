@@ -1,0 +1,23 @@
+-- FUNCTION: public.busca_cliente_por_cpf_v1(character varying)
+
+-- DROP FUNCTION IF EXISTS public.busca_cliente_por_cpf_v1(character varying);
+
+CREATE OR REPLACE FUNCTION public.busca_cliente_por_cpf_v1(
+	p_cpf character varying)
+    RETURNS TABLE(id_cliente integer, nome character varying, data_nasc date, cpf character varying, categoria character varying)
+    LANGUAGE 'plpgsql'
+    COST 100
+    STABLE PARALLEL SAFE
+    ROWS 1000
+
+AS $BODY$
+BEGIN
+    RETURN QUERY
+    SELECT c.id_cliente, c.nome, c.data_nasc, c.cpf, c.categoria
+    FROM clientes AS c
+    WHERE c.cpf = p_cpf;
+END;
+$BODY$;
+
+ALTER FUNCTION public.busca_cliente_por_cpf_v1(character varying)
+    OWNER TO postgres;

@@ -1,0 +1,42 @@
+-- FUNCTION: public.inserir_conta_v1(character varying, integer, numeric, numeric, numeric)
+
+-- DROP FUNCTION IF EXISTS public.inserir_conta_v1(character varying, integer, numeric, numeric, numeric);
+
+CREATE OR REPLACE FUNCTION public.inserir_conta_v1(
+	p_tipo character varying,
+	p_fk_id_cliente integer,
+	p_saldo numeric,
+	p_rendimento numeric,
+	p_manutencao numeric)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    INSERT INTO contas(
+        tipo,
+        fk_id_cliente,
+        saldo,
+        rendimento,
+		manutencao
+    )
+    VALUES (
+        p_tipo,
+		p_fk_id_cliente,
+	    p_saldo,
+	    p_rendimento,
+	    p_manutencao
+    );
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;
+
+ALTER FUNCTION public.inserir_conta_v1(character varying, integer, numeric, numeric, numeric)
+    OWNER TO postgres;

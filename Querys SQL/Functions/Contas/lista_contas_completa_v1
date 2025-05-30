@@ -1,0 +1,27 @@
+-- FUNCTION: public.lista_contas_completa_v1()
+
+-- DROP FUNCTION IF EXISTS public.lista_contas_completa_v1();
+
+CREATE OR REPLACE FUNCTION public.lista_contas_completa_v1(
+	)
+    RETURNS TABLE(id_conta integer, tipo character varying, fk_id_cliente integer, saldo numeric, rendimento numeric, manutencao numeric)
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
+BEGIN
+	RETURN QUERY
+    SELECT 	c.id_conta,
+			c.tipo,
+			c.fk_id_cliente,
+			c.saldo,
+			c.rendimento,
+			c.manutencao
+	FROM contas AS c;
+    END;
+$BODY$;
+
+ALTER FUNCTION public.lista_contas_completa_v1()
+    OWNER TO postgres;

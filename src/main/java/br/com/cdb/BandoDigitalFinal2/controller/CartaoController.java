@@ -31,16 +31,11 @@ public class CartaoController {
 	@Autowired
 	private CartaoService cartaoService;
 
-	@PostMapping("/addCartaoDebito")
+	@PostMapping("/addCartao")
 	private ResponseEntity<String> addCartaoDebito(@RequestBody AdicionarCartaoDto adicionarCartaoDto) {
-		cartaoService.addCartaoDebito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha());
-		return new ResponseEntity<>("Cartao Debito adicionado com sucesso", HttpStatus.CREATED);
-	}
-
-	@PostMapping("/addCartaoCredito")
-	private ResponseEntity<String> addCartaoCredito(@RequestBody AdicionarCartaoDto adicionarCartaoDto) {
-		cartaoService.addCartaoCredito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha());
-		return new ResponseEntity<>("Cartao Credito adicionado com sucesso", HttpStatus.CREATED);
+		cartaoService.addCartaoDebito(adicionarCartaoDto.getContaId(), adicionarCartaoDto.getSenha(),
+				adicionarCartaoDto.getTipo());
+		return new ResponseEntity<>("Cartao adicionado com sucesso", HttpStatus.CREATED);
 	}
 
 	@GetMapping("/listarTodos")
@@ -51,7 +46,7 @@ public class CartaoController {
 
 	@GetMapping("/detalhes/{idCartao}")
 	private ResponseEntity<CartaoEntity> detalhes(@PathVariable Long idCartao) {
-		CartaoEntity cartaoAchado = cartaoService.detalhes(idCartao);
+		CartaoEntity cartaoAchado = cartaoService.buscarCartao(idCartao);
 		return new ResponseEntity<CartaoEntity>(cartaoAchado, HttpStatus.FOUND);
 	}
 

@@ -1,0 +1,42 @@
+CREATE OR REPLACE FUNCTION public.inserir_cartao_v1(
+	p_senha character varying(20),
+    p_situacao character varying(12),
+    p_fk_id_conta bigint,
+    p_valor_fatura numeric(10,2),
+    p_limite numeric(10,2),
+    p_limite_usado numeric(10,2),
+    p_tipo character varying(9)
+	)
+    RETURNS boolean
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+DECLARE
+    v_resultado BOOLEAN := TRUE;
+BEGIN
+    INSERT INTO cartoes(
+        senha,
+        situacao,
+        fk_id_conta,
+        valor_fatura,
+		limite,
+		limite_usado,
+		tipo
+    )
+    VALUES (
+        p_senha,
+	    p_situacao,
+	    p_fk_id_conta,
+	    p_valor_fatura,
+	    p_limite,
+	    p_limite_usado,
+	    p_tipo
+    );
+    RETURN v_resultado;
+EXCEPTION
+    WHEN OTHERS THEN
+        v_resultado := FALSE;
+        RETURN v_resultado;
+    END;
+$BODY$;

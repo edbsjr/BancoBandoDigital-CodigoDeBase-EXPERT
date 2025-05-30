@@ -45,7 +45,7 @@ public class ClienteController {
 	@GetMapping("/{idCliente}")
 	public ResponseEntity<Cliente> buscarCliente(@PathVariable Long idCliente ) // RETURNA JSON(CLIENTE) UNICO POR ID
 	{
-	   Cliente cliente = clienteService.obterCliente(idCliente);
+	   Cliente cliente = clienteService.buscarCliente(idCliente);
 	            return new ResponseEntity<>(cliente, HttpStatus.FOUND);
 	}
 	

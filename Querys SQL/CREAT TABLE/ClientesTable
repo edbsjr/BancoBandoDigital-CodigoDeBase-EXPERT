@@ -1,0 +1,20 @@
+-- Table: public.clientes
+
+-- DROP TABLE IF EXISTS public.clientes;
+
+CREATE TABLE IF NOT EXISTS public.clientes
+(
+    id_cliente integer NOT NULL DEFAULT nextval('clientes_id_cliente_seq'::regclass),
+    nome character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    data_nasc date,
+    cpf character varying(14) COLLATE pg_catalog."default" NOT NULL,
+    categoria character varying(8) COLLATE pg_catalog."default",
+    CONSTRAINT clientes_pkey PRIMARY KEY (id_cliente),
+    CONSTRAINT clientes_cpf_key UNIQUE (cpf),
+    CONSTRAINT clientes_categoria_check CHECK (categoria::text = ANY (ARRAY['COMUM'::character varying, 'SUPER'::character varying, 'PREMIUM'::character varying]::text[]))
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.clientes
+    OWNER to postgres;

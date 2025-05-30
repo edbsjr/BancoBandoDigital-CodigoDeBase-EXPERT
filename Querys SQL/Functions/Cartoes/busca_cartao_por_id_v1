@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION public.busca_cartao_por_id_v1(
+	p_id_cartao bigint)
+    RETURNS TABLE(
+		id_cartao integer,
+		senha character varying(20),
+	    situacao character varying(12),
+	    fk_id_conta integer,
+	    valor_fatura numeric(10,2),
+	    limite numeric(10,2),
+	    limite_usado numeric(10,2),
+	    tipo character varying(9)
+		)
+    LANGUAGE 'plpgsql'
+    COST 100
+    STABLE PARALLEL SAFE
+    ROWS 1000
+
+AS $BODY$
+BEGIN
+    RETURN QUERY
+    SELECT
+		c.id_cartao,
+		c.senha,
+        c.situacao,
+        c.fk_id_conta,
+        c.valor_fatura,
+		c.limite,
+		c.limite_usado,
+		c.tipo
+	FROM cartoes AS c
+    WHERE c.id_cartao = p_id_cartao;
+END;
+$BODY$;

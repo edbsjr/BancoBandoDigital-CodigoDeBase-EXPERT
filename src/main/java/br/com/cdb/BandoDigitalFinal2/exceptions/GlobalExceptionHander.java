@@ -9,8 +9,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(ClienteNaoEncontradoException.class)
-    public ResponseEntity<Object> handleClienteNaoEncontradoException(ClienteNaoEncontradoException ex)
+    @ExceptionHandler(RegistroNaoEncontradoException.class)
+    public ResponseEntity<Object> handleRegistroNaoEncontradoException(RegistroNaoEncontradoException ex)
     {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem,HttpStatus.NOT_FOUND);
@@ -37,13 +37,6 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ContaNaoEncontradaException.class)
-    public ResponseEntity<Object> handleContaNaoEncontradaException(ContaNaoEncontradaException ex)
-    {
-        String mensagem = ex.getMessage();
-        return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
-    }
-
     @ExceptionHandler(ValorNegativoNaoPermitidoException.class)
     public ResponseEntity<Object> handleValorNegativoNaoPermitidoException(ValorNegativoNaoPermitidoException ex)
     {
@@ -56,13 +49,6 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
     {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(CartaoNaoEncontradoException.class)
-    public ResponseEntity<Object> handleCartaoNaoEncontradoException(CartaoNaoEncontradoException ex)
-    {
-        String mensagem = ex.getMessage();
-        return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(SenhaInvalidaException.class)
@@ -84,6 +70,54 @@ public class GlobalExceptionHander extends ResponseEntityExceptionHandler {
     {
         String mensagem = ex.getMessage();
         return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
 
+    @ExceptionHandler(CartaoSituacaoInvalidaException.class)
+    public ResponseEntity<Object> handleCartaoSituacaoInvalidaException(CartaoSituacaoInvalidaException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RegistroNaoSalvoException.class)
+    public ResponseEntity<Object> handleRegistroNaoSalvoException(RegistroNaoSalvoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(RegistroNaoAtualizadoException.class)
+    public ResponseEntity<Object> handleRegistroNaoAtualizadoException(RegistroNaoAtualizadoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RegistroNaoDeletadoException.class)
+    public ResponseEntity<Object> handleRegistroNaoDeletadoException(RegistroNaoDeletadoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RegistroEmDuplicidadeException.class)
+    public ResponseEntity<Object> handleRegistroEmDuplicidadeException(RegistroEmDuplicidadeException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(FalhaAoAcessarBaseException.class)
+    public ResponseEntity<Object> handleFalhaAoAcessarBaseException(FalhaAoAcessarBaseException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(CampoInvalidoException.class)
+    public ResponseEntity<Object> handleCampoInvalidoException(CampoInvalidoException ex)
+    {
+        String mensagem = ex.getMessage();
+        return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
     }
 }
