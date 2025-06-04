@@ -2,6 +2,7 @@ package br.com.cdb.BandoDigitalFinal2.controller;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class ClienteController {
 	public ResponseEntity<Cliente> buscarCliente(@PathVariable Long idCliente ) // RETURNA JSON(CLIENTE) UNICO POR ID
 	{
 	   Cliente cliente = clienteService.buscarCliente(idCliente);
-	            return new ResponseEntity<>(cliente, HttpStatus.FOUND);
+	   return new ResponseEntity<>(cliente, HttpStatus.FOUND);
 	}
 	
 	@PutMapping("/{idCliente}/atualizar")

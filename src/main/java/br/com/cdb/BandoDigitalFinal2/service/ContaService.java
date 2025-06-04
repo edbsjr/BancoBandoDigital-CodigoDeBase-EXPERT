@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -35,16 +36,16 @@ public class ContaService {
 	{
 		ContaEntity conta = new ContaEntity();
 		log.info("Verificando se Cliente ID {} existe", clienteId);
-		Cliente clienteEncontrado = clienteDao.findById(clienteId);
-		if(clienteEncontrado == null)
+		Optional<Cliente> clienteEncontrado = clienteDao.findById(clienteId);
+		if(clienteEncontrado.isEmpty())
 			throw new RegistroNaoEncontradoException("Registro de Cliente"+clienteId+" não encontrado");
 		log.info("Setando informaçoes da Conta para a criacao");
 		conta.setSaldo(BigDecimal.ZERO);
-		conta.setIdCliente(clienteEncontrado.getIdCliente());
+		conta.setIdCliente(clienteEncontrado.get().getIdCliente());
 		conta.setTipoConta(tipoConta);
 		if(conta.getTipoConta().equals(TipoConta.CORRENTE)) {
 			BigDecimal taxa = null;
-			switch (clienteEncontrado.getCategoria()) {
+			switch (clienteEncontrado.get().getCategoria()) {
 
 				case COMUM:
 					taxa = BigDecimal.valueOf(12.00);
@@ -63,7 +64,7 @@ public class ContaService {
 		} else if (conta.getTipoConta().equals(TipoConta.POUPANCA))
 		{
 			BigDecimal rendimento = null;
-			switch( clienteEncontrado.getCategoria()) {
+			switch( clienteEncontrado.get().getCategoria()) {
 
 				case COMUM:
 					rendimento = BigDecimal.valueOf(0.500);

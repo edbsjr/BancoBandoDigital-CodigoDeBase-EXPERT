@@ -1,5 +1,6 @@
 package br.com.cdb.BandoDigitalFinal2.service;
 
+import br.com.cdb.BandoDigitalFinal2.cache.Redis.ClienteCacheService;
 import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
 import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
 import br.com.cdb.BandoDigitalFinal2.exceptions.*;
@@ -7,22 +8,32 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static br.com.cdb.BandoDigitalFinal2.utils.ValidadorDeCampos.*;
 
 @Slf4j
 @Service
+@CacheConfig(cacheNames = "clientes")
 public class ClienteService {
 
 	private static final Logger log = LoggerFactory.getLogger(ClienteService.class);
-	@Autowired
-	private ClienteDao clienteDao;
-	
-	
-	public void salvarCliente(Cliente cliente) {
+
+	private final ClienteCacheService clienteCacheService;
+	private final ClienteDao clienteDao;
+
+
+	public ClienteService(ClienteCacheService clienteCacheService, ClienteDao clienteDao) {
+		this.clienteCacheService = clienteCacheService;
+		this.clienteDao = clienteDao;
+	}
+
+
+    public void salvarCliente(Cliente cliente) {
 		log.info("Iniciando a validacao para salvar o cliente {} com o cpf {}", cliente.getNome(), cliente.getCpf());
 		validarCliente(cliente);
 		log.info("Verifica se o cpf {} ja esta na base de dados", cliente.getCpf());
@@ -63,15 +74,18 @@ public class ClienteService {
 		clienteAntigo.setCategoria(cliente.getCategoria());
 		log.info("Iniciando a atualizacao das informações no banco de dados");
 		clienteDao.update(clienteAntigo);
+		clienteCacheService.evictById(idCliente);
 	}
 
 	public void deletarCliente(Long idCliente) 
 	{
 		log.info("Iniciando a busca do cliente ID {}", idCliente);
-		if(buscarCliente(idCliente) != null)
+		if(buscarCliente(idCliente) != null) {
 			clienteDao.deleteById(idCliente);
-		// AO INVES DE DELETAR O CLIENTE DA BASE DE DADOS E PERDER INFORMACOES UM SISTEMA DE STATUS SERIA MAIS VIAVEL
-		log.info("Cliente deletado da base de dados");
+			// AO INVES DE DELETAR O CLIENTE DA BASE DE DADOS E PERDER INFORMACOES UM SISTEMA DE STATUS SERIA MAIS VIAVEL
+			log.info("Cliente deletado da base de dados");
+			clienteCacheService.evictById(idCliente);
+		}
 	}
 	
 	public List<Cliente> listarTodos(){
@@ -93,13 +107,27 @@ public class ClienteService {
 	public Cliente buscarCliente(Long idCliente)
 	{
 		log.info("Iniciando a busca do cliente com ID: {}", idCliente); // Log INFO no início
-		log.debug("Buscando cliente com ID: {}", idCliente); // Adicionando um log DEBUG em caso de sucesso
-		Cliente cliente = clienteDao.findById(idCliente);
-		if(cliente == null)
-			throw new RegistroNaoEncontradoException("Cliente ID "+idCliente+" não encontrado");
-		else {
-			log.info("Retornando cliente ID {}, nome {}", cliente.getIdCliente(), cliente.getNome());
-			return cliente;
+		Optional<Cliente> clienteEncontrado = clienteCacheService.getById(idCliente);
+		if(clienteEncontrado.isEmpty()){
+				log.warn("Cliente nao encontrado no Redis. Iniciando busca no banco de dados");
+				clienteEncontrado = clienteDao.findById(idCliente)
+						.map(cliente -> { // Usa map para fazer log e put ANTES de retornar o Optional
+							log.info("Cliente ID {} encontrado no banco de dados. Armazenando no cache Redis."
+									, cliente.getIdCliente());
+							clienteCacheService.putById(cliente.getIdCliente(), cliente); // Coloca no cache
+							return cliente;})
+				;}
+		else
+			log.info("Cliente ID {} encontrado no cache Redis. Retornando do cache.", idCliente);
+
+		if(clienteEncontrado.isPresent()) {
+			log.info("Retornando cliente ID {}, nome {}.", clienteEncontrado.get().getIdCliente(),
+					clienteEncontrado.get().getNome());
+			return clienteEncontrado.get(); // Retorna o próprio objeto Cliente
+		} else {
+			log.warn("Cliente ID {} não encontrado.", idCliente); // Use WARN para "não encontrado"
+			throw new RegistroNaoEncontradoException("Cliente ID " + idCliente + " não encontrado.");
 		}
 	}
+
 }

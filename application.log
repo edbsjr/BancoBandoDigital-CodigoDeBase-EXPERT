@@ -4590,3 +4590,238 @@ função PL/pgSQL lista_cartoes_completa_v1() linha 3 em RETURN QUERY
 2025-05-28 03:41:23.374 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
 2025-05-28 03:41:23.381 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-05-28 03:41:23.390 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-05-30 22:33:21.737 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 16504 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-05-30 22:33:21.742 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-05-30 22:33:23.043 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-30 22:33:23.045 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-05-30 22:33:23.091 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-05-30 22:33:23.121 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-05-30 22:33:23.125 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-05-30 22:33:23.149 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-05-30 22:33:24.107 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-05-30 22:33:24.138 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-05-30 22:33:24.144 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-05-30 22:33:24.145 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-05-30 22:33:24.249 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-05-30 22:33:24.250 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2418 ms
+2025-05-30 22:33:25.690 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-05-30 22:33:26.070 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@42ff9a77
+2025-05-30 22:33:26.074 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-05-30 22:33:26.379 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-05-30 22:33:26.415 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-05-30 22:33:26.430 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 5.587 seconds (process running for 6.196)
+2025-05-30 23:50:30.967 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-30 23:50:31.032 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-05-30 23:50:31.089 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-05-30 23:50:31.098 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-03 04:31:34.142 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 5748 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-06-03 04:31:34.148 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-06-03 04:31:35.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-03 04:31:35.387 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-03 04:31:35.439 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-06-03 04:31:35.467 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-03 04:31:35.469 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-03 04:31:35.495 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2025-06-03 04:31:36.445 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-03 04:31:36.464 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-03 04:31:36.468 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-03 04:31:36.469 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-06-03 04:31:36.556 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-03 04:31:36.558 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2319 ms
+2025-06-03 04:31:36.643 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'clienteCacheService' defined in file [C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes\br\com\cdb\BandoDigitalFinal2\cache\Redis\ClienteCacheService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.data.redis.core.RedisTemplate<java.lang.String, br.com.cdb.BandoDigitalFinal2.entity.Cliente>' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-06-03 04:31:36.650 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-06-03 04:31:36.682 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-03 04:31:36.737 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in br.com.cdb.BandoDigitalFinal2.cache.Redis.ClienteCacheService required a bean of type 'org.springframework.data.redis.core.RedisTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.data.redis.core.RedisTemplate' in your configuration.
+
+2025-06-04 02:26:16.192 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 15728 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-06-04 02:26:16.199 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-06-04 02:26:18.173 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 02:26:18.175 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-04 02:26:18.221 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 0 JDBC repository interfaces.
+2025-06-04 02:26:18.253 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 02:26:18.256 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-04 02:26:18.284 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-06-04 02:26:19.370 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-04 02:26:19.394 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-04 02:26:19.398 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-04 02:26:19.399 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-06-04 02:26:19.551 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-04 02:26:19.554 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3252 ms
+2025-06-04 02:26:19.699 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'clienteCacheService' defined in file [C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes\br\com\cdb\BandoDigitalFinal2\cache\Redis\ClienteCacheService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.data.redis.core.RedisTemplate<java.lang.String, br.com.cdb.BandoDigitalFinal2.entity.Cliente>' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-06-04 02:26:19.704 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-06-04 02:26:19.740 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-04 02:26:19.793 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in br.com.cdb.BandoDigitalFinal2.cache.Redis.ClienteCacheService required a bean of type 'org.springframework.data.redis.core.RedisTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.data.redis.core.RedisTemplate' in your configuration.
+
+2025-06-04 02:32:43.788 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 13268 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-06-04 02:32:43.793 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-06-04 02:32:45.402 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 02:32:45.405 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-04 02:32:45.458 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 JDBC repository interfaces.
+2025-06-04 02:32:45.488 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 02:32:45.494 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-04 02:32:45.570 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2025-06-04 02:32:46.514 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-04 02:32:46.536 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-04 02:32:46.539 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-04 02:32:46.539 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-06-04 02:32:46.618 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-04 02:32:46.619 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2705 ms
+2025-06-04 02:32:46.734 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'clienteCacheService' defined in file [C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes\br\com\cdb\BandoDigitalFinal2\cache\Redis\ClienteCacheService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.data.redis.core.RedisTemplate<java.lang.String, br.com.cdb.BandoDigitalFinal2.entity.Cliente>' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-06-04 02:32:46.744 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-06-04 02:32:46.781 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-06-04 02:32:46.825 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in br.com.cdb.BandoDigitalFinal2.cache.Redis.ClienteCacheService required a bean of type 'org.springframework.data.redis.core.RedisTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.data.redis.core.RedisTemplate' in your configuration.
+
+2025-06-04 03:10:47.343 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 20352 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-06-04 03:10:47.348 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-06-04 03:10:48.534 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 03:10:48.537 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-04 03:10:48.576 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 0 JDBC repository interfaces.
+2025-06-04 03:10:48.599 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 03:10:48.602 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-04 03:10:48.625 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-06-04 03:10:49.627 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-04 03:10:49.645 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-04 03:10:49.647 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-04 03:10:49.648 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-06-04 03:10:49.733 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-04 03:10:49.735 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2294 ms
+2025-06-04 03:10:51.057 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-04 03:10:51.523 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@284d4885
+2025-06-04 03:10:51.526 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-04 03:10:51.825 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-04 03:10:51.849 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-04 03:10:51.862 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 5.351 seconds (process running for 5.908)
+2025-06-04 03:15:14.080 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-04 03:15:14.134 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-04 03:15:14.148 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-04 03:15:14.160 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-04 03:57:35.953 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 8548 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-06-04 03:57:35.958 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-06-04 03:57:37.178 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 03:57:37.180 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-04 03:57:37.218 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 0 JDBC repository interfaces.
+2025-06-04 03:57:37.246 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 03:57:37.249 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-04 03:57:37.273 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-06-04 03:57:38.220 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-04 03:57:38.247 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-04 03:57:38.251 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-04 03:57:38.252 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-06-04 03:57:38.347 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-04 03:57:38.348 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2300 ms
+2025-06-04 03:57:39.772 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-04 03:57:40.299 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@166e5a6d
+2025-06-04 03:57:40.302 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-04 03:57:40.765 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-04 03:57:40.801 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-04 03:57:40.823 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 5.679 seconds (process running for 6.221)
+2025-06-04 03:57:58.823 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-04 03:57:58.824 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-04 03:57:58.825 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-06-04 03:57:58.883 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.ClienteDao - Buscando a lista de todos os cartoes
+2025-06-04 03:57:58.886 [http-nio-8080-exec-2] INFO  b.c.c.B.dao.CartaoDao - Iniciando busca das cartoes na base de dados
+2025-06-04 03:58:11.136 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Buscando a lista de Todos os clientes
+2025-06-04 03:58:11.136 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca das contas na base de dados
+2025-06-04 03:58:23.238 [http-nio-8080-exec-7] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 4
+2025-06-04 03:58:24.168 [http-nio-8080-exec-7] INFO  b.c.c.B.c.Redis.ClienteCacheService - Cliente com ID 4 NÃO encontrado no cache.
+2025-06-04 03:58:24.169 [http-nio-8080-exec-7] WARN  b.c.c.B.service.ClienteService - Cliente nao encontrado no Redis. Iniciando busca no banco de dados
+2025-06-04 03:58:24.169 [http-nio-8080-exec-7] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-06-04 03:58:24.195 [http-nio-8080-exec-7] ERROR b.c.c.B.dao.ClienteDao - Cliente ID 4 nao encontrado
+2025-06-04 03:58:24.196 [http-nio-8080-exec-7] WARN  b.c.c.B.service.ClienteService - Cliente ID 4 não encontrado.
+2025-06-04 03:58:50.087 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 1
+2025-06-04 03:58:50.089 [http-nio-8080-exec-5] INFO  b.c.c.B.c.Redis.ClienteCacheService - Cliente com ID 1 NÃO encontrado no cache.
+2025-06-04 03:58:50.090 [http-nio-8080-exec-5] WARN  b.c.c.B.service.ClienteService - Cliente nao encontrado no Redis. Iniciando busca no banco de dados
+2025-06-04 03:58:50.090 [http-nio-8080-exec-5] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-06-04 03:58:50.092 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ClienteService - Cliente ID 1 encontrado no banco de dados. Armazenando no cache Redis.
+2025-06-04 03:58:50.108 [http-nio-8080-exec-5] INFO  b.c.c.B.c.Redis.ClienteCacheService - Cliente com ID 1 colocado no cache. Expira em 30 minutos.
+2025-06-04 03:58:50.109 [http-nio-8080-exec-5] INFO  b.c.c.B.service.ClienteService - Retornando cliente ID 1, nome Ciclista Ciclicando.
+2025-06-04 03:59:47.787 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 1
+2025-06-04 03:59:47.844 [http-nio-8080-exec-6] INFO  b.c.c.B.c.Redis.ClienteCacheService - Cliente com ID 1 encontrado no cache.
+2025-06-04 03:59:47.844 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ClienteService - Cliente ID 1 encontrado no cache Redis. Retornando do cache.
+2025-06-04 03:59:47.844 [http-nio-8080-exec-6] INFO  b.c.c.B.service.ClienteService - Retornando cliente ID 1, nome Ciclista Ciclicando.
+2025-06-04 04:00:09.983 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-04 04:00:10.033 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-04 04:00:10.051 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-04 04:00:10.060 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-06-04 04:13:44.035 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Starting BandoDigitalFinal2Application using Java 21.0.6 with PID 14428 (C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT\target\classes started by EduardoJr in C:\Users\Carlos\IdeaProjects\BancoBandoDigital-CodigoDeBase-EXPERT)
+2025-06-04 04:13:44.043 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - No active profile set, falling back to 1 default profile: "default"
+2025-06-04 04:13:45.171 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 04:13:45.172 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-04 04:13:45.215 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 JDBC repository interfaces.
+2025-06-04 04:13:45.240 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04 04:13:45.242 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-04 04:13:45.266 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-06-04 04:13:46.227 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-04 04:13:46.247 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-04 04:13:46.250 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-04 04:13:46.251 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-06-04 04:13:46.339 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-04 04:13:46.340 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2205 ms
+2025-06-04 04:13:47.546 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-04 04:13:47.958 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1201e064
+2025-06-04 04:13:47.960 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-04 04:13:48.264 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-04 04:13:48.295 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-04 04:13:48.309 [main] INFO  b.c.c.B.BandoDigitalFinal2Application - Started BandoDigitalFinal2Application in 5.102 seconds (process running for 5.664)
+2025-06-04 04:14:06.368 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-04 04:14:06.369 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-04 04:14:06.371 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-06-04 04:14:06.461 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 1
+2025-06-04 04:14:07.244 [http-nio-8080-exec-1] INFO  b.c.c.B.c.Redis.ClienteCacheService - Cliente com ID 1 encontrado no cache.
+2025-06-04 04:14:07.245 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ClienteService - Cliente ID 1 encontrado no cache Redis. Retornando do cache.
+2025-06-04 04:14:07.245 [http-nio-8080-exec-1] INFO  b.c.c.B.service.ClienteService - Retornando cliente ID 1, nome Ciclista Ciclicando.
+2025-06-04 04:14:13.752 [http-nio-8080-exec-3] INFO  b.c.c.B.service.ClienteService - Iniciando a busca do cliente com ID: 4
+2025-06-04 04:14:13.754 [http-nio-8080-exec-3] INFO  b.c.c.B.c.Redis.ClienteCacheService - Cliente com ID 4 NÃO encontrado no cache.
+2025-06-04 04:14:13.754 [http-nio-8080-exec-3] WARN  b.c.c.B.service.ClienteService - Cliente nao encontrado no Redis. Iniciando busca no banco de dados
+2025-06-04 04:14:13.756 [http-nio-8080-exec-3] INFO  b.c.c.B.dao.ClienteDao - Iniciando busca na base de dados
+2025-06-04 04:14:13.781 [http-nio-8080-exec-3] ERROR b.c.c.B.dao.ClienteDao - Cliente ID 4 nao encontrado
+2025-06-04 04:14:13.781 [http-nio-8080-exec-3] WARN  b.c.c.B.service.ClienteService - Cliente ID 4 não encontrado.
+2025-06-04 04:14:35.848 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-04 04:14:35.901 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-06-04 04:14:35.924 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-06-04 04:14:35.934 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

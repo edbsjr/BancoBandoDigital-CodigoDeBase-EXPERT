@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Repository
@@ -56,19 +57,20 @@ public class ClienteDao {
     }
 
     //READ
-        public Cliente findById(Long idCliente)
+        public Optional<Cliente> findById(Long idCliente)
         {
             String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria " +
                     "FROM public.busca_cliente_por_id_v1(?)";
             try{
                 log.info("Iniciando busca na base de dados");
-                return jdbcTemplate.queryForObject(
+                Cliente cliente = jdbcTemplate.queryForObject(
                         sql,
                         new ClienteRowMapper(),
                         idCliente);
+                return Optional.of(cliente);
             } catch (EmptyResultDataAccessException ex){
                 log.error("Cliente ID {} nao encontrado", idCliente);
-                return null;
+                return Optional.empty();
             }catch (DataAccessException ex) {
                 log.error("Erro ao tentar acessar a base de dados");
                 throw new RegistroNaoEncontradoException("Erro ao tentar acessar a base de dados ");

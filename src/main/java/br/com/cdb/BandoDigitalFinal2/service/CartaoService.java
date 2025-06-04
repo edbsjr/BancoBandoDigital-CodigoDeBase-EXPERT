@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartaoService {
@@ -35,14 +36,14 @@ public class CartaoService {
 		ContaEntity conta = contaDao.findById(idConta);
 		if(conta == null)
 			throw new RegistroNaoEncontradoException("Conta "+idConta+" nao encontrada");
-		Cliente cliente = clienteDao.findById(conta.getIdCliente());
-		if(cliente == null)
+		Optional<Cliente> cliente = clienteDao.findById(conta.getIdCliente());
+		if(cliente.isEmpty())
 			throw new RegistroNaoEncontradoException("Cliente "+conta.getIdCliente()+" nao encontrada");
 		cartao.setIdConta(idConta);
 		cartao.setSenha(senha);
 		if(tipo.equals(TipoCartao.DEBITO)) {
 			cartao.setTipo(TipoCartao.DEBITO);
-			switch (cliente.getCategoria()) {
+			switch (cliente.get().getCategoria()) {
 				case COMUM:
 					cartao.setLimite(BigDecimal.valueOf(200.00));
 					break;
@@ -56,7 +57,7 @@ public class CartaoService {
 		{
 			cartao.setTipo(TipoCartao.CREDITO);
 			cartao.setValorFatura(BigDecimal.ZERO);
-			switch (cliente.getCategoria())
+			switch (cliente.get().getCategoria())
 			{
 				case COMUM:
 					cartao.setLimite(BigDecimal.valueOf(1000.00));
