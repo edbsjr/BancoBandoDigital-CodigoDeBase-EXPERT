@@ -1,7 +1,7 @@
-package br.com.cdb.BandoDigitalFinal2.dao;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence;
 
-import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
-import br.com.cdb.BandoDigitalFinal2.entity.mapper.CartaoEntityRowMapper;
+import br.com.cdb.BandoDigitalFinal2.domain.model.CartaoEntity;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper.CartaoEntityRowMapper;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoAtualizadoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoDeletadoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;

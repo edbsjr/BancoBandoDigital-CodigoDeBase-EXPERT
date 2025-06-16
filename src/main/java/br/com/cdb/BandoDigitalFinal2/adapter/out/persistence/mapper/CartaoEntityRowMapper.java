@@ -1,6 +1,6 @@
-package br.com.cdb.BandoDigitalFinal2.entity.mapper;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper;
 
-import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
+import br.com.cdb.BandoDigitalFinal2.domain.model.CartaoEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoCartao;
 import org.springframework.jdbc.core.RowMapper;

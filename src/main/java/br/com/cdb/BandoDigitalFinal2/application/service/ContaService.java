@@ -1,9 +1,9 @@
-package br.com.cdb.BandoDigitalFinal2.service;
+package br.com.cdb.BandoDigitalFinal2.application.service;
 
-import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
-import br.com.cdb.BandoDigitalFinal2.dao.ContaDao;
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
-import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ClienteDao;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ContaDao;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
+import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 import br.com.cdb.BandoDigitalFinal2.exceptions.CampoInvalidoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

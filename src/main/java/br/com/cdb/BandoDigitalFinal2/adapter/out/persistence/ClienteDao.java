@@ -1,7 +1,8 @@
-package br.com.cdb.BandoDigitalFinal2.dao;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence;
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
-import br.com.cdb.BandoDigitalFinal2.entity.mapper.ClienteRowMapper;
+import br.com.cdb.BandoDigitalFinal2.application.port.out.ClienteRepositoryPort;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper.ClienteRowMapper;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoAtualizadoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoDeletadoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @Slf4j
 @Repository
-public class ClienteDao {
+public class ClienteDao implements ClienteRepositoryPort {
 
     private static final Logger log = LoggerFactory.getLogger(ClienteDao.class);
     private ClienteRowMapper clienteRowMapper;

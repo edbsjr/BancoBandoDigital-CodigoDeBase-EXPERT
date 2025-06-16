@@ -1,7 +1,7 @@
 package br.com.cdb.BandoDigitalFinal2.infra;
 
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

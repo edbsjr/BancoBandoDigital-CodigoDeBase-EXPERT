@@ -1,6 +1,6 @@
-package br.com.cdb.BandoDigitalFinal2.cache.Redis;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.redis;
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;

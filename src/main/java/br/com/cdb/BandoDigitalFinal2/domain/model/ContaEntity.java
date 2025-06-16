@@ -1,4 +1,4 @@
-package br.com.cdb.BandoDigitalFinal2.entity;
+package br.com.cdb.BandoDigitalFinal2.domain.model;
 
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 

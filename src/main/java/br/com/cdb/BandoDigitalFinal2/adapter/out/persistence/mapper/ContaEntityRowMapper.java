@@ -1,7 +1,7 @@
-package br.com.cdb.BandoDigitalFinal2.entity.mapper;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper;
 
 
-import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,9 @@
-package br.com.cdb.BandoDigitalFinal2.controller;
+package br.com.cdb.BandoDigitalFinal2.adapter.in.web;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.NoSuchElementException;
 
-import br.com.cdb.BandoDigitalFinal2.entity.CartaoEntity;
+import br.com.cdb.BandoDigitalFinal2.domain.model.CartaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,7 @@ import br.com.cdb.BandoDigitalFinal2.dto.AlterarSenhaCartaoDto;
 import br.com.cdb.BandoDigitalFinal2.dto.AlterarSituacaoCartaoDto;
 import br.com.cdb.BandoDigitalFinal2.dto.CartaoSenhaDto;
 import br.com.cdb.BandoDigitalFinal2.dto.CartaoSenhaValorDto;
-import br.com.cdb.BandoDigitalFinal2.service.CartaoService;
+import br.com.cdb.BandoDigitalFinal2.application.service.CartaoService;
 
 @Controller
 @RequestMapping("/cartao")

@@ -1,6 +1,6 @@
-package br.com.cdb.BandoDigitalFinal2.entity.mapper;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper;
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
 import br.com.cdb.BandoDigitalFinal2.enums.Categoria;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;

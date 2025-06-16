@@ -1,10 +1,10 @@
-package br.com.cdb.BandoDigitalFinal2.controller;
+package br.com.cdb.BandoDigitalFinal2.adapter.in.web;
 
 import br.com.cdb.BandoDigitalFinal2.dto.ContaTipoDto;
 import br.com.cdb.BandoDigitalFinal2.dto.NumeroValorDto;
 import br.com.cdb.BandoDigitalFinal2.dto.TransferenciaBancariaDto;
-import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
-import br.com.cdb.BandoDigitalFinal2.service.ContaService;
+import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.application.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,9 +1,10 @@
-package br.com.cdb.BandoDigitalFinal2.controller;
+package br.com.cdb.BandoDigitalFinal2.adapter.in.web;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
+import br.com.cdb.BandoDigitalFinal2.adapter.in.web.mapper.ClienteMapper;
+import br.com.cdb.BandoDigitalFinal2.application.port.in.ClienteInputPort;
+import br.com.cdb.BandoDigitalFinal2.dto.out.ClienteResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
 
-import br.com.cdb.BandoDigitalFinal2.service.ClienteService;
+import br.com.cdb.BandoDigitalFinal2.application.service.ClienteService;
 
 @RestController
 @RequestMapping("/cliente")
@@ -27,8 +28,12 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteService clienteService;
-	
-	//METODOS
+	@Autowired
+	private ClienteInputPort clienteInputPort;
+	@Autowired
+	private ClienteMapper clienteMapper;
+
+    //METODOS
 	@PostMapping("/add")
 	public ResponseEntity<String> addCliente(@RequestBody Cliente cliente) //RECEBE JSON(CLIENTE) PARA VALIDACAO
 	{
@@ -44,10 +49,11 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/{idCliente}")
-	public ResponseEntity<Cliente> buscarCliente(@PathVariable Long idCliente ) // RETURNA JSON(CLIENTE) UNICO POR ID
+	public ResponseEntity<ClienteResponseDto> buscarCliente(@PathVariable Long idCliente ) // RETURNA JSON(CLIENTE) UNICO POR ID
 	{
-	   Cliente cliente = clienteService.buscarCliente(idCliente);
-	   return new ResponseEntity<>(cliente, HttpStatus.FOUND);
+	   Cliente clienteModel = clienteInputPort.buscarCliente(idCliente);
+		ClienteResponseDto clienteResponseDto = clienteMapper.toResponseDto(clienteModel);
+	   return new ResponseEntity<>(clienteResponseDto, HttpStatus.FOUND);
 	}
 	
 	@PutMapping("/{idCliente}/atualizar")

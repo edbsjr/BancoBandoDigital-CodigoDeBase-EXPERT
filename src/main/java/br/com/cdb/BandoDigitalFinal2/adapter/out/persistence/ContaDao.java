@@ -1,9 +1,8 @@
-package br.com.cdb.BandoDigitalFinal2.dao;
+package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence;
 
-import br.com.cdb.BandoDigitalFinal2.entity.ContaEntity;
-import br.com.cdb.BandoDigitalFinal2.entity.mapper.ContaEntityRowMapper;
+import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper.ContaEntityRowMapper;
 import br.com.cdb.BandoDigitalFinal2.exceptions.*;
-import br.com.cdb.BandoDigitalFinal2.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

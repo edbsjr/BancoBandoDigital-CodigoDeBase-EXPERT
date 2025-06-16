@@ -1,13 +1,14 @@
-package br.com.cdb.BandoDigitalFinal2.service;
+package br.com.cdb.BandoDigitalFinal2.application.service;
 
-import br.com.cdb.BandoDigitalFinal2.cache.Redis.ClienteCacheService;
-import br.com.cdb.BandoDigitalFinal2.dao.ClienteDao;
-import br.com.cdb.BandoDigitalFinal2.entity.Cliente;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.redis.ClienteCacheService;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ClienteDao;
+import br.com.cdb.BandoDigitalFinal2.application.port.in.ClienteInputPort;
+import br.com.cdb.BandoDigitalFinal2.application.port.out.ClienteRepositoryPort;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
 import br.com.cdb.BandoDigitalFinal2.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +20,19 @@ import static br.com.cdb.BandoDigitalFinal2.utils.ValidadorDeCampos.*;
 @Slf4j
 @Service
 @CacheConfig(cacheNames = "clientes")
-public class ClienteService {
+public class ClienteService implements ClienteInputPort {
 
 	private static final Logger log = LoggerFactory.getLogger(ClienteService.class);
 
 	private final ClienteCacheService clienteCacheService;
 	private final ClienteDao clienteDao;
+	private final ClienteRepositoryPort clienteRepositoryPort;
 
-
-	public ClienteService(ClienteCacheService clienteCacheService, ClienteDao clienteDao) {
+	public ClienteService(ClienteCacheService clienteCacheService, ClienteDao clienteDao, ClienteRepositoryPort clienteRepositoryPort) {
 		this.clienteCacheService = clienteCacheService;
 		this.clienteDao = clienteDao;
-	}
+        this.clienteRepositoryPort = clienteRepositoryPort;
+    }
 
 
     public void salvarCliente(Cliente cliente) {
@@ -110,7 +112,7 @@ public class ClienteService {
 		Optional<Cliente> clienteEncontrado = clienteCacheService.getById(idCliente);
 		if(clienteEncontrado.isEmpty()){
 				log.warn("Cliente nao encontrado no Redis. Iniciando busca no banco de dados");
-				clienteEncontrado = clienteDao.findById(idCliente)
+				clienteEncontrado = clienteRepositoryPort.findById(idCliente)
 						.map(cliente -> { // Usa map para fazer log e put ANTES de retornar o Optional
 							log.info("Cliente ID {} encontrado no banco de dados. Armazenando no cache Redis."
 									, cliente.getIdCliente());
