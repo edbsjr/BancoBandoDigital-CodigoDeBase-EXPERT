@@ -1,4 +1,4 @@
-package br.com.cdb.BandoDigitalFinal2.infra;
+package br.com.cdb.BandoDigitalFinal2.config;
 
 
 import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;

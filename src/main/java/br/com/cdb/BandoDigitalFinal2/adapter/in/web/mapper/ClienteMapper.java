@@ -5,6 +5,9 @@ import br.com.cdb.BandoDigitalFinal2.dto.in.ClienteRequestDto;
 import br.com.cdb.BandoDigitalFinal2.dto.out.ClienteResponseDto;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class ClienteMapper {
 
@@ -26,5 +29,9 @@ public class ClienteMapper {
         cliente.setDataNasc(clienteRequestDto.getDataNasc());
         cliente.setCategoria(cliente.getCategoria());
         return cliente;
+    }
+
+    public List<ClienteResponseDto> toResponseDtoList(List<Cliente> listaDeCliente){
+        return listaDeCliente.stream().map(this::toResponseDto).collect(Collectors.toList());
     }
 }

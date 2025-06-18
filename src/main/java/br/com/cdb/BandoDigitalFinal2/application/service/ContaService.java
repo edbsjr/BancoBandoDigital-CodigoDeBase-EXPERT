@@ -2,8 +2,10 @@ package br.com.cdb.BandoDigitalFinal2.application.service;
 
 import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ClienteDao;
 import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ContaDao;
+import br.com.cdb.BandoDigitalFinal2.application.port.in.ContaInputPort;
+import br.com.cdb.BandoDigitalFinal2.application.port.out.ContaRepositoryPort;
 import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
-import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Conta;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 import br.com.cdb.BandoDigitalFinal2.exceptions.CampoInvalidoException;
 import br.com.cdb.BandoDigitalFinal2.exceptions.RegistroNaoEncontradoException;
@@ -21,19 +23,20 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class ContaService {
+public class ContaService implements ContaInputPort {
 
 	private static final Logger log = LoggerFactory.getLogger(ContaService.class);
 	@Autowired
 	private ClienteDao clienteDao;
 
 	@Autowired
-	private ContaDao contaDao;
+	private ContaRepositoryPort contaRepositoryPort;
 
 	//ABERTURA DE CONTAS
+	@Override
 	public void addConta(Long clienteId, TipoConta tipoConta)
 	{
-		ContaEntity conta = new ContaEntity();
+		Conta conta = new Conta();
 		log.info("Verificando se Cliente ID {} existe", clienteId);
 		Optional<Cliente> clienteEncontrado = clienteDao.findById(clienteId);
 		if(clienteEncontrado.isEmpty())
@@ -59,7 +62,7 @@ public class ContaService {
 					conta.setManutencao(taxa);
 					break;
 			}
-			contaDao.save(conta);
+			contaRepositoryPort.save(conta);
 		} else if (conta.getTipoConta().equals(TipoConta.POUPANCA))
 		{
 			BigDecimal rendimento = null;
@@ -78,47 +81,51 @@ public class ContaService {
 					conta.setRendimento(rendimento);
 					break;
 			}
-			contaDao.save(conta);
+			contaRepositoryPort.save(conta);
 		}
 	}
 	
 	//DETALHES DE CONTAS
-	public List<ContaEntity> listarTodos()
+	@Override
+	public List<Conta> listarTodos()
 	{
 		log.info("Buscando a lista de todas as contas");
-		return contaDao.findAll();
+		return contaRepositoryPort.findAll();
 	}
 
-	public ContaEntity buscarConta(Long idConta) {
+	@Override
+	public Conta buscarConta(Long idConta) {
 		log.info("Iniciando busca da Conta ID {}", idConta);
-		ContaEntity contaEntity= contaDao.findById(idConta);
-		if(contaEntity == null){
+		Conta conta = contaRepositoryPort.findById(idConta);
+		if(conta == null){
 			log.error("Conta ID {} nao encontrada", idConta);
 			throw new RegistroNaoEncontradoException("Conta ID "+idConta+" nao encontrada");
 		}
 		else
 		{
-			log.info("Retornando conta {} id {}", contaEntity.getTipoConta().name(), contaEntity.getIdConta());
-			return contaEntity;
+			log.info("Retornando conta {} id {}", conta.getTipoConta().name(), conta.getIdConta());
+			return conta;
 		}
 	}
 
+	@Override
 	public BigDecimal consultarSaldo(Long idConta)
 	{
-		ContaEntity conta = buscarConta(idConta);
+		Conta conta = buscarConta(idConta);
 		return conta.getSaldo();
 		
 	}
 	
 	//TRANSFERENCIA ENTRE CONTAS
-		public void transferirValor(Long idOrigem, BigDecimal valor, Long idDestino)
+	@Override
+	public void transferirValor(Long idOrigem, BigDecimal valor, Long idDestino)
 	{
 		log.info("Preparando para buscar Conta de Origem ID {}", idOrigem);
-		ContaEntity contaOrigem = buscarConta(idOrigem);
+		Conta contaOrigem = buscarConta(idOrigem);
 		validaValor(valor);
 		if (contaOrigem.getSaldo().compareTo(valor)>=0) {
 			log.info("Preparando para buscar Conta de Destino ID {}", idDestino);
-			ContaEntity contaDestino = buscarConta(idDestino);
+			Conta contaDestino = buscarConta(idDestino);
 		
 			if(contaDestino != null) 
 			{
@@ -126,8 +133,8 @@ public class ContaService {
 				contaOrigem.debitar(valor);
 				contaDestino.creditar(valor);
 				log.info("Preparando para atualizar informacoes no DAO");
-				contaDao.update(contaOrigem);
-				contaDao.update(contaDestino);
+				contaRepositoryPort.update(contaOrigem);
+				contaRepositoryPort.update(contaDestino);
 			}
 		}
 		else
@@ -140,30 +147,34 @@ public class ContaService {
 	
 
 	//MOVIMENTACAO DE CONTA
+	@Override
 	public void pagarPix(Long idConta, BigDecimal valor) 
 	{
 		validaValor(valor);
 		debitarValor(idConta, valor);		
 	}
 
+	@Override
 	public void depositar(Long idConta, BigDecimal valor) 
 	{
-		ContaEntity conta = buscarConta(idConta);
+		Conta conta = buscarConta(idConta);
 		validaValor(valor);
 		conta.setSaldo(conta.getSaldo().add(valor));
-		contaDao.update(conta);
-		}
+		contaRepositoryPort.update(conta);
+	}
 
+	@Override
 	public void sacar(Long idConta, BigDecimal valor) 
 	{
 		debitarValor(idConta, valor);
 	}
 	
 	//MOVIMENTACAO INTERNA DE CONTA
+	@Override
 	public void manutencao(Long idConta)
 	{
 		log.info("Iniciando processo de manutencao de Conta Corrente. Verificando se a conta existe");
-		ContaEntity conta = buscarConta(idConta);
+		Conta conta = buscarConta(idConta);
 		if(conta.getTipoConta().equals(TipoConta.CORRENTE)) {
 			log.info("Iniciando o desconto da taxa de manutencao na conta");
 			debitarValor(idConta, conta.getManutencao());
@@ -174,13 +185,14 @@ public class ContaService {
 		}
 	}
 
+	@Override
 	public void rendimento(Long idConta) 
 	{
-		ContaEntity conta = buscarConta(idConta);
+		Conta conta = buscarConta(idConta);
 		if(conta.getTipoConta().equals(TipoConta.POUPANCA))
 		{
 		conta.setSaldo(conta.getSaldo().add(conta.getSaldo().multiply(conta.getRendimento().divide(BigDecimal.valueOf(100.00)))));
-		contaDao.update(conta);
+		contaRepositoryPort.update(conta);
 		} else {
 			log.error("Operacao valida somente para conta Poupanca");
 			throw new CampoInvalidoException("Operacao valida somente para Conta Poupanca");
@@ -192,11 +204,11 @@ public class ContaService {
 	private void debitarValor(Long idConta, BigDecimal valor) 
 	{
 		log.info("Preparando para buscar Conta ID {}", idConta);
-		ContaEntity conta = buscarConta(idConta);
+		Conta conta = buscarConta(idConta);
 		validaValor(valor);
 		if(conta.getSaldo().compareTo(valor)>=0) {
 			conta.setSaldo(conta.getSaldo().subtract(valor));
-			contaDao.update(conta);
+			contaRepositoryPort.update(conta);
 		} else{
 			log.error("Saldo em conta insuficiente");
 			throw new SaldoInsuficienteException("Saldo insuficiente");

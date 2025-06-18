@@ -4,7 +4,7 @@ import br.com.cdb.BandoDigitalFinal2.enums.TipoConta;
 
 import java.math.BigDecimal;
 
-public class ContaEntity {
+public class Conta {
 
     private Long idConta;
     private Long idCliente;
@@ -13,7 +13,7 @@ public class ContaEntity {
     private BigDecimal rendimento;
     private BigDecimal manutencao;
 
-    public ContaEntity()
+    public Conta()
     {}
 
     public Long getIdConta() {

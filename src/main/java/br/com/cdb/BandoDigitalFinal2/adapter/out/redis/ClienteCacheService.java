@@ -1,5 +1,6 @@
 package br.com.cdb.BandoDigitalFinal2.adapter.out.redis;
 
+import br.com.cdb.BandoDigitalFinal2.application.port.out.ClienteCacheRepositoryPort;
 import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class ClienteCacheService {
+public class ClienteCacheService implements ClienteCacheRepositoryPort {
 
     private static final Logger log = LoggerFactory.getLogger(ClienteCacheService.class);
 
@@ -30,6 +31,7 @@ public class ClienteCacheService {
     }
 
     //Adiciona ou atualiza um Cliente no cache por ID.
+    @Override
     public void putById(Long id, Cliente cliente) {
         String key = generateRedisKey(id);
         // Define o valor no Redis com um tempo de expiração (TTL)
@@ -38,6 +40,7 @@ public class ClienteCacheService {
     }
 
     //Busca um Cliente no cache por ID.
+    @Override
     public Optional<Cliente> getById(Long id) {
         String key = generateRedisKey(id);
         Cliente cliente = redisTemplate.opsForValue().get(key);
@@ -50,6 +53,7 @@ public class ClienteCacheService {
     }
 
     //Remove um Cliente do cache por ID.
+    @Override
     public void evictById(Long id) {
         String key = generateRedisKey(id);
         Boolean deleted = redisTemplate.delete(key);
@@ -59,7 +63,7 @@ public class ClienteCacheService {
             log.warn("Tentativa de remover cliente com ID {} do cache, mas não foi encontrado.", id);
         }
     }
-    
+    @Override
     public void evictAllClientesCache() {
         Set<String> keysToDelete = redisTemplate.keys(idCachePrefix + "*");
         if (keysToDelete != null && !keysToDelete.isEmpty()) {
@@ -71,6 +75,7 @@ public class ClienteCacheService {
     }
 
     //  Um métod o para verificar se a chave existe no cache
+    @Override
     public boolean containsKey(Long id) {
         if (id == null) {
             return false;

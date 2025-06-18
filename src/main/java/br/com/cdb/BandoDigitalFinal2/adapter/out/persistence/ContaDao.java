@@ -1,7 +1,8 @@
 package br.com.cdb.BandoDigitalFinal2.adapter.out.persistence;
 
-import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
-import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper.ContaEntityRowMapper;
+import br.com.cdb.BandoDigitalFinal2.application.port.out.ContaRepositoryPort;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Conta;
+import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.mapper.ContaRowMapper;
 import br.com.cdb.BandoDigitalFinal2.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -16,18 +17,18 @@ import java.util.List;
 
 @Slf4j
 @Repository
-public class ContaDao {
+public class ContaDao implements ContaRepositoryPort {
 
     private static final Logger log = LoggerFactory.getLogger(ContaDao.class);
-    private final ContaEntityRowMapper contaRowMapper;
-    //Usado para converter o ResultSet e criar um objeto ContaEntity para ser retornado
+    private final ContaRowMapper contaRowMapper;
+    //Usado para converter o ResultSet e criar um objeto Conta para ser retornado
 
     private final JdbcTemplate jdbcTemplate;
     //Significa que a variável jdbcTemplate dentro da nossa classe ContaDao sempre apontará para a mesma instância
     // do JdbcTemplate que foi fornecida a ela quando o ContaDao foi criado pelo Spring.
 
     @Autowired
-    public ContaDao(ContaEntityRowMapper contaRowMapper, ContaEntityRowMapper contaRowMapper1, JdbcTemplate jdbcTemplate)
+    public ContaDao(ContaRowMapper contaRowMapper, ContaRowMapper contaRowMapper1, JdbcTemplate jdbcTemplate)
     {
         this.contaRowMapper = contaRowMapper;
         this.jdbcTemplate = jdbcTemplate;
@@ -37,18 +38,19 @@ public class ContaDao {
     //METODOS CRUD
 
     //CREAT
-    public boolean save(ContaEntity contaEntity) {
+    @Override
+    public boolean save(Conta conta) {
         String sql = "SELECT * from public.inserir_conta_v1(?, ?, ?, ?, ?)";
         log.info("Passando os parametros da conta para a insercao");
         try {
             return Boolean.TRUE.equals(jdbcTemplate.queryForObject(
                     sql,
                     Boolean.class,
-                    contaEntity.getTipoConta().name(),
-                    contaEntity.getIdCliente(),
-                    contaEntity.getSaldo(),
-                    contaEntity.getRendimento(),
-                    contaEntity.getManutencao()
+                    conta.getTipoConta().name(),
+                    conta.getIdCliente(),
+                    conta.getSaldo(),
+                    conta.getRendimento(),
+                    conta.getManutencao()
 
             ));
         } catch (DataAccessException ex){
@@ -58,14 +60,15 @@ public class ContaDao {
     }
 
     //READ
-    public ContaEntity findById(Long idConta)
+    @Override
+    public Conta findById(Long idConta)
     {
         String sql = "SELECT * FROM public.busca_conta_por_id_v1(?)";
         log.info("Iniciando busca da conta ID {}", idConta);
         try {
             return jdbcTemplate.queryForObject(
                     sql,
-                    new ContaEntityRowMapper(),
+                    new ContaRowMapper(),
                     idConta);
         } catch(EmptyResultDataAccessException ex){
             log.error("Cliente ID {} nao encontrado", idConta);
@@ -77,7 +80,8 @@ public class ContaDao {
     }
 
     //READ ALL
-    public List<ContaEntity> findAll()
+    @Override
+    public List<Conta> findAll()
     {
         String sql = "SELECT id_conta, tipo, fk_id_cliente, saldo, rendimento, manutencao " +
                 "FROM public.lista_contas_completa_v1()";
@@ -92,30 +96,32 @@ public class ContaDao {
     //UPDATE
     //SO FAZ ALTERACOES EM SALDO, RENDIMENTO E MANUTENCAO, RESTANTE DAS INFORMACOES NAO FAZ SENTIDO
     // PARA A REGRA DE NEGOCIO
-    public boolean update(ContaEntity contaEntity)
+    @Override
+    public boolean update(Conta conta)
     {
         String sql = "SELECT * FROM public.atualizar_conta_v1(?,?,?,?,?,?)";
         try{
-            log.info("Passando parametros para atualizar conta ID {}",contaEntity.getIdConta());
+            log.info("Passando parametros para atualizar conta ID {}", conta.getIdConta());
             return Boolean.TRUE.equals(jdbcTemplate.queryForObject(
                     sql,
                     Boolean.class,
-                    contaEntity.getIdConta(),
-                    contaEntity.getTipoConta().name(),
-                    contaEntity.getIdCliente(),
-                    contaEntity.getSaldo(),
-                    contaEntity.getRendimento(),
-                    contaEntity.getManutencao()
+                    conta.getIdConta(),
+                    conta.getTipoConta().name(),
+                    conta.getIdCliente(),
+                    conta.getSaldo(),
+                    conta.getRendimento(),
+                    conta.getManutencao()
 
             ));
         } catch (DataAccessException ex){
-            log.error("Erro ao tentar atualizar Conta ID {} na base de dados", contaEntity.getIdConta());
+            log.error("Erro ao tentar atualizar Conta ID {} na base de dados", conta.getIdConta());
             throw new RegistroNaoAtualizadoException("Conta nao atualizada");
         }
     }
 
     //DELETE
-    private boolean deleteById(Long idConta) {
+    @Override
+    public boolean deleteById(Long idConta) {
         String sql = "SELECT * FROM public.deletar_conta_v1(?)";
         try {
             log.info("Passando parametro para deletar conta ID {}",idConta);

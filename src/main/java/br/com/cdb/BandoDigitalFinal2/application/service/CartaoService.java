@@ -5,7 +5,7 @@ import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ClienteDao;
 import br.com.cdb.BandoDigitalFinal2.adapter.out.persistence.ContaDao;
 import br.com.cdb.BandoDigitalFinal2.domain.model.CartaoEntity;
 import br.com.cdb.BandoDigitalFinal2.domain.model.Cliente;
-import br.com.cdb.BandoDigitalFinal2.domain.model.ContaEntity;
+import br.com.cdb.BandoDigitalFinal2.domain.model.Conta;
 import br.com.cdb.BandoDigitalFinal2.enums.Situacao;
 import br.com.cdb.BandoDigitalFinal2.enums.TipoCartao;
 import br.com.cdb.BandoDigitalFinal2.exceptions.*;
@@ -33,7 +33,7 @@ public class CartaoService {
 	public boolean addCartaoDebito(Long idConta, String senha, TipoCartao tipo) {
 		CartaoEntity cartao = new CartaoEntity();
 		log.info("Verificando se a Conta ID {} existe na base de dados", idConta);
-		ContaEntity conta = contaDao.findById(idConta);
+		Conta conta = contaDao.findById(idConta);
 		if(conta == null)
 			throw new RegistroNaoEncontradoException("Conta "+idConta+" nao encontrada");
 		Optional<Cliente> cliente = clienteDao.findById(conta.getIdCliente());
@@ -96,7 +96,7 @@ public class CartaoService {
 	public void pagamentoCartaoDebito(Long idCartao, String senha, BigDecimal valor) {
 
 		CartaoEntity cartao = buscarCartao(idCartao);
-		ContaEntity conta = contaDao.findById(cartao.getIdConta());
+		Conta conta = contaDao.findById(cartao.getIdConta());
 		if(!cartao.getTipo().equals(TipoCartao.DEBITO)) //VERIFICA SE É CARTAO DE DEBITO MESMO
 			throw new TipoCartaoInvalidoException("Operação Permitida apenas para Cartão de Debito");
 
@@ -193,7 +193,7 @@ public class CartaoService {
 	public void debitarFatura(Long idCartao, String senha) 
 	{
 		CartaoEntity cartao = buscarCartao(idCartao);
-		ContaEntity conta = contaDao.findById(cartao.getIdConta());
+		Conta conta = contaDao.findById(cartao.getIdConta());
 		if(!cartao.getTipo().equals(TipoCartao.CREDITO))
 			throw new TipoCartaoInvalidoException("Transação permitida apenas para Cartao de Credito");
 

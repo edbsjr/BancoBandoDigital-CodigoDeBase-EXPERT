@@ -35,6 +35,7 @@ public class ClienteDao implements ClienteRepositoryPort {
     //METODOS CRUD
 
     //CREAT
+    @Override
     public boolean save(Cliente cliente)
     {
         String sql = "SELECT * FROM public.inserir_cliente_v1(?,?,?,?)";
@@ -58,26 +59,28 @@ public class ClienteDao implements ClienteRepositoryPort {
     }
 
     //READ
-        public Optional<Cliente> findById(Long idCliente)
-        {
-            String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria " +
+    @Override
+    public Optional<Cliente> findById(Long idCliente)
+    {
+        String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria " +
                     "FROM public.busca_cliente_por_id_v1(?)";
-            try{
-                log.info("Iniciando busca na base de dados");
-                Cliente cliente = jdbcTemplate.queryForObject(
-                        sql,
-                        new ClienteRowMapper(),
-                        idCliente);
-                return Optional.of(cliente);
-            } catch (EmptyResultDataAccessException ex){
-                log.error("Cliente ID {} nao encontrado", idCliente);
-                return Optional.empty();
-            }catch (DataAccessException ex) {
-                log.error("Erro ao tentar acessar a base de dados");
-                throw new RegistroNaoEncontradoException("Erro ao tentar acessar a base de dados ");
-            }
+        try{
+            log.info("Iniciando busca na base de dados");
+            Cliente cliente = jdbcTemplate.queryForObject(
+                    sql,
+                    new ClienteRowMapper(),
+                    idCliente);
+            return Optional.of(cliente);
+        } catch (EmptyResultDataAccessException ex){
+            log.error("Cliente ID {} nao encontrado", idCliente);
+            return Optional.empty();
+        }catch (DataAccessException ex) {
+            log.error("Erro ao tentar acessar a base de dados");
+            throw new RegistroNaoEncontradoException("Erro ao tentar acessar a base de dados ");
         }
+    }
 
+    @Override
     public List<Cliente> findAll()
     {
         String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria FROM public.lista_clientes_completa_v1()";
@@ -90,6 +93,7 @@ public class ClienteDao implements ClienteRepositoryPort {
         }
     }
 
+    @Override
     public boolean update(Cliente cliente)
     {
         String sql = "SELECT * from public.atualizar_cliente_v1(?,?,?,?,?)";
@@ -111,6 +115,7 @@ public class ClienteDao implements ClienteRepositoryPort {
     }
 
     //DELETE
+    @Override
     public boolean deleteById(Long idCliente)
     {
         String sql = "SELECT * FROM public.deletar_cliente_v1(?)";
@@ -123,19 +128,21 @@ public class ClienteDao implements ClienteRepositoryPort {
         }
         }
 
-    public Cliente findByCpf(String cpf)
+    @Override
+    public Optional<Cliente> findByCpf(String cpf)
     {
         String sql = "SELECT id_cliente, nome, cpf, data_nasc, categoria " +
                 "FROM public.busca_cliente_por_cpf_v1(?)";
         try{
             log.info("Iniciando busca na base de dados");
-            return jdbcTemplate.queryForObject(
+            Cliente cliente = jdbcTemplate.queryForObject(
                     sql,
                     new ClienteRowMapper(),
                    cpf);
+            return Optional.of(cliente);
         } catch (EmptyResultDataAccessException e) {
             log.info("CPF {} não encontrado na base de dados.", cpf);
-            return null; //comportamento adequado para verificar duplicidade
+            return Optional.empty(); //comportamento adequado para verificar duplicidade
         } catch (DataAccessException ex) {
             log.error("Erro ao tentar acessar a base de dados");
             throw new RegistroNaoEncontradoException("Erro ao tentar acessar a base de dados ");
